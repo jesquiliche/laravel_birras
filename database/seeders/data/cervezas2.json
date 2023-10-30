@@ -1,0 +1,1227 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "attributes": {
+                "nombre": "POMELO IPA IDA Y VUELTA 24x33cl",
+                "descripcion": "**Estilo POMELO IPA. Sin gluten**\n5,8 % ABV\nIBU´S 50 , amarga.\n**INGREDIENTES: **Agua; maltas de trigo Torrefacto y Extra pale; lúpulos Cascade,Columbus y Citra , copos de AVENA,zumo y cascara de pomelo  y levadura Ale. \nGastos de envio España Peninsular incluidos.\n24 botellas  33 cl\n\nExiste la posibilidad de que como realizamos los envíos en cajas de 12 unidades, puedas componer la tuya con los tipos de cerveza de Dougall que desees, para ello debes enviar un correo a info@milcervezas,com explicando lo que desearías. \n\nCerveza elaborada por DouGall's desde el 2023 en colaboración con Refu.Valle de Arán",
+                "precio": 59.81,
+                "marca": "DouGall's",
+                "createdAt": "2023-10-14T18:44:54.386Z",
+                "updatedAt": "2023-10-18T10:42:29.770Z",
+                "publishedAt": "2023-10-14T18:46:30.703Z",
+                "envase": "Botella",
+                "contenido": "33cl",
+                "unidades": 24,
+                "slug": "pomelo-ipa-ida-y-vuelta-24x33cl",
+                "novedad": true,
+                "color": {
+                    "data": {
+                        "id": 1,
+                        "attributes": {
+                            "nombre": "Amarillo",
+                            "createdAt": "2023-10-13T11:43:56.236Z",
+                            "updatedAt": "2023-10-13T11:44:00.311Z",
+                            "publishedAt": "2023-10-13T11:44:00.300Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 13,
+                        "attributes": {
+                            "Nombre": "Nacional",
+                            "createdAt": "2023-10-18T09:54:15.341Z",
+                            "updatedAt": "2023-10-18T09:54:16.938Z",
+                            "publishedAt": "2023-10-18T09:54:16.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "nombre": "Lager/PIls",
+                            "createdAt": "2023-10-14T17:13:58.193Z",
+                            "updatedAt": "2023-10-14T17:18:27.980Z",
+                            "publishedAt": "2023-10-14T17:18:27.972Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 1,
+                        "attributes": {
+                            "name": "pomelo-ipa-ida-y-vuelta-24x33cl.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 381,
+                            "height": 492,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697309153/thumbnail_pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584.jpg",
+                                    "hash": "thumbnail_pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_pomelo-ipa-ida-y-vuelta-24x33cl.jpg",
+                                    "path": null,
+                                    "size": 3.36,
+                                    "width": 120,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 17.43,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697309153/pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584.jpg",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-14T18:45:53.376Z",
+                            "updatedAt": "2023-10-14T18:45:53.376Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 2,
+            "attributes": {
+                "nombre": "DIPA or Nothing 12x33",
+                "descripcion": "Estilo: DDH Doble IPA\nAlcohol: 7,5 % Abv \nIBU’S: 70 Bastante Amarga\nSin gluten\nIngredientes , Agua, maltas y lúpulos  Incognito Mosaic, Azacca y Vic Secret.\nGastos de envio España Peninsular incluidos.\n1\n",
+                "precio": 46.58,
+                "marca": "DIPA or Nothing ",
+                "createdAt": "2023-10-14T19:16:00.542Z",
+                "updatedAt": "2023-10-17T12:18:50.502Z",
+                "publishedAt": "2023-10-14T19:16:03.615Z",
+                "envase": "Botella",
+                "contenido": "33cl",
+                "unidades": 12,
+                "slug": "dipa-or-nothing-12x33",
+                "novedad": true,
+                "color": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "nombre": "Rubia",
+                            "createdAt": "2023-10-13T11:48:13.403Z",
+                            "updatedAt": "2023-10-13T11:48:15.221Z",
+                            "publishedAt": "2023-10-13T11:48:15.213Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 1,
+                        "attributes": {
+                            "nombre": "Alta (7-9)",
+                            "createdAt": "2023-10-14T17:27:37.706Z",
+                            "updatedAt": "2023-10-14T17:28:55.403Z",
+                            "publishedAt": "2023-10-14T17:27:39.599Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "Nombre": "Alemania",
+                            "createdAt": "2023-10-13T10:38:36.367Z",
+                            "updatedAt": "2023-10-13T10:38:39.936Z",
+                            "publishedAt": "2023-10-13T10:38:39.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 7,
+                        "attributes": {
+                            "nombre": "IPA",
+                            "createdAt": "2023-10-14T17:19:47.681Z",
+                            "updatedAt": "2023-10-14T17:20:14.026Z",
+                            "publishedAt": "2023-10-14T17:19:48.354Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "name": "dipa-or-nothing-12x33.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 381,
+                            "height": 492,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311032/thumbnail_dipa_or_nothing_12x33_a547d464d5.jpg",
+                                    "hash": "thumbnail_dipa_or_nothing_12x33_a547d464d5",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_dipa-or-nothing-12x33.jpg",
+                                    "path": null,
+                                    "size": 2.75,
+                                    "width": 120,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_dipa_or_nothing_12x33_a547d464d5",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "dipa_or_nothing_12x33_a547d464d5",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 13.56,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311032/dipa_or_nothing_12x33_a547d464d5.jpg",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "dipa_or_nothing_12x33_a547d464d5",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-14T19:17:13.925Z",
+                            "updatedAt": "2023-10-14T19:17:13.925Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 3,
+            "attributes": {
+                "nombre": "AC/DC PILS 24x50 cl.",
+                "descripcion": "Cerveza pils elaborada según la ley de pureza . Elaborada por Karlsberg ",
+                "precio": 58.2,
+                "marca": " Karlsberg ",
+                "createdAt": "2023-10-14T19:23:44.402Z",
+                "updatedAt": "2023-10-14T19:23:49.386Z",
+                "publishedAt": "2023-10-14T19:23:49.372Z",
+                "envase": null,
+                "contenido": "50cl",
+                "unidades": 24,
+                "slug": "ac-dc-pils-24x50-cl",
+                "novedad": null,
+                "color": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "nombre": "Ambar",
+                            "createdAt": "2023-10-13T11:44:25.461Z",
+                            "updatedAt": "2023-10-13T11:44:27.201Z",
+                            "publishedAt": "2023-10-13T11:44:27.192Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": null
+                },
+                "pais": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "Nombre": "Alemania",
+                            "createdAt": "2023-10-13T10:38:36.367Z",
+                            "updatedAt": "2023-10-13T10:38:39.936Z",
+                            "publishedAt": "2023-10-13T10:38:39.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "nombre": "Lager/PIls",
+                            "createdAt": "2023-10-14T17:13:58.193Z",
+                            "updatedAt": "2023-10-14T17:18:27.980Z",
+                            "publishedAt": "2023-10-14T17:18:27.972Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 3,
+                        "attributes": {
+                            "name": "acdc-pils-24x50-cl.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 381,
+                            "height": 492,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311366/thumbnail_acdc_pils_24x50_cl_dbc80ea5c9.jpg",
+                                    "hash": "thumbnail_acdc_pils_24x50_cl_dbc80ea5c9",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_acdc-pils-24x50-cl.jpg",
+                                    "path": null,
+                                    "size": 4.27,
+                                    "width": 120,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_acdc_pils_24x50_cl_dbc80ea5c9",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "acdc_pils_24x50_cl_dbc80ea5c9",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 26.16,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311366/acdc_pils_24x50_cl_dbc80ea5c9.jpg",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "acdc_pils_24x50_cl_dbc80ea5c9",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-14T19:22:46.515Z",
+                            "updatedAt": "2023-10-14T19:22:46.515Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 4,
+            "attributes": {
+                "nombre": "LAGERBIER HELL",
+                "descripcion": "Una cerveza particularmente suave, espumosa, largamente almacenada, refrescante y fácilmente digerible. Única en su sabor.",
+                "precio": 3.35,
+                "marca": "Helles",
+                "createdAt": "2023-10-15T02:56:28.151Z",
+                "updatedAt": "2023-10-17T12:19:15.992Z",
+                "publishedAt": "2023-10-15T02:56:31.520Z",
+                "envase": "Botella",
+                "contenido": "50cl",
+                "unidades": 1,
+                "slug": "lagerbier-hell",
+                "novedad": false,
+                "color": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "nombre": "Rubia",
+                            "createdAt": "2023-10-13T11:48:13.403Z",
+                            "updatedAt": "2023-10-13T11:48:15.221Z",
+                            "publishedAt": "2023-10-13T11:48:15.213Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "Nombre": "Alemania",
+                            "createdAt": "2023-10-13T10:38:36.367Z",
+                            "updatedAt": "2023-10-13T10:38:39.936Z",
+                            "publishedAt": "2023-10-13T10:38:39.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 9,
+                        "attributes": {
+                            "nombre": "Pils",
+                            "createdAt": null,
+                            "updatedAt": "2023-10-15T02:49:41.692Z",
+                            "publishedAt": "2023-10-15T02:49:41.430Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "name": "cerveza-artesana-lagerbier-hell-.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 500,
+                            "height": 500,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697338549/thumbnail_cerveza_artesana_lagerbier_hell_1c5414e43a.jpg",
+                                    "hash": "thumbnail_cerveza_artesana_lagerbier_hell_1c5414e43a",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_cerveza-artesana-lagerbier-hell-.jpg",
+                                    "path": null,
+                                    "size": 3.14,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_cerveza_artesana_lagerbier_hell_1c5414e43a",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "cerveza_artesana_lagerbier_hell_1c5414e43a",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 19.57,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697338549/cerveza_artesana_lagerbier_hell_1c5414e43a.jpg",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "cerveza_artesana_lagerbier_hell_1c5414e43a",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T02:55:48.646Z",
+                            "updatedAt": "2023-10-15T02:55:48.646Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 6,
+            "attributes": {
+                "nombre": "AECHT SCHLENKERLA RAUCHBIER - MÄRZEN",
+                "descripcion": "Rauchbier.",
+                "precio": 3.4,
+                "marca": "MÄRZEN",
+                "createdAt": "2023-10-15T03:10:32.294Z",
+                "updatedAt": "2023-10-16T15:06:38.286Z",
+                "publishedAt": "2023-10-15T03:12:50.620Z",
+                "envase": "Botella",
+                "contenido": "50cl",
+                "unidades": 1,
+                "slug": "aecht-schlenkerla-rauchbier-m-ae-rzen",
+                "novedad": true,
+                "color": {
+                    "data": {
+                        "id": 9,
+                        "attributes": {
+                            "nombre": "Tostada",
+                            "createdAt": "2023-10-13T11:48:33.701Z",
+                            "updatedAt": "2023-10-13T11:48:35.878Z",
+                            "publishedAt": "2023-10-13T11:48:35.870Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "Nombre": "Alemania",
+                            "createdAt": "2023-10-13T10:38:36.367Z",
+                            "updatedAt": "2023-10-13T10:38:39.936Z",
+                            "publishedAt": "2023-10-13T10:38:39.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 11,
+                        "attributes": {
+                            "nombre": "Rauchbier",
+                            "createdAt": "2023-10-15T03:06:41.123Z",
+                            "updatedAt": "2023-10-15T03:06:42.498Z",
+                            "publishedAt": "2023-10-15T03:06:42.489Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 6,
+                        "attributes": {
+                            "name": "aecht-schlenkerla-rauchbier-maerzen.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 500,
+                            "height": 500,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697339509/thumbnail_aecht_schlenkerla_rauchbier_maerzen_889700fd43.png",
+                                    "hash": "thumbnail_aecht_schlenkerla_rauchbier_maerzen_889700fd43",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_aecht-schlenkerla-rauchbier-maerzen.jpg",
+                                    "path": null,
+                                    "size": 20.99,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_aecht_schlenkerla_rauchbier_maerzen_889700fd43",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "aecht_schlenkerla_rauchbier_maerzen_889700fd43",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 41.08,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697339509/aecht_schlenkerla_rauchbier_maerzen_889700fd43.png",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "aecht_schlenkerla_rauchbier_maerzen_889700fd43",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T03:11:48.767Z",
+                            "updatedAt": "2023-10-15T03:11:48.767Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 7,
+            "attributes": {
+                "nombre": "GOMA 2 BY CALEYA",
+                "descripcion": "Cerveza de alta fermentación elaborada con una malta. Sabores y aromas tropicales donde el lúpulo predomina por encima de la malta. Refrescante y explosiva.",
+                "precio": 3.3,
+                "marca": "CALEVA",
+                "createdAt": "2023-10-15T03:17:51.652Z",
+                "updatedAt": "2023-10-18T09:56:45.819Z",
+                "publishedAt": "2023-10-15T03:17:54.902Z",
+                "envase": "Botella",
+                "contenido": "33cl",
+                "unidades": 1,
+                "slug": "goma-2-by-caleya",
+                "novedad": true,
+                "color": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "nombre": "Rubia",
+                            "createdAt": "2023-10-13T11:48:13.403Z",
+                            "updatedAt": "2023-10-13T11:48:15.221Z",
+                            "publishedAt": "2023-10-13T11:48:15.213Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 13,
+                        "attributes": {
+                            "Nombre": "Nacional",
+                            "createdAt": "2023-10-18T09:54:15.341Z",
+                            "updatedAt": "2023-10-18T09:54:16.938Z",
+                            "publishedAt": "2023-10-18T09:54:16.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 7,
+                        "attributes": {
+                            "nombre": "IPA",
+                            "createdAt": "2023-10-14T17:19:47.681Z",
+                            "updatedAt": "2023-10-14T17:20:14.026Z",
+                            "publishedAt": "2023-10-14T17:19:48.354Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 7,
+                        "attributes": {
+                            "name": "cerveza-artesana-goma-2-caleya.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 500,
+                            "height": 500,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697339824/thumbnail_cerveza_artesana_goma_2_caleya_8267299325.jpg",
+                                    "hash": "thumbnail_cerveza_artesana_goma_2_caleya_8267299325",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_cerveza-artesana-goma-2-caleya.jpg",
+                                    "path": null,
+                                    "size": 2.75,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_cerveza_artesana_goma_2_caleya_8267299325",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "cerveza_artesana_goma_2_caleya_8267299325",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 17.83,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697339824/cerveza_artesana_goma_2_caleya_8267299325.jpg",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "cerveza_artesana_goma_2_caleya_8267299325",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T03:17:03.842Z",
+                            "updatedAt": "2023-10-15T03:17:03.842Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 8,
+            "attributes": {
+                "nombre": "HOUBLON CHOUFFE",
+                "descripcion": "De color ámbar, suave turbidez y una cabeza blancuzca, esponjosa, de mediana formación y buena retención. El aroma está dominado por notas frutales, en parte por la levadura y en parte por los lúpulos. Entre las frutas se destacan duraznos y frambuesas, también hay notas cítricas y herbales. El cuerpo es bien atenuado, ligero pese a sus 9% de graduación alcohólica. ",
+                "precio": 3.9,
+                "marca": " HOUBLON CHOUFFE",
+                "createdAt": "2023-10-15T03:24:03.411Z",
+                "updatedAt": "2023-10-16T15:07:47.035Z",
+                "publishedAt": "2023-10-15T03:24:07.772Z",
+                "envase": "Botella",
+                "contenido": "50cl",
+                "unidades": 1,
+                "slug": null,
+                "novedad": false,
+                "color": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "nombre": "Rubia",
+                            "createdAt": "2023-10-13T11:48:13.403Z",
+                            "updatedAt": "2023-10-13T11:48:15.221Z",
+                            "publishedAt": "2023-10-13T11:48:15.213Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 5,
+                        "attributes": {
+                            "nombre": "Muy alta (9-12)",
+                            "createdAt": "2023-10-14T17:31:13.454Z",
+                            "updatedAt": "2023-10-14T17:31:15.161Z",
+                            "publishedAt": "2023-10-14T17:31:15.151Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "Nombre": "Belgica",
+                            "createdAt": "2023-10-13T10:39:34.885Z",
+                            "updatedAt": "2023-10-13T10:39:38.067Z",
+                            "publishedAt": "2023-10-13T10:39:38.048Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 7,
+                        "attributes": {
+                            "nombre": "IPA",
+                            "createdAt": "2023-10-14T17:19:47.681Z",
+                            "updatedAt": "2023-10-14T17:20:14.026Z",
+                            "publishedAt": "2023-10-14T17:19:48.354Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "name": "cerveza-artesana-houblon-chouffe.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 500,
+                            "height": 500,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697340237/thumbnail_cerveza_artesana_houblon_chouffe_b6422c335c.png",
+                                    "hash": "thumbnail_cerveza_artesana_houblon_chouffe_b6422c335c",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_cerveza-artesana-houblon-chouffe.jpg",
+                                    "path": null,
+                                    "size": 22.56,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_cerveza_artesana_houblon_chouffe_b6422c335c",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "cerveza_artesana_houblon_chouffe_b6422c335c",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 40.03,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697340237/cerveza_artesana_houblon_chouffe_b6422c335c.png",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "cerveza_artesana_houblon_chouffe_b6422c335c",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T03:23:55.927Z",
+                            "updatedAt": "2023-10-15T03:23:55.927Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 9,
+            "attributes": {
+                "nombre": "AUGUSTINER DUNKEL",
+                "descripcion": "La cerveza Altmünchner con sabor a malta y aromática. Un delicioso placer para los amantes de las cervezas oscuras.",
+                "precio": 3.05,
+                "marca": "DUNKEL",
+                "createdAt": "2023-10-15T03:29:08.581Z",
+                "updatedAt": "2023-10-16T15:07:11.211Z",
+                "publishedAt": "2023-10-15T03:29:12.251Z",
+                "envase": "Botella",
+                "contenido": "50cl",
+                "unidades": 1,
+                "slug": "augustiner-dunkel",
+                "novedad": true,
+                "color": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "nombre": "Rubia",
+                            "createdAt": "2023-10-13T11:48:13.403Z",
+                            "updatedAt": "2023-10-13T11:48:15.221Z",
+                            "publishedAt": "2023-10-13T11:48:15.213Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "Nombre": "Alemania",
+                            "createdAt": "2023-10-13T10:38:36.367Z",
+                            "updatedAt": "2023-10-13T10:38:39.936Z",
+                            "publishedAt": "2023-10-13T10:38:39.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "nombre": "Lager/PIls",
+                            "createdAt": "2023-10-14T17:13:58.193Z",
+                            "updatedAt": "2023-10-14T17:18:27.980Z",
+                            "publishedAt": "2023-10-14T17:18:27.972Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 9,
+                        "attributes": {
+                            "name": "augustiner-dunkel.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 800,
+                            "height": 800,
+                            "formats": {
+                                "small": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697340537/small_augustiner_dunkel_7072ba3d9e.png",
+                                    "hash": "small_augustiner_dunkel_7072ba3d9e",
+                                    "mime": "image/jpeg",
+                                    "name": "small_augustiner-dunkel.jpg",
+                                    "path": null,
+                                    "size": 72.12,
+                                    "width": 500,
+                                    "height": 500,
+                                    "provider_metadata": {
+                                        "public_id": "small_augustiner_dunkel_7072ba3d9e",
+                                        "resource_type": "image"
+                                    }
+                                },
+                                "medium": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697340537/medium_augustiner_dunkel_7072ba3d9e.png",
+                                    "hash": "medium_augustiner_dunkel_7072ba3d9e",
+                                    "mime": "image/jpeg",
+                                    "name": "medium_augustiner-dunkel.jpg",
+                                    "path": null,
+                                    "size": 147.83,
+                                    "width": 750,
+                                    "height": 750,
+                                    "provider_metadata": {
+                                        "public_id": "medium_augustiner_dunkel_7072ba3d9e",
+                                        "resource_type": "image"
+                                    }
+                                },
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697340537/thumbnail_augustiner_dunkel_7072ba3d9e.png",
+                                    "hash": "thumbnail_augustiner_dunkel_7072ba3d9e",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_augustiner-dunkel.jpg",
+                                    "path": null,
+                                    "size": 8.98,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_augustiner_dunkel_7072ba3d9e",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "augustiner_dunkel_7072ba3d9e",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 41.45,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697340537/augustiner_dunkel_7072ba3d9e.png",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "augustiner_dunkel_7072ba3d9e",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T03:28:56.726Z",
+                            "updatedAt": "2023-10-15T03:28:56.726Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 10,
+            "attributes": {
+                "nombre": "AECHT SCHLENKERLA EICHE - DOPPELBOCK",
+                "descripcion": "Schlenkerla Rauchbier.\n\nSiguiendo recetas centenarias, todas las maltas elaboradas en la fábrica de cerveza Schlenkerla se secan al fuego de leña. Mientras que para el clásico “Aecht Schlenkerla Rauchbier” tradicionalmente se ha utilizado - y todavía se utiliza - la haya, la malta para el “Schlenkerla Oak Smoke” se hornea con madera de roble. El Oak Smoke Malt resultante tiene una nota ahumada más suave y con más capas que el Beech Smoke Malt intensamente aromático. Por tanto, el ahumado complejo de \"Schlenkerla Oak Smoke\" se combina con el amargor polifacético de los mejores lúpulos aromáticos Hallertau. ",
+                "precio": 4.2,
+                "marca": "DOPPELBOCK",
+                "createdAt": "2023-10-15T03:38:11.246Z",
+                "updatedAt": "2023-10-15T03:38:13.869Z",
+                "publishedAt": "2023-10-15T03:38:13.850Z",
+                "envase": "Botella",
+                "contenido": "50cl",
+                "unidades": 1,
+                "slug": "aecht-schlenkerla-eiche-doppelbock",
+                "novedad": null,
+                "color": {
+                    "data": {
+                        "id": 6,
+                        "attributes": {
+                            "nombre": "Negra",
+                            "createdAt": "2023-10-13T11:47:04.543Z",
+                            "updatedAt": "2023-10-13T11:47:06.537Z",
+                            "publishedAt": "2023-10-13T11:47:06.527Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "Nombre": "Alemania",
+                            "createdAt": "2023-10-13T10:38:36.367Z",
+                            "updatedAt": "2023-10-13T10:38:39.936Z",
+                            "publishedAt": "2023-10-13T10:38:39.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 11,
+                        "attributes": {
+                            "nombre": "Rauchbier",
+                            "createdAt": "2023-10-15T03:06:41.123Z",
+                            "updatedAt": "2023-10-15T03:06:42.498Z",
+                            "publishedAt": "2023-10-15T03:06:42.489Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 10,
+                        "attributes": {
+                            "name": "aecht-schlenkerla-eiche-doppelbock.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 500,
+                            "height": 500,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341083/thumbnail_aecht_schlenkerla_eiche_doppelbock_2c9866bf0d.png",
+                                    "hash": "thumbnail_aecht_schlenkerla_eiche_doppelbock_2c9866bf0d",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_aecht-schlenkerla-eiche-doppelbock.jpg",
+                                    "path": null,
+                                    "size": 20.77,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_aecht_schlenkerla_eiche_doppelbock_2c9866bf0d",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "aecht_schlenkerla_eiche_doppelbock_2c9866bf0d",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 42.9,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341083/aecht_schlenkerla_eiche_doppelbock_2c9866bf0d.png",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "aecht_schlenkerla_eiche_doppelbock_2c9866bf0d",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T03:38:02.609Z",
+                            "updatedAt": "2023-10-15T03:38:02.609Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 11,
+            "attributes": {
+                "nombre": "CAMARÓN DE LA IPA",
+                "descripcion": "IPA colaboración Brew Pub Le Sec y DouGall's. Con lúpulos Nugget, Colombus, Yellow Sub, Amarillo y Mosaic. Sin gluten. 5% ABV.",
+                "precio": 3.8,
+                "marca": "DOUGALL'S",
+                "createdAt": "2023-10-15T03:43:39.036Z",
+                "updatedAt": "2023-10-18T09:56:18.823Z",
+                "publishedAt": "2023-10-15T03:43:42.027Z",
+                "envase": "Botella",
+                "contenido": "33cl",
+                "unidades": 1,
+                "slug": "camaron-de-la-ipa",
+                "novedad": true,
+                "color": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "nombre": "Rubia",
+                            "createdAt": "2023-10-13T11:48:13.403Z",
+                            "updatedAt": "2023-10-13T11:48:15.221Z",
+                            "publishedAt": "2023-10-13T11:48:15.213Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 13,
+                        "attributes": {
+                            "Nombre": "Nacional",
+                            "createdAt": "2023-10-18T09:54:15.341Z",
+                            "updatedAt": "2023-10-18T09:54:16.938Z",
+                            "publishedAt": "2023-10-18T09:54:16.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 7,
+                        "attributes": {
+                            "nombre": "IPA",
+                            "createdAt": "2023-10-14T17:19:47.681Z",
+                            "updatedAt": "2023-10-14T17:20:14.026Z",
+                            "publishedAt": "2023-10-14T17:19:48.354Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 11,
+                        "attributes": {
+                            "name": "camaron-de-la-ipa.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 800,
+                            "height": 800,
+                            "formats": {
+                                "small": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341403/small_camaron_de_la_ipa_06e847b993.png",
+                                    "hash": "small_camaron_de_la_ipa_06e847b993",
+                                    "mime": "image/jpeg",
+                                    "name": "small_camaron-de-la-ipa.jpg",
+                                    "path": null,
+                                    "size": 59.44,
+                                    "width": 500,
+                                    "height": 500,
+                                    "provider_metadata": {
+                                        "public_id": "small_camaron_de_la_ipa_06e847b993",
+                                        "resource_type": "image"
+                                    }
+                                },
+                                "medium": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341403/medium_camaron_de_la_ipa_06e847b993.png",
+                                    "hash": "medium_camaron_de_la_ipa_06e847b993",
+                                    "mime": "image/jpeg",
+                                    "name": "medium_camaron-de-la-ipa.jpg",
+                                    "path": null,
+                                    "size": 120.66,
+                                    "width": 750,
+                                    "height": 750,
+                                    "provider_metadata": {
+                                        "public_id": "medium_camaron_de_la_ipa_06e847b993",
+                                        "resource_type": "image"
+                                    }
+                                },
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341403/thumbnail_camaron_de_la_ipa_06e847b993.png",
+                                    "hash": "thumbnail_camaron_de_la_ipa_06e847b993",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_camaron-de-la-ipa.jpg",
+                                    "path": null,
+                                    "size": 7.68,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_camaron_de_la_ipa_06e847b993",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "camaron_de_la_ipa_06e847b993",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 34.48,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341403/camaron_de_la_ipa_06e847b993.png",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "camaron_de_la_ipa_06e847b993",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T03:43:22.424Z",
+                            "updatedAt": "2023-10-15T03:43:22.424Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 12,
+            "attributes": {
+                "nombre": "BARCELONA NOSTRA BEER",
+                "descripcion": "Session IPA en colaboración con Barcelona Beer Challenge. 5% ABV",
+                "precio": 5.1,
+                "marca": "COSA NOSTRA",
+                "createdAt": "2023-10-15T03:49:09.399Z",
+                "updatedAt": "2023-10-18T09:55:03.456Z",
+                "publishedAt": "2023-10-15T03:49:13.361Z",
+                "envase": "Lata",
+                "contenido": "33cl",
+                "unidades": 1,
+                "slug": "barcelona-nostra-beer",
+                "novedad": false,
+                "color": {
+                    "data": {
+                        "id": 8,
+                        "attributes": {
+                            "nombre": "Rubia",
+                            "createdAt": "2023-10-13T11:48:13.403Z",
+                            "updatedAt": "2023-10-13T11:48:15.221Z",
+                            "publishedAt": "2023-10-13T11:48:15.213Z"
+                        }
+                    }
+                },
+                "graduacion": {
+                    "data": {
+                        "id": 4,
+                        "attributes": {
+                            "nombre": "Media (5-7)",
+                            "createdAt": "2023-10-14T17:30:16.645Z",
+                            "updatedAt": "2023-10-14T17:30:18.469Z",
+                            "publishedAt": "2023-10-14T17:30:18.461Z"
+                        }
+                    }
+                },
+                "pais": {
+                    "data": {
+                        "id": 13,
+                        "attributes": {
+                            "Nombre": "Nacional",
+                            "createdAt": "2023-10-18T09:54:15.341Z",
+                            "updatedAt": "2023-10-18T09:54:16.938Z",
+                            "publishedAt": "2023-10-18T09:54:16.926Z"
+                        }
+                    }
+                },
+                "tipo": {
+                    "data": {
+                        "id": 7,
+                        "attributes": {
+                            "nombre": "IPA",
+                            "createdAt": "2023-10-14T17:19:47.681Z",
+                            "updatedAt": "2023-10-14T17:20:14.026Z",
+                            "publishedAt": "2023-10-14T17:19:48.354Z"
+                        }
+                    }
+                },
+                "foto": {
+                    "data": {
+                        "id": 12,
+                        "attributes": {
+                            "name": "barcelona-nostra-beer.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 800,
+                            "height": 800,
+                            "formats": {
+                                "small": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341729/small_barcelona_nostra_beer_9b4c1a4733.png",
+                                    "hash": "small_barcelona_nostra_beer_9b4c1a4733",
+                                    "mime": "image/jpeg",
+                                    "name": "small_barcelona-nostra-beer.jpg",
+                                    "path": null,
+                                    "size": 92.77,
+                                    "width": 500,
+                                    "height": 500,
+                                    "provider_metadata": {
+                                        "public_id": "small_barcelona_nostra_beer_9b4c1a4733",
+                                        "resource_type": "image"
+                                    }
+                                },
+                                "medium": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341729/medium_barcelona_nostra_beer_9b4c1a4733.png",
+                                    "hash": "medium_barcelona_nostra_beer_9b4c1a4733",
+                                    "mime": "image/jpeg",
+                                    "name": "medium_barcelona-nostra-beer.jpg",
+                                    "path": null,
+                                    "size": 189.88,
+                                    "width": 750,
+                                    "height": 750,
+                                    "provider_metadata": {
+                                        "public_id": "medium_barcelona_nostra_beer_9b4c1a4733",
+                                        "resource_type": "image"
+                                    }
+                                },
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341729/thumbnail_barcelona_nostra_beer_9b4c1a4733.png",
+                                    "hash": "thumbnail_barcelona_nostra_beer_9b4c1a4733",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_barcelona-nostra-beer.jpg",
+                                    "path": null,
+                                    "size": 12.08,
+                                    "width": 156,
+                                    "height": 156,
+                                    "provider_metadata": {
+                                        "public_id": "thumbnail_barcelona_nostra_beer_9b4c1a4733",
+                                        "resource_type": "image"
+                                    }
+                                }
+                            },
+                            "hash": "barcelona_nostra_beer_9b4c1a4733",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 55.11,
+                            "url": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341729/barcelona_nostra_beer_9b4c1a4733.png",
+                            "previewUrl": null,
+                            "provider": "cloudinary",
+                            "provider_metadata": {
+                                "public_id": "barcelona_nostra_beer_9b4c1a4733",
+                                "resource_type": "image"
+                            },
+                            "createdAt": "2023-10-15T03:48:48.636Z",
+                            "updatedAt": "2023-10-15T03:48:48.636Z"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "page": 1,
+            "pageSize": 25,
+            "pageCount": 1,
+            "total": 11
+        }
+    }
+}

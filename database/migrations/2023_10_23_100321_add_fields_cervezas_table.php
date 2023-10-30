@@ -9,9 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        //
+        Schema::table('cervezas', function (Blueprint $table) {
+            $table->boolean('novedad')->default(false);
+            $table->boolean('oferta')->default(false);
+            $table->decimal('precio', 8, 2); // 8 dígitos en total y 2 decimales
+            $table->string('foto');
+            $table->string('marca', 150);
+        });
     }
 
     /**

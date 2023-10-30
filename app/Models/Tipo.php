@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Color extends Model
+class Tipo extends Model
 {
     use HasFactory;
-    protected $table='colores';
-    
-    public function cervezas()
+    protected $fillable=['nombre'];
+   
+    public function tipos()
     {
-        return $this->hasMany(Cerveza::class);
+        return $this->hasMany(Tipo::class);
     }
 }

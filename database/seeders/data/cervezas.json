@@ -1,0 +1,32 @@
+[
+    {
+        "nombre": "POMELO IPA IDA Y VUELTA 24x33cl",
+        "descripcion": "**Estilo POMELO IPA. Sin gluten**\n5,8 % ABV\nIBU´S 50 , amarga.\n**INGREDIENTES: **Agua; maltas de trigo Torrefacto y Extra pale; lúpulos Cascade,Columbus y Citra , copos de AVENA,zumo y cascara de pomelo  y levadura Ale. \nGastos de envio España Peninsular incluidos.\n24 botellas  33 cl\n\nExiste la posibilidad de que como realizamos los envíos en cajas de 12 unidades, puedas componer la tuya con los tipos de cerveza de Dougall que desees, para ello debes enviar un correo a info@milcervezas,com explicando lo que desearías. \n\nCerveza elaborada por DouGall's desde el 2023 en colaboración con Refu.Valle de Arán",
+        "precio": 59.81,
+        "marca": "DouGall's",
+        "envase": "Botella",
+        "contenido": "33cl",
+        "unidades": 24,
+        "novedad": true,
+        "color_id": 1,
+        "graduacion_id": 4,
+        "pais_id": 1,
+        "tipo_id": 2,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697309153/pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584.jpg"
+    },
+    {
+        "nombre": "DIPA or Nothing 12x33",
+        "descripcion": "Estilo: DDH Doble IPA\nAlcohol: 7,5 % Abv \nIBU’S: 70 Bastante Amarga\nSin gluten\nIngredientes , Agua, maltas y lúpulos  Incognito Mosaic, Azacca y Vic Secret.\nGastos de envio España Peninsular incluidos.\n1\n",
+        "precio": 46.58,
+        "marca": "DIPA or Nothing ",
+        "envase": "Botella",
+        "contenido": "33cl",
+        "unidades": 12,
+        "novedad": true,
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311032/dipa_or_nothing_12x33_a547d464d5.jpg"
+    }
+]
