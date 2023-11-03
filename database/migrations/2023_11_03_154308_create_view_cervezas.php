@@ -18,12 +18,6 @@ return new class extends Migration
                 cer.id AS id,
                 cer.nombre AS nombre,
                 cer.descripcion AS descripcion,
-                cer.color_id AS color_id,
-                cer.graduacion_id AS graduacion_id,
-                cer.tipo_id AS tipo_id,
-                cer.pais_id AS pais_id,
-                cer.created_at AS created_at,
-                cer.updated_at AS updated_at,
                 cer.novedad AS novedad,
                 cer.oferta AS oferta,
                 cer.precio AS precio,
@@ -39,6 +33,7 @@ return new class extends Migration
                 JOIN graduaciones g ON (cer.graduacion_id = g.id)
                 JOIN tipos t ON (t.id = cer.tipo_id)
                 JOIN paises p ON (p.id = cer.pais_id)
+            ORDER BY nombre
         ');
     }
 
