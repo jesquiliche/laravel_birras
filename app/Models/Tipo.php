@@ -10,8 +10,8 @@ class Tipo extends Model
     use HasFactory;
     protected $fillable=['nombre'];
    
-    public function tipos()
+    public function cervezas()
     {
-        return $this->hasMany(Tipo::class);
+        return $this->hasMany(Cerveza::class);
     }
 }

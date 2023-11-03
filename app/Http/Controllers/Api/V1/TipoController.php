@@ -114,6 +114,9 @@ class TipoController extends Controller
             return response()->json(['message' => 'Tipo no encontrado'], 404);
         }
 
+        if ($tipo->cervezas()->exists()) {
+            return response()->json(['message' => 'No se pudo borrar el tipo, tiene cervezas relacionadas'],400);
+        }
         // Eliminar el tipo de la base de datos.
         $tipo->delete();
 

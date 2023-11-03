@@ -122,6 +122,9 @@ class ColorController extends Controller
             return response()->json(['message' => 'Color no encontrado'], 404);
         }
 
+        if ($color->cervezas()->exists()) {
+            return response()->json(['message' => 'No se pudo borrar el color, tiene cervezas relacionadas'],400);
+        }
         // Eliminar el color de la base de datos.
         $color->delete();
 

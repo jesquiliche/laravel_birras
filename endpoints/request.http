@@ -16,7 +16,7 @@ GET   http://localhost:8000/api/v1/colores/1
 
 
 ### Modificicar color
-DELETE   http://localhost:8000/api/v1/colores/9
+DELETE   http://localhost:8000/api/v1/colores/1
 Content-Type: application/json
 
 {
@@ -76,7 +76,7 @@ Content-Type: application/json
 }
 
 ### Borrar tipo
-DELETE   http://localhost:8000/api/v1/tipos/10
+DELETE   http://localhost:8000/api/v1/tipos/2
 
 
 #### Obtener todas las graduaciones

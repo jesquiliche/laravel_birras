@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::table('cervezas', function (Blueprint $table) {
             $table->boolean('novedad')->default(false);
             $table->boolean('oferta')->default(false);
-            $table->decimal('precio', 8, 2); // 8 dígitos en total y 2 decimales
-            $table->string('foto');
-            $table->string('marca', 150);
+            $table->decimal('precio', 8, 2)->default(0); // 8 dígitos en total y 2 decimales
+            $table->string('foto')->default('');
+            $table->string('marca', 150)->default('');
         });
     }
 

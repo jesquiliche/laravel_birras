@@ -119,6 +119,9 @@ class PaisController extends Controller
             return response()->json(['message' => 'País no encontrado'], 404);
         }
 
+        if ($pais->cervezas()->exists()) {
+            return response()->json(['message' => 'No se pudo borrar el país, tiene cervezas relacionadas'],400);
+        }
         // Eliminar el pais de la base de datos.
         $pais->delete();
 
