@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Cerveza;
 
 class Graduacion extends Model
 {
@@ -11,8 +12,8 @@ class Graduacion extends Model
     protected $table='graduaciones';
     protected $fillable=['nombre'];
    
-    public function graduaciones()
+    public function cervezas()
     {
-        return $this->hasMany(Cervezas::class);
+        return $this->hasMany(Cerveza::class);
     }
 }

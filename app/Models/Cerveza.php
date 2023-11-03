@@ -19,12 +19,33 @@ class Cerveza extends Model
         'color_id',
         'graduacion_id',
         'tipo_id',
-        'pais_id'
+        'pais_id',
+        'novedad',
+        'oferta',
+        'precio', 
+        'foto',
+        'marca'
     ];
 
     public function color()
     {
         return $this->belongsTo(Color::class, 'color_id');
     }
+
+    public function graduacion()
+    {
+        return $this->belongsTo(Graduacion::class, 'graduacion_id');
+    }
+
+    public function tipo()
+    {
+        return $this->belongsTo(Tipo::class, 'tipo_id');
+    }
+
+    public function pais()
+    {
+        return $this->belongsTo(Pais::class, 'pais_id');
+    }
+
 
 }

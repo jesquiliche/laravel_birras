@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('v1/colores', App\Http\Controllers\Api\V1\ColorController::class);
+Route::apiResource('v1/paises', App\Http\Controllers\Api\V1\PaisController::class);
+Route::apiResource('v1/tipos', App\Http\Controllers\Api\V1\TipoController::class);
+Route::apiResource('v1/graduaciones', App\Http\Controllers\Api\V1\GraduacionController::class);

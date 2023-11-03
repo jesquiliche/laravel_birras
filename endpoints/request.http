@@ -1,0 +1,111 @@
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNpYUBnbWFpbC5jb20iLCJpZCI6MTEsImlhdCI6MTY5MjQ3ODEzMCwiZXhwIjoxNjkyNTY0NTMwfQ.3VQEqm6AdcKeeXgUvh0P9OKeWD2X1uSqZLhpucSHxKM
+#### Obtener todos los colores
+GET http://localhost:8000/api/v1/colores
+# Authorization: Bearer {{accessToken}}
+
+### Crear color
+POST   http://localhost:8000/api/v1/colores
+Content-Type: application/json
+
+{
+    "nombre":""
+}
+
+### Obtener color por Id
+GET   http://localhost:8000/api/v1/colores/1
+
+
+### Modificicar color
+DELETE   http://localhost:8000/api/v1/colores/9
+Content-Type: application/json
+
+{
+    "nombre":"Prueba 2"
+}
+
+#### Obtener todos los paises
+GET http://localhost:8000/api/v1/paises
+# Authorization: Bearer {{accessToken}}
+
+#### Obtener pais por su id
+GET http://localhost:8000/api/v1/paises/5
+# Authorization: Bearer {{accessToken}}
+
+### Crear país
+POST   http://localhost:8000/api/v1/paises
+Content-Type: application/json
+
+{
+    "nombre":"Peru"
+}
+
+### Modificar  país
+PUT   http://localhost:8000/api/v1/paises/1
+Content-Type: application/json
+
+{
+    "nombre":"Pais modificado"
+}
+
+### Borrando pais
+DELETE   http://localhost:8000/api/v1/paises/9
+
+
+#### Obtener todos los tipos
+GET http://localhost:8000/api/v1/tipos
+# Authorization: Bearer {{accessToken}}
+
+#### Obtener tipo por su id
+GET http://localhost:8000/api/v1/tipos/5
+# Authorization: Bearer {{accessToken}}
+
+### Crear tipo
+POST   http://localhost:8000/api/v1/tipos
+Content-Type: application/json
+
+{
+    "nombre":"Sin alcohol"
+}
+
+### Modificar tipo
+PUT   http://localhost:8000/api/v1/tipos/1
+Content-Type: application/json
+
+{
+    "nombre":"Doble malta"
+}
+
+### Borrar tipo
+DELETE   http://localhost:8000/api/v1/tipos/10
+
+
+#### Obtener todas las graduaciones
+GET http://localhost:8000/api/v1/graduaciones
+# Authorization: Bearer {{accessToken}}
+
+
+
+#### Obtener graduación por su id
+GET http://localhost:8000/api/v1/graduaciones/5
+# Authorization: Bearer {{accessToken}}
+
+### Crear graduación
+POST   http://localhost:8000/api/v1/tipos
+Content-Type: application/json
+
+{
+    "nombre":"Super toxica"
+}
+
+### Modificar tipo
+PUT   http://localhost:8000/api/v1/graduaciones/3
+Content-Type: application/json
+
+{
+    "nombre":"Puro alcohol"
+}
+
+### Bor6543rar tipo
+DELETE   http://localhost:8000/api/v1/graduaciones/1
+
+
