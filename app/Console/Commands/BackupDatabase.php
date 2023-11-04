@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -26,7 +27,7 @@ class BackupDatabase extends Command
     public function handle()
     {
         // Genera un nombre de archivo para el respaldo basado en la fecha y hora
-        $filename = 'backup-' . date('Y-m-d-His') . '.sql';
+        $filename = 'backup-' . date('d-m-Y-His') . '.sql';
 
         // Crea un nuevo proceso para ejecutar mysqldump
         $process = new Process([
@@ -43,19 +44,24 @@ class BackupDatabase extends Command
 
         // Verifica si el proceso fue exitoso
         if ($process->isSuccessful()) {
-            $this->info('Backup created successfully: ' . $filename);
+            $this->info('Backup creado correctamente: ' . $filename);
         } else {
-            $this->error('Backup failed: ' . $process->getErrorOutput());
+            $this->error('El backup fallo: ' . $process->getErrorOutput());
         }
 
         // Obtiene la salida del proceso
         $output = $process->getOutput();
 
-        // Ruta donde deseas guardar el archivo de respaldo
-        $file_path = 'app/backup/' . $filename;
+        // Obtén la ruta base de tu proyecto
+        $basePath = base_path();
+
+        // Define la ruta relativa a la carpeta de respaldo
+        $relativePath = 'app/backup/' . $filename;
+
+        // Combina la ruta base con la ruta relativa
+        $file_path = $basePath . '/' . $relativePath;
 
         // Guarda la salida del proceso en el archivo
         file_put_contents($file_path, $output);
     }
 }
-
