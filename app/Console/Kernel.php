@@ -10,9 +10,12 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
+   
+
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('app:backup-database')->everyMinute();
+        $schedule->command('app:restore')->dailyAt();
     }
 
 

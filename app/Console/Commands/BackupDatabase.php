@@ -32,6 +32,7 @@ class BackupDatabase extends Command
         // Crea un nuevo proceso para ejecutar mysqldump
         $process = new Process([
             'mysqldump',
+        //    '--routines',
             '-h' . config('database.connections.mysql.host'),
             '-P' . config('database.connections.mysql.port'),
             '-u' . config('database.connections.mysql.username'),
@@ -51,7 +52,7 @@ class BackupDatabase extends Command
 
         // Obtiene la salida del proceso
         $output = $process->getOutput();
-
+        echo $output;
         // Obtén la ruta base de tu proyecto
         $basePath = base_path();
 
@@ -60,6 +61,7 @@ class BackupDatabase extends Command
 
         // Combina la ruta base con la ruta relativa
         $file_path = $basePath . '/' . $relativePath;
+        echo $file_path;
 
         // Guarda la salida del proceso en el archivo
         file_put_contents($file_path, $output);
