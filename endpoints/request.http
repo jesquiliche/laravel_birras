@@ -109,3 +109,48 @@ Content-Type: application/json
 DELETE   http://localhost:8000/api/v1/graduaciones/1
 
 
+#### Obtener las cervezas
+GET http://localhost:8000/api/v1/cervezas
+# Authorization: Bearer {{accessToken}}
+
+
+#### Obtener las cervezas
+GET http://localhost:8000/api/v1/cervezas?per_page=1&novedad=0&marca=a
+# Authorization: Bearer {{accessToken}}
+
+#### Crear cerveza
+POST   http://localhost:8000/api/v1/cervezas
+Content-Type: application/json
+
+{
+    "nombre":"Cerveza Voldamm4",
+    "descripcion":"La mejor cerveza de españa",
+    "color_id":4,
+    "graduacion_id":2,
+    "tipo_id":1,
+    "pais_id":1,
+    "novedad":1,
+    "oferta":1,
+    "precio":0,
+    "foto":"imagen",
+    "marca":"damm"
+}
+
+#### Modificar cerveza
+PUT   http://localhost:8000/api/v1/cervezas/10
+Content-Type: application/json
+
+{
+    "nombre":"Cerveza Voldamm6",
+    "descripcion":"La mejor cerveza de españa erer",
+    "color_id":4,
+    "graduacion_id":2,
+    "tipo_id":1,
+    "pais_id":1,
+    "novedad":1,
+    "oferta":1,
+    "precio":0,
+    "foto":"imagen",
+    "marca":"damm"
+}
+

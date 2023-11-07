@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cervezas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',150);
+            $table->string('nombre',150)->unique();
             $table->text('descripcion');
             $table->unsignedBigInteger('color_id');
             $table->foreign('color_id')->references('id')->on('colores');
