@@ -146,10 +146,9 @@ class CervezaController extends Controller
             // Procesa la imagen y guárdala en la carpeta 'storage/images'
             if ($request->hasFile('foto')) {
                 $path = $request->file('foto')->store('/public/images');
-                $url = '/storage/images/' . basename($path);// 'images' es la subcarpeta donde se almacenará la imagen
+                $url = url('/').'/storage/images/' . basename($path);// 'images' es la subcarpeta donde se almacenará la imagen
                
-                $cerveza['foto'] = $url; // Actualiza el campo 'foto' con la ubicación de la imagen almacenada
-    
+                $cerveza['foto'] = $url; // Actualiza el campo 'foto' con la ubicación de la imagen almacenad
             }
     
             // Guardar la cerveza en la base de datos

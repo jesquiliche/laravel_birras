@@ -123,7 +123,7 @@ POST   http://localhost:8000/api/v1/cervezas
 Content-Type: application/json
 
 {
-    "nombre":"Cerveza Voldamm4",
+    "nombre":"Cerveza Voldamm14",
     "descripcion":"La mejor cerveza de españa",
     "color_id":4,
     "graduacion_id":2,
