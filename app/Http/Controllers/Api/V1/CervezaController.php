@@ -12,6 +12,7 @@ use App\Models\Graduacion;
 use App\Models\Pais;
 use App\Models\Tipo;
 use App\Http\Validators\CervezaValidator;
+use Exception;
 
 class CervezaController extends Controller
 {
@@ -20,9 +21,8 @@ class CervezaController extends Controller
      */
     public function index(Request $request)
     {
-
-        {
-            $perPage = $request->input('per_page', 10);
+        // Recopila parámetros de consulta desde la solicitud
+        $perPage = $request->input('per_page', 10);
         $page = $request->input('page', 1);
         $colorId = $request->input('color_id');
         $paisId = $request->input('pais_id');
@@ -33,6 +33,7 @@ class CervezaController extends Controller
         $precioDesde = $request->input('precio_desde');
         $precioHasta = $request->input('precio_hasta');
 
+        // Construye una consulta utilizando el Query Builder de Laravel
         $query = DB::table('cervezas as cer')
             ->select('cer.id', 'cer.nombre', 'cer.descripcion', 'cer.novedad', 'cer.oferta', 'cer.precio', 'cer.foto', 'cer.marca', 'col.nombre as color', 'g.nombre as graduacion', 't.nombre as tipo', 'p.nombre as pais')
             ->join('colores as col', 'cer.color_id', '=', 'col.id')
@@ -41,6 +42,7 @@ class CervezaController extends Controller
             ->join('paises as p', 'cer.pais_id', '=', 'p.id')
             ->orderBy('cer.nombre');
 
+        // Aplica condiciones según los parámetros de consulta
         if ($colorId) {
             $query->where('cer.color_id', $colorId);
         }
@@ -62,6 +64,7 @@ class CervezaController extends Controller
         }
 
         if ($marca) {
+            // Realiza una búsqueda de marca insensible a mayúsculas y minúsculas
             $query->whereRaw('LOWER(cer.marca) LIKE ?', ['%' . strtolower($marca) . '%']);
         }
 
@@ -69,75 +72,109 @@ class CervezaController extends Controller
             $query->whereBetween('cer.precio', [$precioDesde, $precioHasta]);
         }
 
+        // Realiza una paginación de los resultados
         $results = $query->paginate($perPage, ['*'], 'page', $page);
 
+        // Devuelve una respuesta JSON con los resultados paginados
         return response()->json($results);
-        }
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $rules = [
-            'nombre' => 'required|unique:cervezas',
-            'descripcion' => 'required',
-            'color_id' => 'required|numeric',
-            'graduacion_id' => 'required|numeric',
-            'tipo_id' => 'required|numeric',
-            'pais_id' => 'required|numeric',
-            'novedad' => 'required|boolean',
-            'oferta' => 'required|boolean',
-            'precio' => 'required|numeric',
-            'foto' => 'required',
-            'marca' => 'required',
-        ];
-
-       
-        // Realiza la validación
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+        // Comenzar una transacción de base de datos
+        DB::beginTransaction();
+    
+        try {
+            // Define las reglas de validación para los campos
+            $rules = [
+                'nombre' => 'required|unique:cervezas',
+                'descripcion' => 'required',
+                'color_id' => 'required|numeric',
+                'graduacion_id' => 'required|numeric',
+                'tipo_id' => 'required|numeric',
+                'pais_id' => 'required|numeric',
+                'novedad' => 'required|boolean',
+                'oferta' => 'required|boolean',
+                'precio' => 'required|numeric',
+                'foto' => 'required|image|max:2048',
+                'marca' => 'required',
+            ];
+    
+            // Realiza la validación de la solicitud
+            $validator = Validator::make($request->all(), $rules);
+    
+            // Si la validación falla, devuelve una respuesta JSON con los errores de validación
+            if ($validator->fails()) {
+                DB::rollback();
+                return response()->json($validator->errors(), 400);
+            }
+    
+            // Valida la existencia de valores relacionados (por ejemplo, color, graduación, país, tipo)
+    
+            $color_id = $request->input('color_id');
+            $color = Color::find($color_id);
+            if (!$color) {
+                DB::rollback();
+                return response()->json('El color_id ' . $color_id . ' no existe', 404);
+            }
+    
+            $graduacion_id = $request->input('graduacion_id');
+            $graduacion = Graduacion::find($graduacion_id);
+            if (!$graduacion) {
+                DB::rollback();
+                return response()->json('La graduacion_id ' . $graduacion_id . ' no existe', 404);
+            }
+    
+            $pais_id = $request->input('pais_id');
+            $pais = Pais::find($pais_id);
+            if (!$pais) {
+                DB::rollback();
+                return response()->json('El pais_id ' . $pais_id . ' no existe', 404);
+            }
+    
+            $tipo_id = $request->input('tipo_id');
+            $tipo = Tipo::find($tipo_id);
+            if (!$tipo) {
+                DB::rollback();
+                return response()->json('El tipo_id ' . $tipo_id . ' no existe', 404);
+            }
+    
+            $cerveza=$request->all();
+            // Procesa la imagen y guárdala en la carpeta 'storage/images'
+            if ($request->hasFile('foto')) {
+                $path = $request->file('foto')->store('/public/images');
+                $url = '/storage/images/' . basename($path);// 'images' es la subcarpeta donde se almacenará la imagen
+               
+                $cerveza['foto'] = $url; // Actualiza el campo 'foto' con la ubicación de la imagen almacenada
+    
+            }
+    
+            // Guardar la cerveza en la base de datos
+            $cerveza = Cerveza::create($cerveza);
+    
+            // Confirmar la transacción si todo se completó con éxito
+            DB::commit();
+    
+            // Devuelve una respuesta JSON con la cerveza recién creada y el código de respuesta 201 (creado)
+            return response()->json($cerveza, 201);
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de fallo
+            DB::rollback();
+    
+            // Devuelve una respuesta de error
+            return response()->json('Error al procesar la solicitud', 500);
         }
-
-        $color_id=$request->input('color_id');
-        $color=Color::find($color_id);
-        if (!$color) {
-            return response()->json('El color_id '.$color_id." no existe", 404);
-        }
-
-        $graduacion_id=$request->input('graduacion_id');
-        $graduacion=Graduacion::find($graduacion_id);
-        if (!$graduacion) {
-            return response()->json('La graduacion_id '.$graduacion_id." no existe", 404);
-        }
-
-        $pais_id=$request->input('pais_id');
-        $pais=Pais::find($pais_id);
-        if (!$pais) {
-            return response()->json('El pais_id '.$pais_id." no existe", 404);
-        }
-
-        $tipo_id=$request->input('tipo_id');
-        $tipo=Tipo::find($tipo_id);
-        if (!$tipo) {
-            return response()->json('El tipo_id '.$tipo_id." no existe", 404);
-        }
-        // Si la validación es exitosa, crea la nueva cerveza
-        $cerveza = Cerveza::create($request->all());
-        return response()->json($cerveza, 201);
-
     }
-
+    
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        // La lógica para mostrar una cerveza individual se puede agregar aquí si es necesario.
     }
 
     /**
@@ -152,7 +189,7 @@ class CervezaController extends Controller
             return response()->json('La cerveza con ID ' . $id . ' no existe', 404);
         }
 
-        // Definir reglas de validación para los campos (similar a store)
+        // Define las reglas de validación para los campos (similar a store)
         $rules = [
             'nombre' => 'required|unique:cervezas,nombre,' . $id,
             'descripcion' => 'required',
@@ -167,17 +204,19 @@ class CervezaController extends Controller
             'marca' => 'required',
         ];
 
-        // Realiza la validación
+        // Realiza la validación de la solicitud
         $validator = Validator::make($request->all(), $rules);
 
+        // Si la validación falla, devuelve una respuesta JSON con los errores de validación
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
-        // Actualiza los campos de la cerveza
+        // Actualiza los campos de la cerveza con los datos de la solicitud
         $cerveza->update($request->all());
 
-        return response()->json($cerveza, 200); // Devuelve la cerveza actualizada
+        // Devuelve una respuesta JSON con la cerveza actualizada y el código de respuesta 200 (éxito)
+        return response()->json($cerveza, 200);
     }
 
     /**
@@ -185,6 +224,6 @@ class CervezaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // La lógica para eliminar una cerveza individual se puede agregar aquí si es necesario.
     }
 }
