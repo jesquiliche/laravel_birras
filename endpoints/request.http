@@ -137,11 +137,11 @@ Content-Type: application/json
 }
 
 #### Modificar cerveza
-PUT   http://localhost:8000/api/v1/cervezas/10
+PUT   http://localhost:8000/api/v1/cervezas/15
 Content-Type: application/json
 
 {
-    "nombre":"Cerveza Voldamm",
+    "nombre":"Cerveza Voldamm Modificada",
     "descripcion":"La mejor cerveza de españa erer",
     "color_id":4,
     "graduacion_id":2,
@@ -150,7 +150,20 @@ Content-Type: application/json
     "novedad":1,
     "oferta":1,
     "precio":0,
-    "foto":"imagen",
     "marca":"damm"
 }
 
+#### Modificar cerveza
+PATCH  http://localhost:8000/api/v1/cervezas/15
+Content-Type: application/json
+
+{
+    "nombre":"Cerveza Voldamm Modif 2",
+    "descripcion":"La mejor cerveza de españa erer",
+    "color_id":4,
+    "graduacion_id":2,
+    "marca":"damm"
+}
+
+#### Borrar cerveza
+DELETE  http://localhost:8000/api/v1/cervezas/15

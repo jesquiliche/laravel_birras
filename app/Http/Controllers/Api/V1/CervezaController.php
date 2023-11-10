@@ -13,6 +13,7 @@ use App\Models\Pais;
 use App\Models\Tipo;
 use App\Http\Validators\CervezaValidator;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class CervezaController extends Controller
 {
@@ -86,7 +87,7 @@ class CervezaController extends Controller
     {
         // Comenzar una transacción de base de datos
         DB::beginTransaction();
-    
+
         try {
             // Define las reglas de validación para los campos
             $rules = [
@@ -102,72 +103,72 @@ class CervezaController extends Controller
                 'foto' => 'required|image|max:2048',
                 'marca' => 'required',
             ];
-    
+
             // Realiza la validación de la solicitud
             $validator = Validator::make($request->all(), $rules);
-    
+
             // Si la validación falla, devuelve una respuesta JSON con los errores de validación
             if ($validator->fails()) {
                 DB::rollback();
                 return response()->json($validator->errors(), 400);
             }
-    
+
             // Valida la existencia de valores relacionados (por ejemplo, color, graduación, país, tipo)
-    
+
             $color_id = $request->input('color_id');
             $color = Color::find($color_id);
             if (!$color) {
                 DB::rollback();
                 return response()->json('El color_id ' . $color_id . ' no existe', 404);
             }
-    
+
             $graduacion_id = $request->input('graduacion_id');
             $graduacion = Graduacion::find($graduacion_id);
             if (!$graduacion) {
                 DB::rollback();
                 return response()->json('La graduacion_id ' . $graduacion_id . ' no existe', 404);
             }
-    
+
             $pais_id = $request->input('pais_id');
             $pais = Pais::find($pais_id);
             if (!$pais) {
                 DB::rollback();
                 return response()->json('El pais_id ' . $pais_id . ' no existe', 404);
             }
-    
+
             $tipo_id = $request->input('tipo_id');
             $tipo = Tipo::find($tipo_id);
             if (!$tipo) {
                 DB::rollback();
                 return response()->json('El tipo_id ' . $tipo_id . ' no existe', 404);
             }
-    
-            $cerveza=$request->all();
+
+            $cerveza = $request->all();
             // Procesa la imagen y guárdala en la carpeta 'storage/images'
             if ($request->hasFile('foto')) {
                 $path = $request->file('foto')->store('/public/images');
-                $url = url('/').'/storage/images/' . basename($path);// 'images' es la subcarpeta donde se almacenará la imagen
-               
+                $url = url('/') . '/storage/images/' . basename($path); // 'images' es la subcarpeta donde se almacenará la imagen
+
                 $cerveza['foto'] = $url; // Actualiza el campo 'foto' con la ubicación de la imagen almacenad
             }
-    
+
             // Guardar la cerveza en la base de datos
             $cerveza = Cerveza::create($cerveza);
-    
+
             // Confirmar la transacción si todo se completó con éxito
             DB::commit();
-    
+
             // Devuelve una respuesta JSON con la cerveza recién creada y el código de respuesta 201 (creado)
             return response()->json($cerveza, 201);
         } catch (Exception $e) {
             // Revertir la transacción en caso de fallo
             DB::rollback();
-    
+
             // Devuelve una respuesta de error
             return response()->json('Error al procesar la solicitud', 500);
         }
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -179,50 +180,197 @@ class CervezaController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id)
     {
-        // Encuentra la cerveza que deseas actualizar
-        $cerveza = Cerveza::find($id);
+        // Comenzar una transacción de base de datos
+        DB::beginTransaction();
 
-        if (!$cerveza) {
-            return response()->json('La cerveza con ID ' . $id . ' no existe', 404);
+        try {
+            // Encuentra la cerveza que deseas actualizar
+            $cerveza = Cerveza::find($id);
+
+            if (!$cerveza) {
+                DB::rollback();
+                return response()->json('La cerveza con ID ' . $id . ' no existe', 404);
+            }
+
+            // Define las reglas de validación para los campos
+            $rules = [
+                'nombre' => 'required|unique:cervezas,nombre,' . $id,
+                'descripcion' => 'required',
+                'color_id' => 'required|numeric',
+                'graduacion_id' => 'required|numeric',
+                'tipo_id' => 'required|numeric',
+                'pais_id' => 'required|numeric',
+                'novedad' => 'required|boolean',
+                'oferta' => 'required|boolean',
+                'precio' => 'required|numeric',
+                'foto' => 'sometimes|image|max:2048',
+                'marca' => 'required',
+            ];
+
+            // Realiza la validación de la solicitud
+            $validator = Validator::make($request->all(), $rules);
+
+            // Si la validación falla, devuelve una respuesta JSON con los errores de validación
+            if ($validator->fails()) {
+                DB::rollback();
+                return response()->json($validator->errors(), 400);
+            }
+
+            // Valida la existencia de valores relacionados (por ejemplo, color, graduación, país, tipo)
+
+            $color_id = $request->input('color_id');
+            $color = Color::find($color_id);
+            if (!$color) {
+                DB::rollback();
+                return response()->json('El color_id ' . $color_id . ' no existe', 404);
+            }
+
+            $graduacion_id = $request->input('graduacion_id');
+            $graduacion = Graduacion::find($graduacion_id);
+            if (!$graduacion) {
+                DB::rollback();
+                return response()->json('La graduacion_id ' . $graduacion_id . ' no existe', 404);
+            }
+
+            $pais_id = $request->input('pais_id');
+            $pais = Pais::find($pais_id);
+            if (!$pais) {
+                DB::rollback();
+                return response()->json('El pais_id ' . $pais_id . ' no existe', 404);
+            }
+
+            $tipo_id = $request->input('tipo_id');
+            $tipo = Tipo::find($tipo_id);
+            if (!$tipo) {
+                DB::rollback();
+                return response()->json('El tipo_id ' . $tipo_id . ' no existe', 404);
+            }
+
+            // Actualiza los campos de la cerveza
+            $cerveza->update($request->all());
+
+            // Actualiza la imagen si se proporciona una nueva
+            if ($request->hasFile('foto')) {
+                $path = $request->file('foto')->store('/public/images');
+                $url = url('/') . '/storage/images/' . basename($path);
+                $cerveza->foto = $url;
+                $cerveza->save();
+            }
+
+            // Confirmar la transacción si todo se completó con éxito
+            DB::commit();
+
+            return response()->json($cerveza, 200); // Devuelve la cerveza actualizada
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de fallo
+            DB::rollback();
+
+            // Devuelve una respuesta de error
+            return response()->json('Error al procesar la solicitud', 500);
         }
-
-        // Define las reglas de validación para los campos (similar a store)
-        $rules = [
-            'nombre' => 'required|unique:cervezas,nombre,' . $id,
-            'descripcion' => 'required',
-            'color_id' => 'required|numeric',
-            'graduacion_id' => 'required|numeric',
-            'tipo_id' => 'required|numeric',
-            'pais_id' => 'required|numeric',
-            'novedad' => 'required|boolean',
-            'oferta' => 'required|boolean',
-            'precio' => 'required|numeric',
-            'foto' => 'required',
-            'marca' => 'required',
-        ];
-
-        // Realiza la validación de la solicitud
-        $validator = Validator::make($request->all(), $rules);
-
-        // Si la validación falla, devuelve una respuesta JSON con los errores de validación
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
-        // Actualiza los campos de la cerveza con los datos de la solicitud
-        $cerveza->update($request->all());
-
-        // Devuelve una respuesta JSON con la cerveza actualizada y el código de respuesta 200 (éxito)
-        return response()->json($cerveza, 200);
     }
+
+
+    public function patch(Request $request, $id)
+    {
+        // Comenzar una transacción de base de datos
+        DB::beginTransaction();
+
+        try {
+            // Encuentra la cerveza que deseas actualizar
+            $cerveza = Cerveza::find($id);
+
+            if (!$cerveza) {
+                DB::rollback();
+                return response()->json('La cerveza con ID ' . $id . ' no existe', 404);
+            }
+
+            // Valida la existencia de valores relacionados (por ejemplo, color, graduación, país, tipo)
+            // ...
+
+            // Actualiza los campos de la cerveza solo si están presentes en la solicitud
+            // Actualiza los campos de la cerveza solo si están presentes en la solicitud
+           
+            $cerveza->nombre = $request->json('nombre', $cerveza->nombre);
+            $cerveza->descripcion = $request->json('descripcion', $cerveza->descripcion);
+            $cerveza->color_id = $request->json('color_id', $cerveza->color_id);
+            $cerveza->graduacion_id = $request->json('graduacion_id', $cerveza->graduacion_id);
+            $cerveza->tipo_id = $request->json('tipo_id', $cerveza->tipo_id);
+            $cerveza->pais_id = $request->json('pais_id', $cerveza->pais_id);
+            $cerveza->novedad = $request->json('novedad', $cerveza->novedad);
+            $cerveza->oferta = $request->json('oferta', $cerveza->oferta);
+            $cerveza->precio = $request->json('precio', $cerveza->precio);
+            $cerveza->marca = $request->json('marca', $cerveza->marca);
+
+            // Guarda la cerveza
+            $cerveza->save();
+
+
+            // Guarda la cerveza
+            $cerveza->save();
+
+            // Actualiza la imagen si se proporciona una nueva
+            if ($request->hasFile('foto')) {
+                $path = $request->file('foto')->store('/public/images');
+                $url = url('/') . '/storage/images/' . basename($path);
+                $cerveza->foto = $url;
+                $cerveza->save();
+            }
+
+            // Confirmar la transacción si todo se completó con éxito
+            DB::commit();
+
+            return response()->json($cerveza, 200); // Devuelve la cerveza actualizada
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de fallo
+            DB::rollback();
+
+            // Devuelve una respuesta de error
+            return response()->json('Error al procesar la solicitud', 500);
+        }
+    }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        // La lógica para eliminar una cerveza individual se puede agregar aquí si es necesario.
+        // Comienza una transacción de base de datos
+        DB::beginTransaction();
+
+        try {
+            // Encuentra el modelo que deseas eliminar
+            $cerveza = Cerveza::find($id);
+
+            if (!$cerveza) {
+                DB::rollback();
+                return response()->json('El recurso con ID ' . $id . ' no existe', 404);
+            }
+
+            // Elimina la imagen asociada si existe
+            if (!empty($cerveza->foto)) {
+                Storage::delete('public/images/' . basename($cerveza->foto));
+            }
+
+            // Elimina el modelo
+            $cerveza->delete();
+
+            // Confirmar la transacción si todo se completó con éxito
+            DB::commit();
+
+            return response()->json('Recurso eliminado correctamente', 200);
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de fallo
+            DB::rollback();
+
+            // Devuelve una respuesta de error
+            return response()->json('Error al procesar la solicitud', 500);
+        }
     }
 }
