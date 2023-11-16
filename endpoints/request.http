@@ -1,4 +1,27 @@
 @accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhcmNpYUBnbWFpbC5jb20iLCJpZCI6MTEsImlhdCI6MTY5MjQ3ODEzMCwiZXhwIjoxNjkyNTY0NTMwfQ.3VQEqm6AdcKeeXgUvh0P9OKeWD2X1uSqZLhpucSHxKM
+
+#### Registrarse
+POST  http://127.0.0.1:8000/api/register
+Content-Type: application/json
+# Authorization: Bearer {{accessToken}}
+
+{
+    "name":"Jesus",
+    "email":"jesquiliche@hotmail.com",
+    "password":"1234678"
+}
+
+#### Registrarse
+POST  http://127.0.0.1:8000/api/login
+Content-Type: application/json
+# Authorization: Bearer {{accessToken}}
+
+{
+    "email":"jesquiliche@hotmail.com",
+    "password":"1234678"
+}
+
+
 #### Obtener todos los colores
 GET http://localhost:8000/api/v1/colores
 # Authorization: Bearer {{accessToken}}
