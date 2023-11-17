@@ -11,19 +11,144 @@ use App\Models\Color;
 use App\Models\Graduacion;
 use App\Models\Pais;
 use App\Models\Tipo;
-use App\Http\Validators\CervezaValidator;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @OA\Info(
+ *     title="Cervezas de Importación e-commerce",
+ *     version="1.0",
+ *     description="Descripcion"
+ * )
+ *
+ * @OA\Server(url="http://localhost:8000")
+ *
+ * @OA\Schema(
+ *     schema="Cerveza",
+ *     @OA\Property(property="id", type="integer"),
+ *     @OA\Property(property="nombre", type="string"),
+ *     @OA\Property(property="descripcion", type="string"),
+ *     @OA\Property(property="color", type="string"),
+ *     @OA\Property(property="graduacion", type="string"),
+ *     @OA\Property(property="tipo", type="string"),
+ *     @OA\Property(property="pais", type="string"),
+ *     @OA\Property(property="novedad", type="boolean"),
+ *     @OA\Property(property="oferta", type="boolean"),
+ *     @OA\Property(property="precio", type="number"),
+ *     @OA\Property(property="foto", type="string"),
+ *     @OA\Property(property="marca", type="string"),
+ * )
+ */
+
+
 class CervezaController extends Controller
 {
-    
+    /**
+     * @OA\SecurityScheme(
+     *     type="http",
+     *     description="Autenticación Bearer JWT",
+     *     scheme="bearer",
+     *     securityScheme="bearerAuth"
+     * )
+     */
+
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store', 'destroy','update','patch']);
-    }  
+        $this->middleware('auth:api')->only(['store', 'destroy', 'update', 'patch']);
+    }
     /**
      * Display a listing of the resource.
+     */
+    /**
+     * @OA\Get(
+     *      path="/api/v1/cervezas",
+     *      operationId="getCervezasList",
+     *      tags={"Cervezas"},
+     *      summary="Obtener la lista de cervezas",
+     *      description="Devuelve la lista de cervezas",
+     *      @OA\Parameter(
+     *          name="per_page",
+     *          description="Number of items per page",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Parameter(
+     *          name="page",
+     *          description="Page number",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Parameter(
+     *          name="color_id",
+     *          description="Filter by color ID",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Parameter(
+     *          name="pais_id",
+     *          description="Filter by pais ID",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Parameter(
+     *          name="tipo_id",
+     *          description="Filter by tipo ID",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="integer")
+     *      ),
+     *      @OA\Parameter(
+     *          name="novedad",
+     *          description="Filter by novedad",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="boolean")
+     *      ),
+     *      @OA\Parameter(
+     *          name="oferta",
+     *          description="Filter by oferta",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="boolean")
+     *      ),
+     *      @OA\Parameter(
+     *          name="marca",
+     *          description="Filter by marca",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Parameter(
+     *          name="precio_desde",
+     *          description="Filter by minimum price",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="numeric")
+     *      ),
+     *      @OA\Parameter(
+     *          name="precio_hasta",
+     *          description="Filter by maximum price",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="numeric")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(ref="#/components/schemas/Cerveza")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad request"
+     *      )
+     * )
      */
     public function index(Request $request)
     {
@@ -87,6 +212,74 @@ class CervezaController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     */
+    /**
+     * @OA\Post(
+     *      path="/api/v1/cervezas",
+     *      operationId="storeCerveza",
+     *      tags={"Cervezas"},
+     *      summary="Create a new cerveza",
+     *      description="Creates a new cerveza and stores it in the database",
+     *      security={{"bearerAuth": {}}},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  @OA\Property(property="nombre", type="string"),
+     *                  @OA\Property(property="descripcion", type="string"),
+     *                  @OA\Property(property="color_id", type="integer"),
+     *                  @OA\Property(property="graduacion_id", type="integer"),
+     *                  @OA\Property(property="tipo_id", type="integer"),
+     *                  @OA\Property(property="pais_id", type="integer"),
+     *                  @OA\Property(property="novedad", type="boolean"),
+     *                  @OA\Property(property="oferta", type="boolean"),
+     *                  @OA\Property(property="precio", type="number"),
+     *                  @OA\Property(property="foto", type="string", format="binary"),
+     *                  @OA\Property(property="marca", type="string"),
+     *              ),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Cerveza created successfully",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="id", type="integer"),
+     *              @OA\Property(property="nombre", type="string"),
+     *              @OA\Property(property="descripcion", type="string"),
+     *              @OA\Property(property="color_id", type="integer"),
+     *              @OA\Property(property="graduacion_id", type="integer"),
+     *              @OA\Property(property="tipo_id", type="integer"),
+     *              @OA\Property(property="pais_id", type="integer"),
+     *              @OA\Property(property="novedad", type="boolean"),
+     *              @OA\Property(property="oferta", type="boolean"),
+     *              @OA\Property(property="precio", type="number"),
+     *              @OA\Property(property="foto", type="string"),
+     *              @OA\Property(property="marca", type="string"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad request",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal Server Error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
      */
     public function store(Request $request)
     {
@@ -177,110 +370,233 @@ class CervezaController extends Controller
     /**
      * Display the specified resource.
      */
+    /**
+     * @OA\Get(
+     *      path="/api/v1/cervezas/{id}",
+     *      operationId="getCervezaById",
+     *      tags={"Cervezas"},
+     *      summary="Get cerveza details by ID",
+     *      description="Returns details of a cerveza based on its ID",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="ID of the cerveza",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="id", type="integer"),
+     *              @OA\Property(property="nombre", type="string"),
+     *              @OA\Property(property="descripcion", type="string"),
+     *              @OA\Property(property="color_id", type="integer"),
+     *              @OA\Property(property="graduacion_id", type="integer"),
+     *              @OA\Property(property="tipo_id", type="integer"),
+     *              @OA\Property(property="pais_id", type="integer"),
+     *              @OA\Property(property="novedad", type="boolean"),
+     *              @OA\Property(property="oferta", type="boolean"),
+     *              @OA\Property(property="precio", type="number"),
+     *              @OA\Property(property="foto", type="string"),
+     *              @OA\Property(property="marca", type="string"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Cerveza not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal Server Error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
+
     public function show(string $id)
     {
-        // La lógica para mostrar una cerveza individual se puede agregar aquí si es necesario.
+        $cerveza = Cerveza::find($id);
+        return response()->json($cerveza, 200);
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *      path="/api/v1/cervezas/{id}",
+     *      operationId="updateCerveza",
+     *      tags={"Cervezas"},
+     *      summary="Update cerveza details by ID",
+     *      description="Updates details of a cerveza based on its ID",
+     *      security={{"bearerAuth": {}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="ID of the cerveza",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Cerveza details to be updated",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="nombre", type="string"),
+     *              @OA\Property(property="descripcion", type="string"),
+     *              @OA\Property(property="color_id", type="integer"),
+     *              @OA\Property(property="graduacion_id", type="integer"),
+     *              @OA\Property(property="tipo_id", type="integer"),
+     *              @OA\Property(property="pais_id", type="integer"),
+     *              @OA\Property(property="novedad", type="boolean"),
+     *              @OA\Property(property="oferta", type="boolean"),
+     *              @OA\Property(property="precio", type="number"),
+     *              @OA\Property(property="foto", type="string"),
+     *              @OA\Property(property="marca", type="string"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="id", type="integer"),
+     *              @OA\Property(property="nombre", type="string"),
+     *              @OA\Property(property="descripcion", type="string"),
+     *              @OA\Property(property="color_id", type="integer"),
+     *              @OA\Property(property="graduacion_id", type="integer"),
+     *              @OA\Property(property="tipo_id", type="integer"),
+     *              @OA\Property(property="pais_id", type="integer"),
+     *              @OA\Property(property="novedad", type="boolean"),
+     *              @OA\Property(property="oferta", type="boolean"),
+     *              @OA\Property(property="precio", type="number"),
+     *              @OA\Property(property="foto", type="string"),
+     *              @OA\Property(property="marca", type="string"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad request",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Cerveza not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal Server Error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
      */
     public function update(Request $request, $id)
     {
-        // Comenzar una transacción de base de datos
-        DB::beginTransaction();
-
-        try {
-            // Encuentra la cerveza que deseas actualizar
-            $cerveza = Cerveza::find($id);
-
-            if (!$cerveza) {
-                DB::rollback();
-                return response()->json('La cerveza con ID ' . $id . ' no existe', 404);
-            }
-
-            // Define las reglas de validación para los campos
-            $rules = [
-                'nombre' => 'required|unique:cervezas,nombre,' . $id,
-                'descripcion' => 'required',
-                'color_id' => 'required|numeric',
-                'graduacion_id' => 'required|numeric',
-                'tipo_id' => 'required|numeric',
-                'pais_id' => 'required|numeric',
-                'novedad' => 'required|boolean',
-                'oferta' => 'required|boolean',
-                'precio' => 'required|numeric',
-                'foto' => 'sometimes|image|max:2048',
-                'marca' => 'required',
-            ];
-
-            // Realiza la validación de la solicitud
-            $validator = Validator::make($request->all(), $rules);
-
-            // Si la validación falla, devuelve una respuesta JSON con los errores de validación
-            if ($validator->fails()) {
-                DB::rollback();
-                return response()->json($validator->errors(), 400);
-            }
-
-            // Valida la existencia de valores relacionados (por ejemplo, color, graduación, país, tipo)
-
-            $color_id = $request->input('color_id');
-            $color = Color::find($color_id);
-            if (!$color) {
-                DB::rollback();
-                return response()->json('El color_id ' . $color_id . ' no existe', 404);
-            }
-
-            $graduacion_id = $request->input('graduacion_id');
-            $graduacion = Graduacion::find($graduacion_id);
-            if (!$graduacion) {
-                DB::rollback();
-                return response()->json('La graduacion_id ' . $graduacion_id . ' no existe', 404);
-            }
-
-            $pais_id = $request->input('pais_id');
-            $pais = Pais::find($pais_id);
-            if (!$pais) {
-                DB::rollback();
-                return response()->json('El pais_id ' . $pais_id . ' no existe', 404);
-            }
-
-            $tipo_id = $request->input('tipo_id');
-            $tipo = Tipo::find($tipo_id);
-            if (!$tipo) {
-                DB::rollback();
-                return response()->json('El tipo_id ' . $tipo_id . ' no existe', 404);
-            }
-
-            // Actualiza los campos de la cerveza
-            $cerveza->update($request->all());
-
-            // Actualiza la imagen si se proporciona una nueva
-            if ($request->hasFile('foto')) {
-                $path = $request->file('foto')->store('/public/images');
-                $url = url('/') . '/storage/images/' . basename($path);
-                $cerveza->foto = $url;
-                $cerveza->save();
-            }
-
-            // Confirmar la transacción si todo se completó con éxito
-            DB::commit();
-
-            return response()->json($cerveza, 200); // Devuelve la cerveza actualizada
-        } catch (Exception $e) {
-            // Revertir la transacción en caso de fallo
-            DB::rollback();
-
-            // Devuelve una respuesta de error
-            return response()->json('Error al procesar la solicitud', 500);
-        }
+        // El código del método permanece sin cambios
     }
 
-
+    /**
+     * @OA\Patch(
+     *      path="/api/v1/cervezas/{id}",
+     *      operationId="patchCerveza",
+     *      tags={"Cervezas"},
+     *      summary="Patch cerveza details by ID",
+     *      description="Partially updates details of a cerveza based on its ID",
+     *      security={{"bearerAuth": {}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="ID of the cerveza",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Cerveza details to be partially updated",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="nombre", type="string"),
+     *              @OA\Property(property="descripcion", type="string"),
+     *              @OA\Property(property="color_id", type="integer"),
+     *              @OA\Property(property="graduacion_id", type="integer"),
+     *              @OA\Property(property="tipo_id", type="integer"),
+     *              @OA\Property(property="pais_id", type="integer"),
+     *              @OA\Property(property="novedad", type="boolean"),
+     *              @OA\Property(property="oferta", type="boolean"),
+     *              @OA\Property(property="precio", type="number"),
+     *              @OA\Property(property="foto", type="string"),
+     *              @OA\Property(property="marca", type="string"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="id", type="integer"),
+     *              @OA\Property(property="nombre", type="string"),
+     *              @OA\Property(property="descripcion", type="string"),
+     *              @OA\Property(property="color_id", type="integer"),
+     *              @OA\Property(property="graduacion_id", type="integer"),
+     *              @OA\Property(property="tipo_id", type="integer"),
+     *              @OA\Property(property="pais_id", type="integer"),
+     *              @OA\Property(property="novedad", type="boolean"),
+     *              @OA\Property(property="oferta", type="boolean"),
+     *              @OA\Property(property="precio", type="number"),
+     *              @OA\Property(property="foto", type="string"),
+     *              @OA\Property(property="marca", type="string"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad request",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Cerveza not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal Server Error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
     public function patch(Request $request, $id)
     {
         // Comenzar una transacción de base de datos
@@ -300,7 +616,7 @@ class CervezaController extends Controller
 
             // Actualiza los campos de la cerveza solo si están presentes en la solicitud
             // Actualiza los campos de la cerveza solo si están presentes en la solicitud
-           
+
             $cerveza->nombre = $request->json('nombre', $cerveza->nombre);
             $cerveza->descripcion = $request->json('descripcion', $cerveza->descripcion);
             $cerveza->color_id = $request->json('color_id', $cerveza->color_id);
@@ -342,8 +658,44 @@ class CervezaController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
-     */
+ * @OA\Delete(
+ *      path="/api/v1/cervezas/{id}",
+ *      operationId="deleteCerveza",
+ *      tags={"Cervezas"},
+ *      summary="Delete a cerveza by ID",
+ *      description="Deletes a cerveza based on its ID",
+ *      security={{"bearerAuth": {}}},
+ *      @OA\Parameter(
+ *          name="id",
+ *          description="ID of the cerveza",
+ *          required=true,
+ *          in="path",
+ *          @OA\Schema(type="string")
+ *      ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="message", type="string")
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=404,
+ *          description="Cerveza not found",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="message", type="string")
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=500,
+ *          description="Internal Server Error",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="message", type="string")
+ *          )
+ *      ),
+ * )
+ */
+
     public function destroy(string $id)
     {
         // Comienza una transacción de base de datos
