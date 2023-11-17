@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Storage;
 
 class CervezaController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only(['store', 'destroy','update','patch']);
+    }  
     /**
      * Display a listing of the resource.
      */

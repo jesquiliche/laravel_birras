@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ColorController extends Controller
 {
+   
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only(['store', 'destroy','update']);
+    }
+   
     /**
      * Display a listing of the resource.
      *
