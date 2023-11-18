@@ -7,20 +7,43 @@ use Illuminate\Http\Request;
 use App\Models\Pais;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @OA\Schema(
+ *     schema="Pais",
+ *     type="object",
+ *     title="Paises",
+ *     properties={
+ *         @OA\Property(property="id", type="integer", format="int64"),
+ *         @OA\Property(property="nombre", type="string"),
+ *     }
+ * )
+ */
+
 class PaisController extends Controller
 {
-     
+
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store', 'destroy','update']);
+        $this->middleware('auth:api')->only(['store', 'destroy', 'update']);
     }
+
     /**
-     * Display a listing of the resource.
-     *
-     * Método: index
-     * Ruta asociada: GET /paises
-     * Descripción: Este método muestra una lista de recursos (en este caso, paises).
+     * @OA\Get(
+     *      path="/api/v1/paises",
+     *      operationId="indexPais",
+     *      tags={"Paises"},
+     *      summary="Listar todos los países",
+     *      description="Muestra una lista de todos los países en una respuesta JSON.",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Lista de países",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="paises", type="array", @OA\Items(ref="#/components/schemas/Pais")),
+     *          ),
+     *      ),
+     * )
      */
+
     public function index()
     {
         // Recuperar todos los paises desde la base de datos y retornarlos como una respuesta JSON
@@ -29,39 +52,88 @@ class PaisController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * Método: create
-     * Ruta asociada: POST /paises
-     * Descripción: Este método muestra el formulario para crear un nuevo recurso (pais).
+     * @OA\Post(
+     *      path="/api/v1/paises",
+     *      operationId="storePais",
+     *      tags={"Paises"},
+     *      summary="Crear un nuevo país",
+     *      description="Crea un nuevo país con los datos proporcionados en la solicitud y lo retorna como una respuesta JSON.",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Datos del nuevo país",
+     *          @OA\JsonContent(
+     *              required={"nombre"},
+     *              @OA\Property(property="nombre", type="string", maxLength=255, description="Nombre del nuevo país"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="País creado con éxito",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="País creado con éxito"),
+     *              @OA\Property(property="pais", type="object", ref="#/components/schemas/Pais"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Error de validación",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="El nombre ya está en uso."),
+     *          ),
+     *      ),
+     *      security={{"bearerAuth": {}}}
+     * )
      */
-    
     public function store(Request $request)
     {
         // Validación de los datos del nuevo pais (por ejemplo, nombre, código de pais).
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255|unique:paises'
         ]);
-        
-        if($validator->fails()){
-            return response()->json($validator->errors(),422); 
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
 
         //Debe estar configurado fillable en el modelo para 
         //utilizar inserción masiva
-        $tipo=Pais::create($request->all());
-       
+        $tipo = Pais::create($request->all());
+
         // Retornar una respuesta JSON que confirma la creación exitosa del pais.
         return response()->json(['message' => 'País creado con éxito', 'pais' => $tipo]);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * Método: show
-     * Ruta asociada: GET /paiss/{id}
-     * Descripción: Este método muestra un recurso (pais) específico identificado por su ID.
+     * @OA\Get(
+     *      path="/api/v1/paises/{id}",
+     *      operationId="showPais",
+     *      tags={"Paises"},
+     *      summary="Mostrar un país específico",
+     *      description="Muestra un país específico identificado por su ID en una respuesta JSON.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          required=true,
+     *          in="path",
+     *          description="ID del país a mostrar",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="País encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="País", type="object", ref="#/components/schemas/Pais"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="País no encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="País no encontrado"),
+     *          ),
+     *      ),
+     * )
      */
+
     public function show(string $id)
     {
         // Buscar el pais por su ID en la base de datos y retornarlo como una respuesta JSON.
@@ -74,25 +146,65 @@ class PaisController extends Controller
         return response()->json(['País' => $pais]);
     }
 
-    
     /**
-     * Update the specified resource in storage.
-     *
-     * Método: update
-     * Ruta asociada: PUT/PATCH /paises/{id}
-     * Descripción: Este método actualiza un recurso (pais) específico identificado por su ID en el almacenamiento.
+     * @OA\Put(
+     *      path="/api/v1/paises/{id}",
+     *      operationId="updatePais",
+     *      tags={"Paises"},
+     *      summary="Actualizar un país existente",
+     *      description="Actualiza un país existente identificado por su ID con los datos proporcionados en la solicitud y lo retorna como una respuesta JSON.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          required=true,
+     *          in="path",
+     *          description="ID del país a actualizar",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Datos actualizados del país",
+     *          @OA\JsonContent(
+     *              required={"nombre"},
+     *              @OA\Property(property="nombre", type="string", maxLength=255, description="Nombre actualizado del país"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="País actualizado con éxito",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="País actualizado con éxito"),
+     *              @OA\Property(property="pais", type="object", ref="#/components/schemas/Pais"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="País no encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="País no encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Error de validación",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="El nombre ya está en uso."),
+     *          ),
+     *      ),
+     *      security={{"bearerAuth": {}}}
+     * )
      */
+
     public function update(Request $request, string $id)
     {
         // Validación de los datos actualizados del tipo.
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255'
         ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors(),422); 
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
-        
+
 
         // Buscar el pais por su ID en la base de datos.
         $pais = Pais::find($id);
@@ -109,12 +221,44 @@ class PaisController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * Método: destroy
-     * Ruta asociada: DELETE /paises/{id}
-     * Descripción: Este método elimina un recurso (pais) específico identificado por su ID del almacenamiento.
+     * @OA\Delete(
+     *      path="/api/v1/paises/{id}",
+     *      operationId="destroyPais",
+     *      tags={"Paises"},
+     *      summary="Eliminar un país existente",
+     *      description="Elimina un país existente identificado por su ID y lo retorna como una respuesta JSON.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          required=true,
+     *          in="path",
+     *          description="ID del país a eliminar",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="País eliminado con éxito",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="País eliminado con éxito"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="País no encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="País no encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="No se pudo borrar el país, tiene cervezas relacionadas",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="No se pudo borrar el país, tiene cervezas relacionadas"),
+     *          ),
+     *      ),
+     *      security={{"bearerAuth": {}}}
+     * )
      */
+
     public function destroy(string $id)
     {
         // Buscar el pais por su ID en la base de datos.
@@ -125,12 +269,12 @@ class PaisController extends Controller
         }
 
         if ($pais->cervezas()->exists()) {
-            return response()->json(['message' => 'No se pudo borrar el país, tiene cervezas relacionadas'],400);
+            return response()->json(['message' => 'No se pudo borrar el país, tiene cervezas relacionadas'], 400);
         }
         // Eliminar el pais de la base de datos.
         $pais->delete();
 
         // Retornar una respuesta JSON que confirma la eliminación exitosa del tipo.
         return response()->json(['message' => 'País eliminado con éxito']);
-    }//
+    }
 }

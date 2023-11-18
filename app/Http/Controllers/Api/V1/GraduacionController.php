@@ -8,12 +8,25 @@ use App\Models\Graduacion;
 use Illuminate\Support\Facades\Validator;
 
 
+/**
+ * @OA\Schema(
+ *     schema="Graduacion",
+ *     type="object",
+ *     title="Graduacion",
+ *     properties={
+ *         @OA\Property(property="id", type="integer", format="int64"),
+ *         @OA\Property(property="nombre", type="string"),
+ *     }
+ * )
+ */
+
+
 class GraduacionController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store', 'destroy','update']);
+        $this->middleware('auth:api')->only(['store', 'destroy', 'update']);
     }
     /**
      * Display a listing of the resource.
@@ -22,40 +35,116 @@ class GraduacionController extends Controller
      * Ruta asociada: GET /tipos
      * Descripción: Este método muestra una lista de recursos (en este caso, tipoes).
      */
+
+    /**
+     * @OA\Get(
+     *      path="/api/v1/graduaciones",
+     *      operationId="getGraduaciones",
+     *      tags={"Graduaciones"},
+     *      summary="Obtener todas las graduaciones",
+     *      description="Recupera todas las graduaciones desde la base de datos y las retorna como una respuesta JSON.",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Lista de graduaciones",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="graduaciones", type="array", @OA\Items(ref="#/components/schemas/Graduacion")),
+     *          ),
+     *      ),
+     * )
+     */
+
+
     public function index()
     {
-        // Recuperar todos los tipoes desde la base de datos y retornarlos como una respuesta JSON
+        // Recuperar todos los tipos desde la base de datos y retornarlos como una respuesta JSON
         $graduaciones = Graduacion::all();
         return response()->json(['graduaciones' => $graduaciones]);
     }
 
-    
+
+    /**
+     * @OA\Post(
+     *      path="/api/v1/graduaciones",
+     *      operationId="storeGraduacion",
+     *      summary="Crear una nueva graduación",
+     *      tags={"Graduaciones"},
+     *      description="Crea una nueva graduación con los datos proporcionados en la solicitud y la retorna como una respuesta JSON.",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Datos de la nueva graduación",
+     *          @OA\JsonContent(
+     *              required={"nombre"},
+     *              @OA\Property(property="nombre", type="string", maxLength=150, description="Nombre de la nueva graduación"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Graduación creada con éxito",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Graduación creado con éxito"),
+     *              @OA\Property(property="graduacion", type="object", ref="#/components/schemas/Graduacion"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Error de validación",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="El nombre ya está en uso."),
+     *          ),
+     *      ),
+     *      security={{"bearerAuth": {}}}
+     * )
+     */
     public function store(Request $request)
     {
         // Validación de los datos del nuevo tipo (por ejemplo, nombre, código de tipo).
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:150|unique:tipos'
+            'nombre' => 'required|string|max:150|unique:graduaciones'
         ]);
-        
-        if($validator->fails()){
-            return response()->json($validator->errors(),422); 
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
 
         //Debe estar configurado fillable en el modelo para 
         //utilizar inserción masiva
-        $graduacion=Graduacion::create($request->all());
-       
+        $graduacion = Graduacion::create($request->all());
+
         // Retornar una respuesta JSON que confirma la creación exitosa del tipo.
-        return response()->json(['message' => 'Graduación creado con éxito', 'graduacion' => $graduacion]);
+        return response()->json(['message' => 'Graduación creada con éxito', 'graduacion' => $graduacion], 201);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * Método: show
-     * Ruta asociada: GET /tipos/{id}
-     * Descripción: Este método muestra un recurso (tipo) específico identificado por su ID.
+     * @OA\Get(
+     *      path="/api/v1/graduaciones/{id}",
+     *      operationId="getGraduacionById",
+     *      tags={"Graduaciones"},
+     *      summary="Obtener información de una graduación específica",
+     *      description="Recupera la información de una graduación específica identificada por su ID y la retorna como una respuesta JSON.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          required=true,
+     *          in="path",
+     *          description="ID de la graduación",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Información de la graduación",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="Graduacion", ref="#/components/schemas/Graduacion"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Graduación no encontrada",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Graduación no encontrado"),
+     *          ),
+     *      ),
+     * )
      */
+
     public function show(string $id)
     {
         // Buscar el tipo por su ID en la base de datos y retornarlo como una respuesta JSON.
@@ -66,28 +155,68 @@ class GraduacionController extends Controller
         }
 
 
-        return response()->json(['Tipo' => $graduacion]);
+        return response()->json(['Graducación' => $graduacion]);
     }
 
-    
     /**
-     * Update the specified resource in storage.
-     *
-     * Método: update
-     * Ruta asociada: PUT/PATCH /itposs/{id}
-     * Descripción: Este método actualiza un recurso (tipo) específico identificado por su ID en el almacenamiento.
+     * @OA\Put(
+     *      path="/api/v1/graduaciones/{id}",
+     *      operationId="updateGraduacion",
+     *      tags={"Graduaciones"},
+     *      summary="Actualizar una graduación existente",
+     *      description="Actualiza una graduación existente identificada por su ID con los datos proporcionados en la solicitud y la retorna como una respuesta JSON.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          required=true,
+     *          in="path",
+     *          description="ID de la graduación a actualizar",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Datos actualizados de la graduación",
+     *          @OA\JsonContent(
+     *              required={"nombre"},
+     *              @OA\Property(property="nombre", type="string", maxLength=150, description="Nuevo nombre de la graduación"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Graduación actualizada con éxito",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Graduación actualizado con éxito"),
+     *              @OA\Property(property="graduacion", ref="#/components/schemas/Graduacion"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Graduación no encontrada",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Graduación no encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Error de validación",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="El nombre ya está en uso."),
+     *          ),
+     *      ),
+     *      security={{"bearerAuth": {}}}
+     * )
      */
+
     public function update(Request $request, string $id)
     {
         // Validación de los datos actualizados del tipo.
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:150|unique:graduaciones'
         ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors(),422); 
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
         }
-        
+
 
         // Buscar el tipo por su ID en la base de datos.
         $graduacion = Graduacion::find($id);
@@ -104,12 +233,44 @@ class GraduacionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * Método: destroy
-     * Ruta asociada: DELETE /tipos/{id}
-     * Descripción: Este método elimina un recurso (tipo) específico identificado por su ID del almacenamiento.
+     * @OA\Delete(
+     *      path="/api/v1/graduaciones/{id}",
+     *      operationId="destroyGraduacion",
+     *      tags={"Graduaciones"},
+     *      summary="Eliminar una graduación existente",
+     *      description="Elimina una graduación existente identificada por su ID y la retorna como una respuesta JSON.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          required=true,
+     *          in="path",
+     *          description="ID de la graduación a eliminar",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Graduación eliminada con éxito",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Graduación eliminado con éxito"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Graduación no encontrada",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Graduación no encontrado"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="No se pudo borrar la graduación, tiene cervezas relacionadas",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="No se pudo borrar la graduación, tiene cervezas relacionadas"),
+     *          ),
+     *      ),
+     *      security={{"bearerAuth": {}}}
+     * )
      */
+
     public function destroy(string $id)
     {
         // Buscar el tipo por su ID en la base de datos.
@@ -121,9 +282,8 @@ class GraduacionController extends Controller
         }
 
         if ($graduacion->cervezas()->exists()) {
-            return response()->json(['message' => 'No se pudo borrar la graduación, tiene cervezas relacionadas'],400);
+            return response()->json(['message' => 'No se pudo borrar la graduación, tiene cervezas relacionadas'], 400);
         }
-
 
         // Eliminar el tipo de la base de datos.
         $graduacion->delete();
