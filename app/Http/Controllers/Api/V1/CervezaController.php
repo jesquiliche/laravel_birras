@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Storage;
  *     description="Descripcion"
  * )
  *
- * @OA\Server(url="https://laravelbirras-production.up.railway.app/")
+ * @OA\Server(url="https://laravelbirras-production.up.railway.app")
  *
  * @OA\Schema(
  *     schema="Cerveza",
