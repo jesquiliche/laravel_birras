@@ -229,7 +229,7 @@ class AuthController extends Controller
     
 /**
  * @OA\Post(
- *      path="/api/v1/logout",
+ *      path="/api/logout",
  *      operationId="logout",
  *      tags={"Authentication"},
  *      summary="Logout the authenticated user",
@@ -255,7 +255,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/v1/refresh",
+     *      path="/api/refresh",
      *      operationId="refresh",
      *      tags={"Authentication"},
      *      summary="Refresh the authentication token",

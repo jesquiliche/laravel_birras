@@ -2325,7 +2325,7 @@
                 }
             }
         },
-        "/api/v1/logout": {
+        "/api/logout": {
             "post": {
                 "tags": [
                     "Authentication"
@@ -2357,7 +2357,7 @@
                 ]
             }
         },
-        "/api/v1/refresh": {
+        "/api/refresh": {
             "post": {
                 "tags": [
                     "Authentication"
