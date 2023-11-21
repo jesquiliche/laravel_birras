@@ -26,6 +26,6 @@ class PaisesSeeder extends Seeder
             ["nombre" => "Irlanda"],
         ];
 
-        DB::table('Paises')->insert($data);
+        DB::table('paises')->insert($data);
     }
 }
