@@ -26,7 +26,7 @@ class CervezasSeeder extends Seeder
                 'precio'=>$obj->precio,
                 'foto'=>$obj->foto
             ));
-            print "Insertando cerveza -> ".$obj->nombre."\n";
+          //  print "Insertando cerveza -> ".$obj->nombre."\n";
         }
 
     }

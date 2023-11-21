@@ -23,9 +23,7 @@ class PaisesSeeder extends Seeder
             ["nombre" =>"Escocia"],
             ["nombre" => "Holanda"],
             ["nombre" => "Inglaterra"],
-            ["nombre" =>"Escocia"],
-            ["nombre" => "Holanda"],
-            ["nombre" => "Irlanda"]
+            ["nombre" => "Irlanda"],
         ];
 
         DB::table('Paises')->insert($data);
