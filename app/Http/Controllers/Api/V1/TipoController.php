@@ -49,7 +49,7 @@ class TipoController extends Controller
     {
         // Recuperar todos los tipoes desde la base de datos y retornarlos como una respuesta JSON
         $tipos = Tipo::all();
-        return response()->json(['tipos' => $tipos]);
+        return response()->json($tipos);
     }
 
        /**

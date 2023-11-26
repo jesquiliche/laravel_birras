@@ -12,6 +12,7 @@
         "graduacion_id": 4,
         "pais_id": 1,
         "tipo_id": 2,
+        
         "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697309153/pomelo_ipa_ida_y_vuelta_24x33cl_4baeb73584.jpg"
     },
     {
@@ -28,5 +29,179 @@
         "pais_id": 2,
         "tipo_id": 7,
         "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311032/dipa_or_nothing_12x33_a547d464d5.jpg"
+    },
+    {
+        "nombre": "AC/DC PILS 24x50 cl.",
+        "descripcion": "Cerveza pils elaborada seg\u00fan la ley de pureza . Elaborada por Karlsberg ",
+        "precio": 58.2,
+        "marca": " Karlsberg ",
+        "envase": "",
+        "contenido": "50cl",
+        "unidades": 24,
+        "novedad": true,
+        
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311366/acdc_pils_24x50_cl_dbc80ea5c9.jpg"
+    
+    },
+    {
+        "nombre": "LAGERBIER HELL",
+        "descripcion": "Una cerveza particularmente suave, espumosa, largamente almacenada, refrescante y f\u00e1cilmente digerible. \u00danica en su sabor.",
+        "precio": 3.35,
+        "marca": "Helles",
+        "envase": "Botella",
+        "contenido": "50cl",
+        "unidades": 1,
+        "novedad": 0,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697338549/cerveza_artesana_lagerbier_hell_1c5414e43a.jpg"
+    
+    },
+    {
+        "nombre": "MEINE HOPFENWEISSE / SCHNEIDER-BROOKLYNER (TAP 5)",
+        "descripcion": "Color dorado oscuro y brumoso con la cabeza espumosa. El aroma es el trigo, el banano, los c\u00edtricos y la resina, ofrecen un sabor semi dulce.",
+        "precio": 3.25,
+        "marca": "SCHNEIDER",
+        "envase": "Botella",
+        "contenido": "50cl",
+        "unidades": 1,
+        "novedad": 0,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697338549/cerveza_artesana_lagerbier_hell_1c5414e43a.jpg"
+    
+    },
+    {
+        "nombre": "AECHT SCHLENKERLA RAUCHBIER - M\u00c4RZEN",
+        "descripcion": "Rauchbier.",
+        "precio": 3.4,
+        "marca": "M\u00c4RZEN",
+        "envase": "Botella",
+        "contenido": "50cl",
+        "unidades": 1,
+        "novedad": 1,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697339509/aecht_schlenkerla_rauchbier_maerzen_889700fd43.png"
+    
+    },
+
+    {
+        "nombre": "GOMA 2 BY CALEYA",
+        "descripcion": "Cerveza de alta fermentaci\u00f3n elaborada con una malta. Sabores y aromas tropicales donde el l\u00fapulo predomina por encima de la malta. Refrescante y explosiva.",
+        "precio": 3.3,
+        "marca": "CALEVA",
+        "unidades": 1,
+        "novedad": 1,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697339824/cerveza_artesana_goma_2_caleya_8267299325.jpg"
+    
+    },
+    {
+        "nombre": "HOUBLON CHOUFFE",
+        "descripcion": "De color \u00e1mbar, suave turbidez y una cabeza blancuzca, esponjosa, de mediana formaci\u00f3n y buena retenci\u00f3n. El aroma est\u00e1 dominado por notas frutales, en parte por la levadura y en parte por los l\u00fapulos. Entre las frutas se destacan duraznos y frambuesas, tambi\u00e9n hay notas c\u00edtricas y herbales. El cuerpo es bien atenuado, ligero pese a sus 9% de graduaci\u00f3n alcoh\u00f3lica. ",
+        "precio": 3.9,
+        "marca": " HOUBLON CHOUFFE",
+        "envase": "Botella",
+        "contenido": "50cl",
+        "unidades": 1,
+        "novedad": 0,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697340237/cerveza_artesana_houblon_chouffe_b6422c335c.png"
+    
+    },
+    {
+        "nombre": "AECHT SCHLENKERLA EICHE - DOPPELBOCK",
+        "descripcion": "Schlenkerla Rauchbier.\n\nSiguiendo recetas centenarias, todas las maltas elaboradas en la f\u00e1brica de cerveza Schlenkerla se secan al fuego de le\u00f1a. Mientras que para el cl\u00e1sico \u201cAecht Schlenkerla Rauchbier\u201d tradicionalmente se ha utilizado - y todav\u00eda se utiliza - la haya, la malta para el \u201cSchlenkerla Oak Smoke\u201d se hornea con madera de roble. El Oak Smoke Malt resultante tiene una nota ahumada m\u00e1s suave y con m\u00e1s capas que el Beech Smoke Malt intensamente arom\u00e1tico. Por tanto, el ahumado complejo de \"Schlenkerla Oak Smoke\" se combina con el amargor polifac\u00e9tico de los mejores l\u00fapulos arom\u00e1ticos Hallertau. ",
+        "precio": 4.2,
+        "marca": "DOPPELBOCK",
+        "envase": "Botella",
+        "contenido": "50cl",
+        "unidades": 1,
+        "novedad": 0,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341083/aecht_schlenkerla_eiche_doppelbock_2c9866bf0d.png"
+    
+    },
+    {
+        "nombre": "CAMAR\u00d3N DE LA IPA",
+        "descripcion": "IPA colaboraci\u00f3n Brew Pub Le Sec y DouGall's. Con l\u00fapulos Nugget, Colombus, Yellow Sub, Amarillo y Mosaic. Sin gluten. 5% ABV.",
+        "precio": 3.8,
+        "marca": "DOUGALL'S",
+        "envase": "Botella",
+        "contenido": "33cl",
+        "unidades": 1,
+        "novedad": 1,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341403/camaron_de_la_ipa_06e847b993.png"
+    
+    },
+    {
+        "nombre": "BARCELONA NOSTRA BEER",
+        "descripcion": "Session IPA en colaboraci\u00f3n con Barcelona Beer Challenge. 5% ABV",
+        "precio": 5.1,
+        "marca": "COSA NOSTRA",
+        "envase": "Lata",
+        "contenido": "33cl",
+        "unidades": 1,
+        "novedad": 0,
+        
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697341729/barcelona_nostra_beer_9b4c1a4733.png"
+    
+
+    },
+    {
+        "nombre": "WEIHENSTEPHANER VITUS",
+        "descripcion": "Una cerveza dorada de trigo con alto contenido alcoh\u00f3lico y arom\u00e1tica que no solo seducir\u00e1 a los aficionados a la cerveza bock. Su almacenamiento m\u00e1s prolongado y fr\u00edo en la bodega de nuestro monasterio hace que sea una cerveza muy especial, fuerte y con gran paladar. Cerveza bock de trigo b\u00e1vara, 7,7% de alcohol, de alta fermentaci\u00f3n, no filtrada y con segunda fermentaci\u00f3n en botella. La cerveza bock, t\u00edpica alemana, se caracteriza por el uso de una mayor cantidad de malta. Se usa una cantidad m\u00e1s grande de trigo, por lo que no solamente obtiene un grado de alcohol m\u00e1s alto, sino que tambi\u00e9n se acent\u00faan las caracter\u00edsticas de la cerveza de trigo: un toque de especias, sabor refrescante y final aterciopelado.",
+        "precio": 3.1,
+        "marca": "M\u00c4RZEN",
+        "envase": "",
+        "contenido": "",
+        "unidades": 1,
+        "novedad": 0,
+
+        "color_id": 8,
+        "graduacion_id": 1,
+        "pais_id": 2,
+        "tipo_id": 7,
+        "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697311032/dipa_or_nothing_12x33_a547d464d5.jpg"
+    
+
+        
     }
+
+
 ]

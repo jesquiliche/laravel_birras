@@ -48,7 +48,7 @@ class PaisController extends Controller
     {
         // Recuperar todos los paises desde la base de datos y retornarlos como una respuesta JSON
         $paises = Pais::all();
-        return response()->json(['paises' => $paises]);
+        return response()->json($paises);
     }
 
     /**
