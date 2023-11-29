@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Storage;
  *     description="Descripcion"
  * )
  *
- * @OA\Server(url="https://laravelbirras-production.up.railway.app")
+ * @OA\Server(url="https://laravelbirras-production.up.railway.app/")
  *
  * @OA\Schema(
  *     schema="Cerveza",
@@ -217,7 +217,7 @@ class CervezaController extends Controller
 
         // Realiza una paginación de los resultados
         $results = $query->paginate($perPage, ['*'], 'page', $page);
-
+        //print_r($graduacionId);
         // Devuelve una respuesta JSON con los resultados paginados
         return response()->json($results);
     }
