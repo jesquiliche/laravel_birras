@@ -95,7 +95,7 @@ class CervezaController extends Controller
      *          @OA\Schema(type="integer")
      *      ),
      *        @OA\Parameter(
-     *          name="graducion_id",
+     *          name="graduacion_id",
      *          description="Filter graduacion ID",
      *          required=false,
      *          in="query",
