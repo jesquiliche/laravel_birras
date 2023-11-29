@@ -94,6 +94,13 @@ class CervezaController extends Controller
      *          in="query",
      *          @OA\Schema(type="integer")
      *      ),
+     *        @OA\Parameter(
+     *          name="graducion_id",
+     *          description="Filter graduacion ID",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(type="integer")
+     *      ),
      *      @OA\Parameter(
      *          name="tipo_id",
      *          description="Filter by tipo ID",
@@ -158,6 +165,7 @@ class CervezaController extends Controller
         $colorId = $request->input('color_id');
         $paisId = $request->input('pais_id');
         $tipoId = $request->input('tipo_id');
+        $graduacionId=$request->input('graduacion_id');
         $novedad = $request->input('novedad');
         $oferta = $request->input('oferta');
         $marca = $request->input('marca');
@@ -180,6 +188,10 @@ class CervezaController extends Controller
 
         if ($paisId) {
             $query->where('cer.pais_id', $paisId);
+        }
+
+        if ($graduacionId) {
+            $query->where('cer.graduacion_id', $graduacionId);
         }
 
         if ($tipoId) {

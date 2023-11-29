@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000"
+            "url": "https://laravelbirras-production.up.railway.app"
         }
     ],
     "paths": {
@@ -51,6 +51,15 @@
                         "name": "pais_id",
                         "in": "query",
                         "description": "Filter by pais ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "graducion_id",
+                        "in": "query",
+                        "description": "Filter graduacion ID",
                         "required": false,
                         "schema": {
                             "type": "integer"
