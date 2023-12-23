@@ -19,5 +19,5 @@ Route::get('v1/cervezas',[App\Http\Controllers\Api\V1\CervezaController::class,'
 Route::get('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'index']);
 Route::put('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'update']);
 Route::patch('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'patch']);
-Route::post('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'store']);
+Route::post('v1/cervezas',[App\Http\Controllers\Api\V1\CervezaController::class,'store']);
 Route::delete('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'destroy']);
