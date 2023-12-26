@@ -52,10 +52,10 @@ class CervezaController extends Controller
      * )
      */
 
-    public function __construct()
+ /*   public function __construct()
     {
         $this->middleware('auth:api')->only(['store', 'destroy', 'update', 'patch']);
-    }
+    }*/
     /**
      * Display a listing of the resource.
      */
@@ -297,6 +297,7 @@ class CervezaController extends Controller
     {
         // Comenzar una transacción de base de datos
         DB::beginTransaction();
+       // return $request;
 
         try {
             // Define las reglas de validación para los campos
@@ -307,16 +308,18 @@ class CervezaController extends Controller
                 'graduacion_id' => 'required|numeric',
                 'tipo_id' => 'required|numeric',
                 'pais_id' => 'required|numeric',
-                'novedad' => 'required|boolean',
-                'oferta' => 'required|boolean',
+                'novedad' => 'required|string',
+                'oferta' => 'required|string',
                 'precio' => 'required|numeric',
-                'foto' => 'required|image|max:2048',
+                'foto'=> 'required|string',
+                'file' => 'required|image|max:2048',
                 'marca' => 'required',
             ];
 
             // Realiza la validación de la solicitud
             $validator = Validator::make($request->all(), $rules);
 
+             
             // Si la validación falla, devuelve una respuesta JSON con los errores de validación
             if ($validator->fails()) {
                 DB::rollback();
@@ -354,9 +357,13 @@ class CervezaController extends Controller
             }
 
             $cerveza = $request->all();
+            $cerveza['novedad'] = filter_var($request->input('novedad'), FILTER_VALIDATE_BOOLEAN);
+            $cerveza['oferta'] = filter_var($request->input('oferta'), FILTER_VALIDATE_BOOLEAN);
+    
+            //return $cerveza;
             // Procesa la imagen y guárdala en la carpeta 'storage/images'
-            if ($request->hasFile('foto')) {
-                $path = $request->file('foto')->store('/public/images');
+            if ($request->hasFile('file')) {
+                $path = $request->file('file')->store('/public/images');
                 $url = url('/') . '/storage/images/' . basename($path); // 'images' es la subcarpeta donde se almacenará la imagen
 
                 $cerveza['foto'] = $url; // Actualiza el campo 'foto' con la ubicación de la imagen almacenad
@@ -364,9 +371,10 @@ class CervezaController extends Controller
 
             // Guardar la cerveza en la base de datos
             $cerveza = Cerveza::create($cerveza);
-
+            
             // Confirmar la transacción si todo se completó con éxito
             DB::commit();
+            return response()->json('Cerveza creada 2');
 
             // Devuelve una respuesta JSON con la cerveza recién creada y el código de respuesta 201 (creado)
             return response()->json($cerveza, 201);
