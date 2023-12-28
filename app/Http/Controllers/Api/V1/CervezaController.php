@@ -52,10 +52,10 @@ class CervezaController extends Controller
      * )
      */
 
- /*   public function __construct()
+    public function __construct()
     {
         $this->middleware('auth:api')->only(['store', 'destroy', 'update', 'patch']);
-    }*/
+    }
     /**
      * Display a listing of the resource.
      */
@@ -160,7 +160,7 @@ class CervezaController extends Controller
     public function index(Request $request)
     {
         // Recopila parámetros de consulta desde la solicitud
-        $perPage = $request->input('per_page', 10);
+        $perPage = $request->input('per_page', 20);
         $page = $request->input('page', 1);
         $colorId = $request->input('color_id');
         $paisId = $request->input('pais_id');
@@ -266,6 +266,7 @@ class CervezaController extends Controller
      *              @OA\Property(property="novedad", type="boolean"),
      *              @OA\Property(property="oferta", type="boolean"),
      *              @OA\Property(property="precio", type="number"),
+     *              @OA\Property(property="fILE", type="string"),
      *              @OA\Property(property="foto", type="string"),
      *              @OA\Property(property="marca", type="string"),
      *          )
@@ -302,22 +303,27 @@ class CervezaController extends Controller
         try {
             // Define las reglas de validación para los campos
             $rules = [
-                'nombre' => 'required|unique:cervezas',
+                'nombre' => 'required|string|unique:cervezas|max:150',
                 'descripcion' => 'required',
                 'color_id' => 'required|numeric',
                 'graduacion_id' => 'required|numeric',
                 'tipo_id' => 'required|numeric',
                 'pais_id' => 'required|numeric',
-                'novedad' => 'required|string',
-                'oferta' => 'required|string',
-                'precio' => 'required|numeric',
+                'novedad' => 'required|string|in:true,false',
+                'oferta' => 'required|string|in:true,false',
+                'precio' => 'required|numeric|between:1,1000',
                 'foto'=> 'required|string',
                 'file' => 'required|image|max:2048',
-                'marca' => 'required',
+                'marca' => 'required|string|max:150',
             ];
 
+            $messages = [
+                'oferta.in' => 'El campo oferta debe ser "true" o "false".',
+                'novedad.in' => 'El campo novedad debe ser "true" o "false".',
+                // Mensajes personalizados para otros campos si es necesario...
+            ];
             // Realiza la validación de la solicitud
-            $validator = Validator::make($request->all(), $rules);
+            $validator = Validator::make($request->all(), $rules,$messages);
 
              
             // Si la validación falla, devuelve una respuesta JSON con los errores de validación
@@ -374,8 +380,7 @@ class CervezaController extends Controller
             
             // Confirmar la transacción si todo se completó con éxito
             DB::commit();
-            return response()->json('Cerveza creada 2');
-
+            
             // Devuelve una respuesta JSON con la cerveza recién creada y el código de respuesta 201 (creado)
             return response()->json($cerveza, 201);
         } catch (Exception $e) {
