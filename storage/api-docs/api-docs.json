@@ -229,6 +229,9 @@
                                         "precio": {
                                             "type": "number"
                                         },
+                                        "fILE": {
+                                            "type": "string"
+                                        },
                                         "foto": {
                                             "type": "string"
                                         },

@@ -366,7 +366,6 @@ class CervezaController extends Controller
             $cerveza['novedad'] = filter_var($request->input('novedad'), FILTER_VALIDATE_BOOLEAN);
             $cerveza['oferta'] = filter_var($request->input('oferta'), FILTER_VALIDATE_BOOLEAN);
     
-            //return $cerveza;
             // Procesa la imagen y guárdala en la carpeta 'storage/images'
             if ($request->hasFile('file')) {
                 $path = $request->file('file')->store('/public/images');
