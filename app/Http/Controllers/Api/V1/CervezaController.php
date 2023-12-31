@@ -452,7 +452,17 @@ class CervezaController extends Controller
 
     public function show(string $id)
     {
-        $cerveza = Cerveza::find($id);
+        $query = DB::table('cervezas as cer')
+        ->select('cer.id', 'cer.nombre', 'cer.descripcion', 
+        'cer.novedad', 'cer.oferta', 'cer.precio', 'cer.foto', 'cer.marca', 
+        'col.nombre as color', 'g.nombre as graduacion', 't.nombre as tipo', 
+        'p.nombre as pais','cer.tipo_id','cer.color_id','cer.pais_id','cer.graduacion_id')
+        ->join('colores as col', 'cer.color_id', '=', 'cer.color_id')
+        ->join('graduaciones as g', 'cer.graduacion_id', '=', 'g.id')
+        ->join('tipos as t', 'cer.tipo_id', '=', 't.id')
+        ->join('paises as p', 'cer.pais_id', '=', 'p.id')
+        ->where('cer.id', $id);
+        $cerveza =$query->first();
         return response()->json($cerveza, 200);
     }
 
