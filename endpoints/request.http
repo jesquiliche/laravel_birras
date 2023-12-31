@@ -1,4 +1,4 @@
-@accessToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzAwMjE5NzcwLCJleHAiOjE3MDAyMjMzNzAsIm5iZiI6MTcwMDIxOTc3MCwianRpIjoiMlNBNHU3dmtDenZZTkZyaCIsInN1YiI6IjIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.P8ufvwBKvOj6hS86FI-5e57iA_Y7eLu42mzvawM7l6g
+@accessToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzAzOTk1MjY0LCJleHAiOjE3MDM5OTg4NjQsIm5iZiI6MTcwMzk5NTI2NCwianRpIjoid3JtYXlGTWtFbG12aTNWTyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ptTZAV5eF2qb7qHShav4SC0j4XBB2BpcTS6jXZHeSpE
 
 #### Registrarse
 POST  http://127.0.0.1:8000/api/register
@@ -15,8 +15,8 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-    "email":"jesquiliche@hotmail.com",
-    "password":"1234678"
+    "email":"admin@test.com",
+    "password":"admin_password"
 }
 
 #### Logout
@@ -200,5 +200,10 @@ Authorization: Bearer {{accessToken}}
 }
 
 #### Borrar cerveza
-DELETE  http://localhost:8000/api/v1/cervezas/15
+DELETE  http://localhost:8000/api/v1/cervezas/1
 Authorization: Bearer {{accessToken}}
+
+#### Obtener cervezas por pais
+GET  http://localhost:8000/api/v1/cervezasPorpais
+
+

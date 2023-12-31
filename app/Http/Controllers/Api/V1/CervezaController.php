@@ -223,6 +223,49 @@ class CervezaController extends Controller
     }
 
     /**
+ * @OA\Get(
+ *      path="/api/v1/consultaCervezasPorPais",
+ *      operationId="consultaCervezasPorPais",
+ *      tags={"Cervezas"},
+ *      summary="Consulta la cantidad de cervezas por país",
+ *      description="Devuelve la cantidad de cervezas agrupadas por país",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Operación exitosa",
+ *          @OA\JsonContent(
+ *              type="array",
+ *              @OA\Items(
+ *                  @OA\Property(property="cantidad", type="integer"),
+ *                  @OA\Property(property="nombre", type="string"),
+ *              )
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=500,
+ *          description="Error interno del servidor",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="message", type="string")
+ *          )
+ *      ),
+ * )
+ */
+public function consultaCervezasPorPais()
+{
+    $resultados = DB::select("
+        SELECT COUNT(*) as cantidad, p.nombre
+        FROM cervezas as cer
+        INNER JOIN paises AS p ON cer.pais_id = p.id
+        GROUP BY cer.pais_id, p.nombre
+        ORDER BY p.nombre
+    ");
+
+    return response()->json($resultados);
+}
+
+    
+    
+    
+    /**
      * Store a newly created resource in storage.
      */
     /**
