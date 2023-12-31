@@ -118,6 +118,7 @@ class SystemController extends Controller
      */
     public function consultaBD()
     {
+        $databaseName = env('MYSQL_DATABASE');
         $resultados = DB::select("
             SELECT 
             table_name,
@@ -160,12 +161,14 @@ class SystemController extends Controller
      */
     public function consultaTablas()
     {
+        $databaseName = env('MYSQL_DATABASE');
+    
         $resultados = DB::select("
             SELECT table_name, table_rows
             FROM information_schema.tables
-            WHERE table_schema = 'laravel_birras';
+            WHERE table_schema = '{$databaseName}';
         ");
-
+    
         return response()->json($resultados);
     }
-}
+};
