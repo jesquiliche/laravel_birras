@@ -165,7 +165,7 @@ class CervezaController extends Controller
         $colorId = $request->input('color_id');
         $paisId = $request->input('pais_id');
         $tipoId = $request->input('tipo_id');
-        $graduacionId=$request->input('graduacion_id');
+        $graduacionId = $request->input('graduacion_id');
         $novedad = $request->input('novedad');
         $oferta = $request->input('oferta');
         $marca = $request->input('marca');
@@ -222,49 +222,9 @@ class CervezaController extends Controller
         return response()->json($results);
     }
 
-    /**
- * @OA\Get(
- *      path="/api/v1/consultaCervezasPorPais",
- *      operationId="consultaCervezasPorPais",
- *      tags={"Cervezas"},
- *      summary="Consulta la cantidad de cervezas por país",
- *      description="Devuelve la cantidad de cervezas agrupadas por país",
- *      @OA\Response(
- *          response=200,
- *          description="Operación exitosa",
- *          @OA\JsonContent(
- *              type="array",
- *              @OA\Items(
- *                  @OA\Property(property="cantidad", type="integer"),
- *                  @OA\Property(property="nombre", type="string"),
- *              )
- *          )
- *      ),
- *      @OA\Response(
- *          response=500,
- *          description="Error interno del servidor",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string")
- *          )
- *      ),
- * )
- */
-public function consultaCervezasPorPais()
-{
-    $resultados = DB::select("
-        SELECT COUNT(*) as cantidad, p.nombre
-        FROM cervezas as cer
-        INNER JOIN paises AS p ON cer.pais_id = p.id
-        GROUP BY cer.pais_id, p.nombre
-        ORDER BY p.nombre
-    ");
+    
 
-    return response()->json($resultados);
-}
 
-    
-    
-    
     /**
      * Store a newly created resource in storage.
      */
@@ -341,7 +301,7 @@ public function consultaCervezasPorPais()
     {
         // Comenzar una transacción de base de datos
         DB::beginTransaction();
-       // return $request;
+        // return $request;
 
         try {
             // Define las reglas de validación para los campos
@@ -355,7 +315,7 @@ public function consultaCervezasPorPais()
                 'novedad' => 'required|string|in:true,false',
                 'oferta' => 'required|string|in:true,false',
                 'precio' => 'required|numeric|between:1,1000',
-                'foto'=> 'required|string',
+                'foto' => 'required|string',
                 'file' => 'required|image|max:2048',
                 'marca' => 'required|string|max:150',
             ];
@@ -366,9 +326,9 @@ public function consultaCervezasPorPais()
                 // Mensajes personalizados para otros campos si es necesario...
             ];
             // Realiza la validación de la solicitud
-            $validator = Validator::make($request->all(), $rules,$messages);
+            $validator = Validator::make($request->all(), $rules, $messages);
 
-             
+
             // Si la validación falla, devuelve una respuesta JSON con los errores de validación
             if ($validator->fails()) {
                 DB::rollback();
@@ -408,7 +368,7 @@ public function consultaCervezasPorPais()
             $cerveza = $request->all();
             $cerveza['novedad'] = filter_var($request->input('novedad'), FILTER_VALIDATE_BOOLEAN);
             $cerveza['oferta'] = filter_var($request->input('oferta'), FILTER_VALIDATE_BOOLEAN);
-    
+
             // Procesa la imagen y guárdala en la carpeta 'storage/images'
             if ($request->hasFile('file')) {
                 $path = $request->file('file')->store('/public/images');
@@ -419,10 +379,10 @@ public function consultaCervezasPorPais()
 
             // Guardar la cerveza en la base de datos
             $cerveza = Cerveza::create($cerveza);
-            
+
             // Confirmar la transacción si todo se completó con éxito
             DB::commit();
-            
+
             // Devuelve una respuesta JSON con la cerveza recién creada y el código de respuesta 201 (creado)
             return response()->json($cerveza, 201);
         } catch (Exception $e) {
@@ -496,16 +456,30 @@ public function consultaCervezasPorPais()
     public function show(string $id)
     {
         $query = DB::table('cervezas as cer')
-        ->select('cer.id', 'cer.nombre', 'cer.descripcion', 
-        'cer.novedad', 'cer.oferta', 'cer.precio', 'cer.foto', 'cer.marca', 
-        'col.nombre as color', 'g.nombre as graduacion', 't.nombre as tipo', 
-        'p.nombre as pais','cer.tipo_id','cer.color_id','cer.pais_id','cer.graduacion_id')
-        ->join('colores as col', 'cer.color_id', '=', 'cer.color_id')
-        ->join('graduaciones as g', 'cer.graduacion_id', '=', 'g.id')
-        ->join('tipos as t', 'cer.tipo_id', '=', 't.id')
-        ->join('paises as p', 'cer.pais_id', '=', 'p.id')
-        ->where('cer.id', $id);
-        $cerveza =$query->first();
+            ->select(
+                'cer.id',
+                'cer.nombre',
+                'cer.descripcion',
+                'cer.novedad',
+                'cer.oferta',
+                'cer.precio',
+                'cer.foto',
+                'cer.marca',
+                'col.nombre as color',
+                'g.nombre as graduacion',
+                't.nombre as tipo',
+                'p.nombre as pais',
+                'cer.tipo_id',
+                'cer.color_id',
+                'cer.pais_id',
+                'cer.graduacion_id'
+            )
+            ->join('colores as col', 'cer.color_id', '=', 'cer.color_id')
+            ->join('graduaciones as g', 'cer.graduacion_id', '=', 'g.id')
+            ->join('tipos as t', 'cer.tipo_id', '=', 't.id')
+            ->join('paises as p', 'cer.pais_id', '=', 'p.id')
+            ->where('cer.id', $id);
+        $cerveza = $query->first();
         return response()->json($cerveza, 200);
     }
 
@@ -735,43 +709,43 @@ public function consultaCervezasPorPais()
 
 
     /**
- * @OA\Delete(
- *      path="/api/v1/cervezas/{id}",
- *      operationId="deleteCerveza",
- *      tags={"Cervezas"},
- *      summary="Delete a cerveza by ID",
- *      description="Deletes a cerveza based on its ID",
- *      security={{"bearerAuth": {}}},
- *      @OA\Parameter(
- *          name="id",
- *          description="ID of the cerveza",
- *          required=true,
- *          in="path",
- *          @OA\Schema(type="string")
- *      ),
- *      @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string")
- *          )
- *      ),
- *      @OA\Response(
- *          response=404,
- *          description="Cerveza not found",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string")
- *          )
- *      ),
- *      @OA\Response(
- *          response=500,
- *          description="Internal Server Error",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string")
- *          )
- *      ),
- * )
- */
+     * @OA\Delete(
+     *      path="/api/v1/cervezas/{id}",
+     *      operationId="deleteCerveza",
+     *      tags={"Cervezas"},
+     *      summary="Delete a cerveza by ID",
+     *      description="Deletes a cerveza based on its ID",
+     *      security={{"bearerAuth": {}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="ID of the cerveza",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Cerveza not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal Server Error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
 
     public function destroy(string $id)
     {
