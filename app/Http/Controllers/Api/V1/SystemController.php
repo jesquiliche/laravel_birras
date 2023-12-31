@@ -162,7 +162,7 @@ class SystemController extends Controller
      */
     public function consultaTablas()
     {
-        $databaseName = env('MYSQL_DATABASE');
+        $databaseName = env('BD_DATABASE');
     
         $resultados = DB::select("
             SELECT table_name, table_rows
