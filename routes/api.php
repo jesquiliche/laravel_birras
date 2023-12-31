@@ -20,7 +20,7 @@ Route::get('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::cl
 Route::get('v1/consultaCervezasPorPais',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasPorPais']);
 Route::get('v1/consultaCervezasPorTipo',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasPorTipo']);
 Route::get('v1/consultaTablas',[App\Http\Controllers\Api\V1\SystemController::class,'consultaTablas']);
-Route::get('v1/consultaDB',[App\Http\Controllers\Api\V1\SystemController::class,'consultaBD']);
+Route::get('v1/consultaBD',[App\Http\Controllers\Api\V1\SystemController::class,'consultaBD']);
 
 Route::put('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'update']);
 Route::patch('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'patch']);

@@ -1885,6 +1885,156 @@
                 }
             }
         },
+        "/api/v1/consultaCervezasPorTipo": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta la cantidad de cervezas por tipo",
+                "description": "Devuelve la cantidad de cervezas agrupadas por tipo",
+                "operationId": "consultaCervezasPorTipo",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "cantidad": {
+                                                "type": "integer"
+                                            },
+                                            "nombre": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/consultaBD": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta el tamaño de las tablas de la base de datos",
+                "description": "Devuelve el tamaño de las tablas de la base de datos en megabytes",
+                "operationId": "consultaBD",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "table_name": {
+                                                "type": "string"
+                                            },
+                                            "table_rows": {
+                                                "type": "integer"
+                                            },
+                                            "data_size_mb": {
+                                                "type": "number"
+                                            },
+                                            "index_size_mb": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/consultaTablas": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta las tablas de la base de datos",
+                "description": "Devuelve las tablas de la base de datos",
+                "operationId": "consultaTablas",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "table_name": {
+                                                "type": "string"
+                                            },
+                                            "table_rows": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/tipos": {
             "get": {
                 "tags": [
