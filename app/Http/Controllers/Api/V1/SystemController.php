@@ -161,14 +161,16 @@ class SystemController extends Controller
      */
     public function consultaTablas()
     {
-        $databaseName = env('DB_DATABASE');
+        $databaseName = env('MYSQL_DATABASE');
     
         $resultados = DB::select("
             SELECT table_name, table_rows
             FROM information_schema.tables
-            WHERE table_schema = '{$databaseName}';
+            WHERE table_schema = '{$databaseName}'
+              AND table_type = 'BASE TABLE'; -- Solo tablas, no vistas ni tablas de sistema
         ");
     
         return response()->json($resultados);
     }
+    
 };
