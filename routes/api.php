@@ -17,7 +17,7 @@ Route::apiResource('v1/graduaciones', App\Http\Controllers\Api\V1\GraduacionCont
 
 Route::get('v1/cervezas',[App\Http\Controllers\Api\V1\CervezaController::class,'index']);
 Route::get('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'show']);
-Route::get('v1/cervezasPorpais',[App\Http\Controllers\Api\V1\CervezaController::class,'consultaCervezasPorPais']);
+Route::get('v1/consultaCervezasPorPais',[App\Http\Controllers\Api\V1\CervezaController::class,'consultaCervezasPorPais']);
 Route::put('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'update']);
 Route::patch('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'patch']);
 Route::post('v1/cervezas',[App\Http\Controllers\Api\V1\CervezaController::class,'store']);

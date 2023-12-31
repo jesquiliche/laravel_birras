@@ -204,6 +204,6 @@ DELETE  http://localhost:8000/api/v1/cervezas/1
 Authorization: Bearer {{accessToken}}
 
 #### Obtener cervezas por pais
-GET  http://localhost:8000/api/v1/cervezasPorpais
+GET  http://localhost:8000/api/v1/consultaCervezasPorPais
 
 
