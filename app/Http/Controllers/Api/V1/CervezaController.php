@@ -671,7 +671,7 @@ class CervezaController extends Controller
             $cerveza->nombre = $request->json('nombre', $cerveza->nombre);
             $cerveza->descripcion = $request->json('descripcion', $cerveza->descripcion);
             $cerveza->color_id = $request->json('color_id', $cerveza->color_id);
-            $cerveza->graduacion_id = $request->json('graduacion_id', $cerveza->graduacion_id);
+          //  $cerveza->graduacion_id = $request->json('graduacion_id', $cerveza->graduacion_id);
             $cerveza->tipo_id = $request->json('tipo_id', $cerveza->tipo_id);
             $cerveza->pais_id = $request->json('pais_id', $cerveza->pais_id);
             $cerveza->novedad = $request->json('novedad', $cerveza->novedad);
@@ -679,20 +679,12 @@ class CervezaController extends Controller
             $cerveza->precio = $request->json('precio', $cerveza->precio);
             $cerveza->marca = $request->json('marca', $cerveza->marca);
 
+            
             // Guarda la cerveza
             $cerveza->save();
 
 
-            // Guarda la cerveza
-            $cerveza->save();
-
-            // Actualiza la imagen si se proporciona una nueva
-            if ($request->hasFile('foto')) {
-                $path = $request->file('foto')->store('/public/images');
-                $url = url('/') . '/storage/images/' . basename($path);
-                $cerveza->foto = $url;
-                $cerveza->save();
-            }
+           
 
             // Confirmar la transacción si todo se completó con éxito
             DB::commit();
