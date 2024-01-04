@@ -187,24 +187,28 @@ Authorization: Bearer {{accessToken}}
 }
 
 #### Modificar cerveza
-PATCH  http://localhost:8000/api/v1/cervezas/14
+PATCH  http://localhost:8000/api/v1/cervezas/2
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    
-    "nombre": "Jesús Quintana rrrrr",
-    "descripcion": "e4w3453 54645",
+    "id": 13,
+    "nombre": "Jesús Quintana",
+    "descripcion": "e4w3453",
     "novedad": 1,
     "oferta": 0,
-    "precio": 55.00,
+    "precio": "55.00",
     "foto": "https://laravelbirras-production.up.railway.app/storage/images/U6sN4PrHtTjwTj9D4RNF5t6qCg87opJsRCB2B9l2.png",
     "marca": "454",
-    
-    "tipo_id": 15,
-    "color_id": 2,
+    "color": "Amarillo",
+    "graduacion": "Baja(3-5)",
+    "tipo": "Pilsner",
+    "pais": "Escocia",
+    "tipo_id": 16,
+    "color_id": 5,
     "pais_id": 5,
-    "graduacion_id": 2
+    "graduacion_id": 5
+    
 }
 #### Borrar cerveza
 DELETE  http://localhost:8000/api/v1/cervezas/1
