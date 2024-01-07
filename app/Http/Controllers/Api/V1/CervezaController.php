@@ -160,7 +160,7 @@ class CervezaController extends Controller
     public function index(Request $request)
     {
         // Recopila parámetros de consulta desde la solicitud
-        $perPage = $request->input('per_page', 20);
+        $perPage = $request->input('per_page', 8);
         $page = $request->input('page', 1);
         $colorId = $request->input('color_id');
         $paisId = $request->input('pais_id');
@@ -169,6 +169,7 @@ class CervezaController extends Controller
         $novedad = $request->input('novedad');
         $oferta = $request->input('oferta');
         $marca = $request->input('marca');
+        $nombre = $request->input('nombre');
         $precioDesde = $request->input('precio_desde');
         $precioHasta = $request->input('precio_hasta');
 
@@ -179,7 +180,7 @@ class CervezaController extends Controller
             ->join('graduaciones as g', 'cer.graduacion_id', '=', 'g.id')
             ->join('tipos as t', 'cer.tipo_id', '=', 't.id')
             ->join('paises as p', 'cer.pais_id', '=', 'p.id')
-            ->orderBy('cer.nombre');
+            ->orderBy('cer.id');
 
         // Aplica condiciones según los parámetros de consulta
         if ($colorId) {
@@ -203,12 +204,17 @@ class CervezaController extends Controller
         }
 
         if ($oferta) {
-            $query->where('cer.oferta', $oferta);
+            
+           $query->where('cer.oferta', filter_var($oferta, FILTER_VALIDATE_BOOLEAN));
         }
 
         if ($marca) {
             // Realiza una búsqueda de marca insensible a mayúsculas y minúsculas
             $query->whereRaw('LOWER(cer.marca) LIKE ?', ['%' . strtolower($marca) . '%']);
+        }
+        if ($nombre) {
+            // Realiza una búsqueda de marca insensible a mayúsculas y minúsculas
+            $query->whereRaw('LOWER(cer.nombre) LIKE ?', ['%' . strtolower($nombre) . '%']);
         }
 
         if ($precioDesde && $precioHasta) {
@@ -222,7 +228,7 @@ class CervezaController extends Controller
         return response()->json($results);
     }
 
-    
+
 
 
     /**
@@ -671,7 +677,7 @@ class CervezaController extends Controller
             $cerveza->nombre = $request->json('nombre', $cerveza->nombre);
             $cerveza->descripcion = $request->json('descripcion', $cerveza->descripcion);
             $cerveza->color_id = $request->json('color_id', $cerveza->color_id);
-        //$cerveza->graduacion_id = $request->json('graduacion_id', $cerveza->graduacion_id);
+            //$cerveza->graduacion_id = $request->json('graduacion_id', $cerveza->graduacion_id);
             $cerveza->tipo_id = $request->json('tipo_id', $cerveza->tipo_id);
             $cerveza->pais_id = $request->json('pais_id', $cerveza->pais_id);
             $cerveza->novedad = $request->json('novedad', $cerveza->novedad);
@@ -679,12 +685,12 @@ class CervezaController extends Controller
             $cerveza->precio = $request->json('precio', $cerveza->precio);
             $cerveza->marca = $request->json('marca', $cerveza->marca);
 
-        
+
             // Guarda la cerveza
             $cerveza->save();
 
 
-           
+
 
             // Confirmar la transacción si todo se completó con éxito
             DB::commit();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pais;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -47,8 +48,13 @@ class PaisController extends Controller
     public function index()
     {
         // Recuperar todos los paises desde la base de datos y retornarlos como una respuesta JSON
-        $paises = Pais::all();
-        return response()->json($paises);
+        $query = DB::table('paises as p')
+            ->select('*')
+            ->orderBy('p.nombre');
+
+        $results = $query->get();
+
+        return response()->json($results);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tipo;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -45,11 +46,24 @@ class TipoController extends Controller
      * )
      */
    
-    public function index()
+    public function index(Request $request)
     {
-        // Recuperar todos los tipoes desde la base de datos y retornarlos como una respuesta JSON
-        $tipos = Tipo::all();
-        return response()->json($tipos);
+       
+         // Recopila parámetros de consulta desde la solicitud
+         $perPage = $request->input('per_page', 8);
+         $page = $request->input('page', 1);
+       
+         // Construye una consulta utilizando el Query Builder de Laravel
+         $query = DB::table('tipos as tip')
+             ->select('*')
+             ->orderBy('tip.nombre');
+ 
+        $results=$query->get();
+         // Realiza una paginación de los resultados
+        // $results = $query->paginate($perPage, ['*'], 'page', $page);
+        // Devuelve una respuesta JSON con los resultados paginados
+         return response()->json($results);
+ 
     }
 
        /**
