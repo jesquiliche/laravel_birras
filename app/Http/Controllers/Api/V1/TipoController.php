@@ -229,6 +229,7 @@ class TipoController extends Controller
     if (!$tipo) {
         return response()->json(['message' => 'tipo no encontrado'], 404);
     }
+    
     $tipo->nombre = $request->input('nombre');
     $tipo->descripcion = $request->input('descripcion');
     $tipo->save();
