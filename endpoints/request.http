@@ -1,4 +1,4 @@
-@accessToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzA0NDk1OTI0LCJleHAiOjE3MDQ0OTk1MjQsIm5iZiI6MTcwNDQ5NTkyNCwianRpIjoiaUhUU0NjRTNHZzVPQ2JoMiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.rvkuE8TpC2IF2hTkJN1ZuB24CA0MTeDKnpJNwNoifNs
+@accessToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzA0NzAwNzcxLCJleHAiOjE3MDQ3MDQzNzEsIm5iZiI6MTcwNDcwMDc3MSwianRpIjoidXlIYmtTQU5ZNlZ5bkFaeSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.o6pzi58w4dUUzSsJhlzBC9PWIVSqKrc2EpRqVx2WNpQ
 
 #### Registrarse
 POST  http://127.0.0.1:8000/api/register
@@ -86,7 +86,7 @@ Authorization: Bearer {{accessToken}}
 GET http://localhost:8000/api/v1/tipos
 
 #### Obtener tipo por su id
-GET http://localhost:8000/api/v1/tipos/5
+GET http://localhost:8000/api/v1/tipos/1
 
 ### Crear tipo
 POST   http://localhost:8000/api/v1/tipos
@@ -103,7 +103,8 @@ Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    "nombre":"Doble malta"
+    "nombre":"Doble malta prueba",
+    "descripcion":"Prueba"
 }
 
 ### Borrar tipo
@@ -124,6 +125,10 @@ Authorization: Bearer {{accessToken}}
 {
     "nombre":"Super toxica"
 }
+
+### Obtener ripo
+GET   http://localhost:8000/api/v1/tipos/1
+
 
 ### Modificar tipo
 PUT   http://localhost:8000/api/v1/graduaciones/3

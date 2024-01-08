@@ -27,8 +27,9 @@ class TipoController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth:api')->only(['store', 'destroy','update']);
+        $this->middleware('auth:api')->only(['store', 'destroy']);
     }
+
     /**
      * @OA\Get(
      *      path="/api/v1/tipos",
@@ -210,30 +211,33 @@ class TipoController extends Controller
      * )
      */
     public function update(Request $request, string $id)
-    {
-        // Validación de los datos actualizados del tipo.
-        $validator = Validator::make($request->all(),[
-            'nombre' => 'required|string|max:150|unique:tipos'
-        ]);
+{
+    // Validación de los datos actualizados del tipo.
+    $validator = Validator::make($request->all(), [
+        'nombre' => 'required|string|max:100',
+        'descripcion' => 'required|string',
+    ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors(),422); 
-        }
-        
-
-        // Buscar el tipo por su ID en la base de datos.
-        $tipo = Tipo::find($id);
-
-        if (!$tipo) {
-            return response()->json(['message' => 'tipo no encontrado'], 404);
-        }
-
-        // Actualizar los datos del tipo con los datos validados.
-        $tipo->update($request->all());
-
-        // Retornar una respuesta JSON que confirma la actualización exitosa del tipo.
-        return response()->json(['message' => 'Tipo actualizado con éxito', 'tipo' => $tipo]);
+    
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
     }
+
+    // Buscar el tipo por su ID en la base de datos.
+    $tipo = Tipo::find($id);
+
+    if (!$tipo) {
+        return response()->json(['message' => 'tipo no encontrado'], 404);
+    }
+    $tipo->nombre = $request->input('nombre');
+    $tipo->descripcion = $request->input('descripcion');
+    $tipo->save();
+    // Actualizar los datos del tipo con los datos validados.
+  //  $tipo->update($request->all());
+
+    // Retornar una respuesta JSON que confirma la actualización exitosa del tipo.
+    return response()->json(['message' => 'Tipo actualizado con éxito', 'tipo' => $tipo]);
+}
 
     /**
      * @OA\Delete(
