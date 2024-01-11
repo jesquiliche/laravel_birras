@@ -98,12 +98,13 @@ Authorization: Bearer {{accessToken}}
 }
 
 ### Modificar tipo
-PUT   http://localhost:8000/api/v1/tipos/1
+PATCH    http://localhost:8000/api/v1/tipos/11
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
 
 {
-    "nombre":"Doble malta prueba",
+    "update_at":"32323323",
+    "nombre":"Doble malta",
     "descripcion":"Prueba"
 }
 

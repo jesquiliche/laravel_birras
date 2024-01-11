@@ -51,7 +51,7 @@ class TipoController extends Controller
     {
        
          // Recopila parámetros de consulta desde la solicitud
-         $perPage = $request->input('per_page', 8);
+         $perPage = $request->input('per_page', 40);
          $page = $request->input('page', 1);
        
          // Construye una consulta utilizando el Query Builder de Laravel
@@ -59,9 +59,9 @@ class TipoController extends Controller
              ->select('*')
              ->orderBy('tip.nombre');
  
-        $results=$query->get();
+       
          // Realiza una paginación de los resultados
-        // $results = $query->paginate($perPage, ['*'], 'page', $page);
+         $results = $query->paginate($perPage, ['*'], 'page', $page);
         // Devuelve una respuesta JSON con los resultados paginados
          return response()->json($results);
  
