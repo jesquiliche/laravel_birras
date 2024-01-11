@@ -36,35 +36,44 @@ class TipoController extends Controller
      *      operationId="indexTipo",
      *      tags={"Tipos"},
      *      summary="Listar todos los tipos",
-     *      description="Muestra una lista de todos los tipos en una respuesta JSON.",
+     *      description="Obtiene una lista paginada de todos los tipos en formato JSON.",
+     *      @OA\Parameter(
+     *          name="per_page",
+     *          in="query",
+     *          description="Número de tipos por página (predeterminado: 40)",
+     *          @OA\Schema(type="integer", default=40)
+     *      ),
+     *      @OA\Parameter(
+     *          name="page",
+     *          in="query",
+     *          description="Número de página a recuperar (predeterminado: 1)",
+     *          @OA\Schema(type="integer", default=1)
+     *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Lista de tipos",
+     *          description="Lista paginada de tipos",
      *          @OA\JsonContent(
      *              @OA\Property(property="tipos", type="array", @OA\Items(ref="#/components/schemas/Tipo")),
      *          ),
      *      ),
      * )
      */
-   
     public function index(Request $request)
     {
-       
-         // Recopila parámetros de consulta desde la solicitud
-         $perPage = $request->input('per_page', 40);
-         $page = $request->input('page', 1);
-       
-         // Construye una consulta utilizando el Query Builder de Laravel
-         $query = DB::table('tipos as tip')
-             ->select('*')
-             ->orderBy('tip.nombre');
- 
-       
-         // Realiza una paginación de los resultados
-         $results = $query->paginate($perPage, ['*'], 'page', $page);
+        // Recopila parámetros de consulta desde la solicitud
+        $perPage = $request->input('per_page', 40);
+        $page = $request->input('page', 1);
+
+        // Construye una consulta utilizando el Query Builder de Laravel
+        $query = DB::table('tipos as tip')
+            ->select('*')
+            ->orderBy('tip.nombre');
+
+        // Realiza una paginación de los resultados
+        $results = $query->paginate($perPage, ['*'], 'page', $page);
+
         // Devuelve una respuesta JSON con los resultados paginados
-         return response()->json($results);
- 
+        return response()->json($results);
     }
 
        /**
