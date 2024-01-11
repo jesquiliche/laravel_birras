@@ -1516,11 +1516,31 @@
                     "Paises"
                 ],
                 "summary": "Listar todos los países",
-                "description": "Muestra una lista de todos los países en una respuesta JSON.",
+                "description": "Obtiene una lista paginada de todos los países en formato JSON.",
                 "operationId": "indexPais",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Número de países por página (predeterminado: 20)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 20
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Número de página a recuperar (predeterminado: 1)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Lista de países",
+                        "description": "Lista paginada de países",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2041,11 +2061,31 @@
                     "Tipos"
                 ],
                 "summary": "Listar todos los tipos",
-                "description": "Muestra una lista de todos los tipos en una respuesta JSON.",
+                "description": "Obtiene una lista paginada de todos los tipos en formato JSON.",
                 "operationId": "indexTipo",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Número de tipos por página (predeterminado: 40)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 40
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Número de página a recuperar (predeterminado: 1)",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Lista de tipos",
+                        "description": "Lista paginada de tipos",
                         "content": {
                             "application/json": {
                                 "schema": {

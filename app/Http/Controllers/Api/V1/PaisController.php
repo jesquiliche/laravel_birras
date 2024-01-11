@@ -28,35 +28,53 @@ class PaisController extends Controller
         $this->middleware('auth:api')->only(['store', 'destroy', 'update']);
     }
 
-    /**
-     * @OA\Get(
-     *      path="/api/v1/paises",
-     *      operationId="indexPais",
-     *      tags={"Paises"},
-     *      summary="Listar todos los países",
-     *      description="Muestra una lista de todos los países en una respuesta JSON.",
-     *      @OA\Response(
-     *          response=200,
-     *          description="Lista de países",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="paises", type="array", @OA\Items(ref="#/components/schemas/Pais")),
-     *          ),
-     *      ),
-     * )
-     */
+/**
+ * @OA\Get(
+ *      path="/api/v1/paises",
+ *      operationId="indexPais",
+ *      tags={"Paises"},
+ *      summary="Listar todos los países",
+ *      description="Obtiene una lista paginada de todos los países en formato JSON.",
+ *      @OA\Parameter(
+ *          name="per_page",
+ *          in="query",
+ *          description="Número de países por página (predeterminado: 20)",
+ *          @OA\Schema(type="integer", default=20)
+ *      ),
+ *      @OA\Parameter(
+ *          name="page",
+ *          in="query",
+ *          description="Número de página a recuperar (predeterminado: 1)",
+ *          @OA\Schema(type="integer", default=1)
+ *      ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="Lista paginada de países",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="paises", type="array", @OA\Items(ref="#/components/schemas/Pais")),
+ *          ),
+ *      ),
+ * )
+ */
 
-    public function index()
-    {
-        // Recuperar todos los paises desde la base de datos y retornarlos como una respuesta JSON
-        $query = DB::table('paises as p')
-            ->select('*')
-            ->orderBy('p.nombre');
-
-        $results = $query->get();
-
-        return response()->json($results);
-    }
-
+ public function index(Request $request)
+ {
+     // Recopila parámetros de consulta desde la solicitud
+     $perPage = $request->input('per_page', 20);
+     $page = $request->input('page', 1);
+ 
+     // Construye una consulta utilizando el Query Builder de Laravel
+     $query = DB::table('paises as p')
+         ->select('*')
+         ->orderBy('p.nombre');
+ 
+     // Realiza una paginación de los resultados
+     $results = $query->paginate($perPage, ['*'], 'page', $page);
+ 
+     // Devuelve una respuesta JSON con los resultados paginados
+     return response()->json($results);
+ }
+ 
     /**
      * @OA\Post(
      *      path="/api/v1/paises",
