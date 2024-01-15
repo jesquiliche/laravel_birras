@@ -130,8 +130,8 @@ class SystemController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/v1/consultaCervezasGraduaciones",
-     *      operationId="consultaCervezasGraduaciones",
+     *      path="/api/v1/consultaCervezasPorGraduaciones",
+     *      operationId="consultaCervezasPorGraduaciones",
      *      tags={"System"},
      *      summary="Consulta la cantidad de cervezas por graduaciones",
      *      description="Devuelve la cantidad de cervezas agrupadas por tipo",
