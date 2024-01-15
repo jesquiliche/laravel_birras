@@ -20,8 +20,8 @@ class SystemController extends Controller
      *          @OA\JsonContent(
      *              type="array",
      *              @OA\Items(
-     *                  @OA\Property(property="cantidad", type="integer"),
-     *                  @OA\Property(property="nombre", type="string"),
+     *                  @OA\Property(property="value", type="integer"),
+     *                  @OA\Property(property="name", type="string"),
      *              )
      *          )
      *      ),
@@ -60,8 +60,8 @@ class SystemController extends Controller
      *          @OA\JsonContent(
      *              type="array",
      *              @OA\Items(
-     *                  @OA\Property(property="cantidad", type="integer"),
-     *                  @OA\Property(property="nombre", type="string"),
+     *                  @OA\Property(property="value", type="integer"),
+     *                  @OA\Property(property="name", type="string"),
      *              )
      *          )
      *      ),
@@ -86,6 +86,34 @@ class SystemController extends Controller
 
         return response()->json($resultados);
     }
+
+    public function consultaCervezasColores()
+    {
+        $resultados = DB::select("
+            SELECT COUNT(*) as value, c.nombre as name
+            FROM cervezas as cer
+            INNER JOIN colores AS c ON cer.tipo_id = c.id
+            GROUP BY cer.tipo_id, c.nombre
+            ORDER BY c.nombre
+        ");
+
+        return response()->json($resultados);
+    }
+
+    public function consultaCervezasGraduaciones()
+    {
+        $resultados = DB::select("
+            SELECT COUNT(*) as value, g.nombre as name
+            FROM cervezas as cer
+            INNER JOIN graduaciones AS g ON cer.tipo_id = g.id
+            GROUP BY cer.tipo_id, g.nombre
+            ORDER BY g.nombre
+        ");
+
+        return response()->json($resultados);
+    }
+
+
 
     /**
      * @OA\Get(
