@@ -19,6 +19,9 @@ Route::get('v1/cervezas',[App\Http\Controllers\Api\V1\CervezaController::class,'
 Route::get('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'show']);
 Route::get('v1/consultaCervezasPorPais',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasPorPais']);
 Route::get('v1/consultaCervezasPorTipo',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasPorTipo']);
+Route::get('v1/consultaCervezasPorColores',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasPorColores']);
+Route::get('v1/consultaCervezasPorGraduaciones',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasPorGraduaciones']);
+
 Route::get('v1/consultaTablas',[App\Http\Controllers\Api\V1\SystemController::class,'consultaTablas']);
 Route::get('v1/consultaBD',[App\Http\Controllers\Api\V1\SystemController::class,'consultaBD']);
 

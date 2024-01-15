@@ -87,6 +87,34 @@ class SystemController extends Controller
         return response()->json($resultados);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/v1/consultaCervezasPorColores",
+     *      operationId="consultaCervezasPorColores",
+     *      tags={"System"},
+     *      summary="Consulta la cantidad de cervezas por Colores",
+     *      description="Devuelve la cantidad de cervezas agrupadas por colores",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Operación exitosa",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(
+     *                  @OA\Property(property="value", type="integer"),
+     *                  @OA\Property(property="name", type="string"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Error interno del servidor",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
+
     public function consultaCervezasColores()
     {
         $resultados = DB::select("
@@ -100,6 +128,33 @@ class SystemController extends Controller
         return response()->json($resultados);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/v1/consultaCervezasGraduaciones",
+     *      operationId="consultaCervezasGraduaciones",
+     *      tags={"System"},
+     *      summary="Consulta la cantidad de cervezas por graduaciones",
+     *      description="Devuelve la cantidad de cervezas agrupadas por tipo",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Operación exitosa",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(
+     *                  @OA\Property(property="value", type="integer"),
+     *                  @OA\Property(property="name", type="string"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Error interno del servidor",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
     public function consultaCervezasGraduaciones()
     {
         $resultados = DB::select("

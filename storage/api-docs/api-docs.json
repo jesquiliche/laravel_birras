@@ -1874,10 +1874,10 @@
                                     "type": "array",
                                     "items": {
                                         "properties": {
-                                            "cantidad": {
+                                            "value": {
                                                 "type": "integer"
                                             },
-                                            "nombre": {
+                                            "name": {
                                                 "type": "string"
                                             }
                                         },
@@ -1922,10 +1922,106 @@
                                     "type": "array",
                                     "items": {
                                         "properties": {
-                                            "cantidad": {
+                                            "value": {
                                                 "type": "integer"
                                             },
-                                            "nombre": {
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/consultaCervezasPorColores": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta la cantidad de cervezas por Colores",
+                "description": "Devuelve la cantidad de cervezas agrupadas por tipo",
+                "operationId": "consultaCervezasPorColores",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/consultaCervezasGraduaciones": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta la cantidad de cervezas por Colores",
+                "description": "Devuelve la cantidad de cervezas agrupadas por tipo",
+                "operationId": "consultaCervezasGraduaciones",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "value": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
                                                 "type": "string"
                                             }
                                         },
