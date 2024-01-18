@@ -1959,7 +1959,7 @@
                     "System"
                 ],
                 "summary": "Consulta la cantidad de cervezas por Colores",
-                "description": "Devuelve la cantidad de cervezas agrupadas por tipo",
+                "description": "Devuelve la cantidad de cervezas agrupadas por colores",
                 "operationId": "consultaCervezasPorColores",
                 "responses": {
                     "200": {
@@ -2001,14 +2001,14 @@
                 }
             }
         },
-        "/api/v1/consultaCervezasGraduaciones": {
+        "/api/v1/consultaCervezasPorGraduaciones": {
             "get": {
                 "tags": [
                     "System"
                 ],
-                "summary": "Consulta la cantidad de cervezas por Colores",
+                "summary": "Consulta la cantidad de cervezas por graduaciones",
                 "description": "Devuelve la cantidad de cervezas agrupadas por tipo",
-                "operationId": "consultaCervezasGraduaciones",
+                "operationId": "consultaCervezasPorGraduaciones",
                 "responses": {
                     "200": {
                         "description": "Operación exitosa",

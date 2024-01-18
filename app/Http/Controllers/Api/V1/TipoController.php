@@ -61,7 +61,7 @@ class TipoController extends Controller
     public function index(Request $request)
     {
         // Recopila parámetros de consulta desde la solicitud
-        $perPage = $request->input('per_page', 40);
+        $perPage = $request->input('per_page', 100);
         $page = $request->input('page', 1);
 
         // Construye una consulta utilizando el Query Builder de Laravel

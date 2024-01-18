@@ -14,10 +14,11 @@ class GraduacionesSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ["nombre" => "Alta(7-9"],
+            ["nombre" => "Alta(7-9)"],
+            ["nombre" => "Media(5-6.9)"],
             ["nombre" => "Baja(3-5)"],
             ["nombre" => "Maxima(12+)"],
-            ["nombre" => "Muy alta(9-12"],
+            ["nombre" => "Muy alta(9-12)"],
             ["nombre" => "Sin alcohol(0-2.9)"],
         ];
         

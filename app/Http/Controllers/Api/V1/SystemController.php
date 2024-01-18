@@ -160,7 +160,7 @@ class SystemController extends Controller
         $resultados = DB::select("
             SELECT COUNT(*) as value, g.nombre as name
             FROM cervezas as cer
-            INNER JOIN graduaciones AS g ON cer.tipo_id = g.id
+            INNER JOIN graduaciones AS g ON cer.graduacion_id = g.id
             GROUP BY cer.tipo_id, g.nombre
             ORDER BY g.nombre
         ");
