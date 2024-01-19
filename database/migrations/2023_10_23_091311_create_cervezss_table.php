@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('tipo_id')->references('id')->on('tipos');
             $table->unsignedBigInteger('pais_id');
             $table->foreign('pais_id')->references('id')->on('paises');
-            $table->string("formato",100)->defauld("Lata")->nullable();
+            $table->string("formato",100)->default("Lata")->nullable();
             $table->integer("unidades")->default(1)->nullable();
             $table->integer("stock")->default(100)->nullable();
             $table->timestamps();

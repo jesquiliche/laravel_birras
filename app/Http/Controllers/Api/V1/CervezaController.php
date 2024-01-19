@@ -204,8 +204,8 @@ class CervezaController extends Controller
         }
 
         if ($oferta) {
-            
-           $query->where('cer.oferta', filter_var($oferta, FILTER_VALIDATE_BOOLEAN));
+
+            $query->where('cer.oferta', filter_var($oferta, FILTER_VALIDATE_BOOLEAN));
         }
 
         if ($marca) {
@@ -324,6 +324,9 @@ class CervezaController extends Controller
                 'foto' => 'required|string',
                 'file' => 'required|image|max:2048',
                 'marca' => 'required|string|max:150',
+                'unidades' => 'required|numeric|between:1,100',
+                'stock' => 'required|numeric|between:1,1000',
+                'formato' => 'required|string|max:100',
             ];
 
             $messages = [
@@ -478,7 +481,10 @@ class CervezaController extends Controller
                 'cer.tipo_id',
                 'cer.color_id',
                 'cer.pais_id',
-                'cer.graduacion_id'
+                'cer.graduacion_id',
+                'cer.formato',
+                'cer.unidades',
+                'cer.stock'
             )
             ->join('colores as col', 'cer.color_id', '=', 'cer.color_id')
             ->join('graduaciones as g', 'cer.graduacion_id', '=', 'g.id')
@@ -684,8 +690,11 @@ class CervezaController extends Controller
             $cerveza->oferta = $request->json('oferta', $cerveza->oferta);
             $cerveza->precio = $request->json('precio', $cerveza->precio);
             $cerveza->marca = $request->json('marca', $cerveza->marca);
+            $cerveza->formato = $request->json('formato', $cerveza->formato);
+            $cerveza->unidades=$request->json('unidades', $cerveza->unidades);
+            $cerveza->stock=$request->json('stock', $cerveza->stock);
 
-
+          
             // Guarda la cerveza
             $cerveza->save();
 
@@ -699,7 +708,7 @@ class CervezaController extends Controller
         } catch (Exception $e) {
             // Revertir la transacción en caso de fallo
             DB::rollback();
-
+            
             // Devuelve una respuesta de error
             return response()->json('Error al procesar la solicitud', 500);
         }
