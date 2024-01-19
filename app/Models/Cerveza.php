@@ -24,7 +24,10 @@ class Cerveza extends Model
         'oferta',
         'precio', 
         'foto',
-        'marca'
+        'marca',
+        'stock',
+        'unidades',
+        'formato'
     ];
 
     public function color()
