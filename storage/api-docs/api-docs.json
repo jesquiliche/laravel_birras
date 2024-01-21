@@ -1905,6 +1905,54 @@
                 }
             }
         },
+        "/api/v1/stockPorPais": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta el stock de cervezas por país",
+                "description": "Devuelve el stock total de cervezas agrupado por país",
+                "operationId": "stockPorPais",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "stock": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/consultaCervezasPorTipo": {
             "get": {
                 "tags": [
@@ -2124,6 +2172,54 @@
                                                 "type": "string"
                                             },
                                             "table_rows": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/consultaTablas2": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta los registros de las tablas",
+                "description": "Devuelve el número de registros de las tablas específicas",
+                "operationId": "consultaTablas2",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "table_name": {
+                                                "type": "string"
+                                            },
+                                            "record_count": {
                                                 "type": "integer"
                                             }
                                         },

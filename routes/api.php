@@ -21,7 +21,7 @@ Route::get('v1/consultaCervezasPorPais',[App\Http\Controllers\Api\V1\SystemContr
 Route::get('v1/consultaCervezasPorTipo',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasPorTipo']);
 Route::get('v1/consultaCervezasPorColores',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasColores']);
 Route::get('v1/consultaCervezasPorGraduaciones',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasGraduaciones']);
-
+Route::get('v1/stockPorPais',[App\Http\Controllers\Api\V1\SystemController::class,'stockPorPais']);
 Route::get('v1/consultaTablas',[App\Http\Controllers\Api\V1\SystemController::class,'consultaTablas']);
 Route::get('v1/consultaTablas2',[App\Http\Controllers\Api\V1\SystemController::class,'consultaTablas2']);
 Route::get('v1/consultaBD',[App\Http\Controllers\Api\V1\SystemController::class,'consultaBD']);
