@@ -23,6 +23,7 @@ Route::get('v1/consultaCervezasPorColores',[App\Http\Controllers\Api\V1\SystemCo
 Route::get('v1/consultaCervezasPorGraduaciones',[App\Http\Controllers\Api\V1\SystemController::class,'consultaCervezasGraduaciones']);
 
 Route::get('v1/consultaTablas',[App\Http\Controllers\Api\V1\SystemController::class,'consultaTablas']);
+Route::get('v1/consultaTablas2',[App\Http\Controllers\Api\V1\SystemController::class,'consultaTablas2']);
 Route::get('v1/consultaBD',[App\Http\Controllers\Api\V1\SystemController::class,'consultaBD']);
 
 Route::put('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'update']);

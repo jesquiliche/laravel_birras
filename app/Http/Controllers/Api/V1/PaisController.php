@@ -167,7 +167,7 @@ class PaisController extends Controller
             return response()->json(['message' => 'país no encontrado'], 404);
         }
 
-        return response()->json(['País' => $pais]);
+        return response()->json(['Pais' => $pais]);
     }
 
     /**
@@ -222,7 +222,9 @@ class PaisController extends Controller
     {
         // Validación de los datos actualizados del tipo.
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:255'
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'string',
+            
         ]);
 
         if ($validator->fails()) {

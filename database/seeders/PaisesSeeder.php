@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Pais;
+use \Illuminate\Support\Facades\File;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,21 +14,16 @@ class PaisesSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [
-            ["nombre" => "España"],
-            ["nombre" => "Alemania"],
-            ["nombre" => "Francia"],
-            ["nombre" => "República checa"],
-            ["nombre" => "Bélgica"],
-            ["nombre" => "EEUU"],
-            ["nombre" =>"Escocia"],
-            ["nombre" => "Holanda"],
-            ["nombre" => "Inglaterra"],
-            ["nombre" => "Irlanda"],
-            ["nombre" => "Austria"],
-            ["nombre" => "Nueva Zelanda"],
-        ];
-
-        DB::table('paises')->insert($data);
+        DB::table('paises')->delete();
+        $json = File::get("database/seeders/data/paises.json");
+        $data = json_decode($json);
+        foreach ($data as $obj) {
+            Pais::create(array(
+                'nombre' => $obj->nombre,
+                'descripcion' => $obj->descripcion,
+            ));
+            //  print "Insertando cerveza -> ".$obj->nombre."\n";
+        }
     }
+    
 }

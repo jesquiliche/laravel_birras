@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cerveza;
+use App\Models\Color;
+use App\Models\Graduacion;
+use App\Models\Pais;
+use App\Models\Tipo;
 use Illuminate\Support\Facades\DB;
 
 class SystemController extends Controller
@@ -158,11 +163,11 @@ class SystemController extends Controller
     public function consultaCervezasGraduaciones()
     {
         $resultados = DB::select("
-            SELECT COUNT(*) as value, g.nombre as name
-            FROM cervezas as cer
-            INNER JOIN graduaciones AS g ON cer.graduacion_id = g.id
-            GROUP BY cer.tipo_id, g.nombre
-            ORDER BY g.nombre
+        SELECT COUNT(DISTINCT cer.id) as value, g.nombre as name
+        FROM cervezas as cer
+        INNER JOIN graduaciones AS g ON cer.graduacion_id = g.id
+        GROUP BY g.id, g.nombre order by g.nombre;
+        
         ");
 
         return response()->json($resultados);
@@ -243,18 +248,64 @@ class SystemController extends Controller
      *      ),
      * )
      */
-    public function consultaTablas()
+     public function consultaTablas()
     {
         $databaseName = env('DB_DATABASE');
     
         $resultados = DB::select("
             SELECT table_name, table_rows
             FROM information_schema.tables
-            WHERE table_schema = '{$databaseName}'
+           WHERE table_schema = '{$databaseName}'
               AND table_type = 'BASE TABLE'; -- Solo tablas, no vistas ni tablas de sistema
         ");
     
         return response()->json($resultados);
     }
+
+    
+    
+        /**
+     * @OA\Get(
+     *      path="/api/v1/consultaTablas2",
+     *      operationId="consultaTablas2",
+     *      tags={"System"},
+     *      summary="Consulta los registros de las tablas",
+     *      description="Devuelve el número de registros de las tablas específicas",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Operación exitosa",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(
+     *                  @OA\Property(property="table_name", type="string"),
+     *                  @OA\Property(property="record_count", type="integer"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Error interno del servidor",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
+    public function consultaTablas2()
+    {
+        try {
+            $tables = [
+                'cervezas' => Cerveza::count(),
+                'tipos' => Tipo::count(),
+                'graduaciones' => Graduacion::count(),
+                'colores' => Color::count(),
+                'paises' => Pais::count(),
+            ];
+
+            return response()->json($tables);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }      
     
 };

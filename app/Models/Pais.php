@@ -9,7 +9,7 @@ class Pais extends Model
 {
     use HasFactory;
     protected $table='paises';
-    protected $fillable=['nombre'];
+    protected $fillable=['nombre','descripcion'];
    
     public function cervezas()
     {
