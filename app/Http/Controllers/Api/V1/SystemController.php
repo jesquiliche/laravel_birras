@@ -53,6 +53,54 @@ class SystemController extends Controller
     }
 
     /**
+ * @OA\Get(
+ *      path="/api/v1/stockPorPais",
+ *      operationId="stockPorPais",
+ *      tags={"System"},
+ *      summary="Consulta el stock de cervezas por país",
+ *      description="Devuelve el stock total de cervezas agrupado por país",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Operación exitosa",
+ *          @OA\JsonContent(
+ *              type="array",
+ *              @OA\Items(
+ *                  @OA\Property(property="stock", type="integer"),
+ *                  @OA\Property(property="name", type="string"),
+ *              )
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=500,
+ *          description="Error interno del servidor",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="message", type="string")
+ *          )
+ *      ),
+ * )
+ */
+public function stockPorPais()
+{
+    try {
+        $resultados = DB::select("
+            SELECT SUM(stock) as stock, p.nombre 
+            FROM cervezas as cer 
+            INNER JOIN paises as p ON cer.pais_id=p.id
+            GROUP BY p.id
+            ORDER BY stock DESC
+        ");
+
+        return response()->json($resultados);
+    } catch (\Exception $e) {
+        return response()->json(['message' => $e->getMessage()], 500);
+    }
+}
+
+
+        
+
+
+    /**
      * @OA\Get(
      *      path="/api/v1/consultaCervezasPorTipo",
      *      operationId="consultaCervezasPorTipo",
