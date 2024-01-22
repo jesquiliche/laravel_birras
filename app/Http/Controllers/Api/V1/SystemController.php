@@ -65,7 +65,7 @@ class SystemController extends Controller
  *          @OA\JsonContent(
  *              type="array",
  *              @OA\Items(
- *                  @OA\Property(property="stock", type="integer"),
+ *                  @OA\Property(property="value", type="integer"),
  *                  @OA\Property(property="name", type="string"),
  *              )
  *          )
@@ -83,11 +83,11 @@ public function stockPorPais()
 {
     try {
         $resultados = DB::select("
-            SELECT SUM(stock) as stock, p.nombre 
-            FROM cervezas as cer 
-            INNER JOIN paises as p ON cer.pais_id=p.id
-            GROUP BY p.id
-            ORDER BY stock DESC
+        SELECT CAST(SUM(stock) AS SIGNED) as value, p.nombre as name
+        FROM cervezas as cer 
+        INNER JOIN paises as p ON cer.pais_id=p.id
+        GROUP BY p.id
+        ORDER BY value DESC
         ");
 
         return response()->json($resultados);

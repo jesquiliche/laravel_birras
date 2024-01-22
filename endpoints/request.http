@@ -216,6 +216,9 @@ Authorization: Bearer {{accessToken}}
 GET  http://localhost:8000/api/v1/consultaCervezasPorPais
 
 #### Obtener cervezas por pais
+GET  http://localhost:8000/api/v1/stockPorPais
+
+#### Obtener cervezas por pais
 GET  http://localhost:8000/api/v1/consultaCervezasPorTipo
 
 #### Obtener cervezas por graduacion
