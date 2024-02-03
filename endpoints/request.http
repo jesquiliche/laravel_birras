@@ -149,7 +149,7 @@ Authorization: Bearer {{accessToken}}
 
 
 #### Obtener las cervezas
-GET http://localhost:8000/api/v1/cervezas?oferta=0
+GET http://localhost:8000/api/v1/cervezas?pais_id=0
 
 
 #### Obtener una cerveza
