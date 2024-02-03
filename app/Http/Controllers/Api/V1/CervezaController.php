@@ -669,6 +669,7 @@ class CervezaController extends Controller
             // Encuentra la cerveza que deseas actualizar
             $cerveza = Cerveza::find($id);
 
+
             if (!$cerveza) {
                 DB::rollback();
                 return response()->json('La cerveza con ID ' . $id . ' no existe', 404);
