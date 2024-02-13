@@ -1857,6 +1857,54 @@
                 ]
             }
         },
+        "/api/v1/provincias": {
+            "get": {
+                "tags": [
+                    "Provincias"
+                ],
+                "summary": "Obtener todas las provincias",
+                "description": "Recupera todas las provincias de la base de datos y las devuelve como una respuesta JSON ordenadas por nombre.",
+                "operationId": "getProvincias",
+                "responses": {
+                    "200": {
+                        "description": "Lista de provincias ordenadas por nombre",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "provincias": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "nombre": {
+                                                        "type": "string",
+                                                        "example": "Provincia A"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/consultaCervezasPorPais": {
             "get": {
                 "tags": [

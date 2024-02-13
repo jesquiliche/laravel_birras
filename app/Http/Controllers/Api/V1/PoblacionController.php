@@ -13,9 +13,7 @@ class PoblacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        /**
+      /**
          * @OA\Get(
          *     path="/api/v1/poblaciones",
          *     operationId="index",
@@ -28,6 +26,9 @@ class PoblacionController extends Controller
          *     )
          * )
          */
+      
+    public function index()
+    {
         return Poblacion::orderBy('nombre')->get();
     }
 
