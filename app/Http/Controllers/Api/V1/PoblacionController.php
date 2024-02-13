@@ -19,25 +19,25 @@ class PoblacionController extends Controller
      *     operationId="index",
      *     tags={"Poblaciones"},
      *     summary="Obtener todas las poblaciones",
-     *     description="Devuelve todas las poblaciones ordenadas por nombre o filtradas por código si se proporciona.",
+     *     description="Devuelve todas las poblaciones ordenadas por nombre o filtradas por provincia si se proporciona.",
      *     @OA\Parameter(
-     *         name="codigo",
+     *         name="provincia",
      *         in="query",
-     *         description="Código de la población a filtrar.",
+     *         description="Código de la provincia para filtrar las poblaciones.",
      *         required=false,
      *         @OA\Schema(type="string")
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Devuelve todas las poblaciones ordenadas por nombre o filtradas por código si se proporciona.",
+     *         description="Devuelve todas las poblaciones ordenadas por nombre o filtradas por provincia si se proporciona.",
      *     )
      * )
      */
 
     public function index(Request $request)
     {
-        $codigo = $request->input('codigo', ''); // Valor predeterminado es una cadena vacía
+        $provincia = $request->input('provincia', ''); // Valor predeterminado es una cadena vacía
 
-        return Poblacion::where('codigo', $codigo)->orderBy('nombre')->get();
+        return Poblacion::where('provincia_cod', $provincia)->orderBy('nombre')->get();
     }
 }
