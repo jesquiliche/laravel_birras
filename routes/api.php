@@ -14,6 +14,8 @@ Route::apiResource('v1/colores', App\Http\Controllers\Api\V1\ColorController::cl
 Route::apiResource('v1/paises', App\Http\Controllers\Api\V1\PaisController::class);
 Route::apiResource('v1/tipos', App\Http\Controllers\Api\V1\TipoController::class);
 Route::apiResource('v1/graduaciones', App\Http\Controllers\Api\V1\GraduacionController::class);
+Route::apiResource('v1/poblaciones', App\Http\Controllers\Api\V1\PoblacionController::class);
+Route::apiResource('v1/provincias', App\Http\Controllers\Api\V1\ProvinciaController::class);
 
 Route::get('v1/cervezas',[App\Http\Controllers\Api\V1\CervezaController::class,'index']);
 Route::get('v1/cervezas/{id}',[App\Http\Controllers\Api\V1\CervezaController::class,'show']);

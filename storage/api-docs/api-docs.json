@@ -1857,6 +1857,21 @@
                 ]
             }
         },
+        "/api/v1/poblaciones": {
+            "get": {
+                "tags": [
+                    "Poblaciones"
+                ],
+                "summary": "Obtener todas las poblaciones",
+                "description": "Devuelve todas las poblaciones ordenadas por nombre.",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Devuelve todas las poblaciones ordenadas por nombre."
+                    }
+                }
+            }
+        },
         "/api/v1/provincias": {
             "get": {
                 "tags": [
