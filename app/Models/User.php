@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
@@ -61,5 +60,15 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Define a one-to-many relationship with the Direccion model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function direcciones()
+    {
+        return $this->hasMany(Direccion::class);
     }
 }
