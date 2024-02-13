@@ -47,4 +47,4 @@ Route::delete('v1/cervezas/{id}',[CervezaController::class,'destroy']);
 Route::apiResource('v1/direcciones', DireccionController::class);
 
 Route::apiResource('v1/provincias', ProvinciaController::class);
-Route::apiResource('v1/poblaciones', ProvinciaController::class);
+Route::apiResource('v1/poblaciones', PoblacionController::class);
