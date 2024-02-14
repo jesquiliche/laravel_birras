@@ -15,18 +15,57 @@ class DireccionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $userId = $request->input('user_id');
-        
-        if ($userId) {
-            $direcciones = Direccion::where('user_id', $userId)->get();
-        } else {
-            $direcciones = Direccion::all();
-        }
-        
-        return response()->json($direcciones);
+   /**
+ * Display a listing of the resource.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\Response
+ * 
+ * @OA\Get(
+ *      path="/api/v1/direcciones",
+ *      operationId="getDirecciones",
+ *      tags={"Direcciones"},
+ *      summary="Obtener todas las direcciones",
+ *      description="Recupera todas las direcciones de la base de datos y las devuelve como una respuesta JSON",
+ *      @OA\Parameter(
+ *          name="user_id",
+ *          description="ID del usuario para filtrar direcciones (opcional)",
+ *          required=false,
+ *          in="query",
+ *          @OA\Schema(type="integer"),
+ *      ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="Lista de direcciones",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="direcciones", type="array",
+ *                  @OA\Items(
+ *                      @OA\Property(property="id", type="integer"),
+ *                      @OA\Property(property="calle", type="string"),
+ *                      @OA\Property(property="numero", type="string"),
+ *                      @OA\Property(property="poblacion_id", type="integer"),
+ *                      @OA\Property(property="provincia_id", type="integer"),
+ *                      @OA\Property(property="user_id", type="integer"),
+ *                      @OA\Property(property="created_at", type="string", format="date-time"),
+ *                      @OA\Property(property="updated_at", type="string", format="date-time"),
+ *                  ),
+ *              ),
+ *          ),
+ *      ),
+ * )
+ */
+public function index(Request $request)
+{
+    $userId = $request->input('user_id');
+    
+    if ($userId) {
+        $direcciones = Direccion::where('user_id', $userId)->get();
+    } else {
+        $direcciones = Direccion::all();
     }
+    
+    return response()->json(['direcciones' => $direcciones]);
+}
 
     /**
      * Store a newly created resource in storage.
