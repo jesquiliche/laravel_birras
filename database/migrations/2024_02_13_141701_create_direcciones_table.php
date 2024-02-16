@@ -18,12 +18,11 @@ return new class extends Migration
             $table->string('escalera',5)->nullable();
             $table->string('piso',20)->nullable();
             $table->string('puerta',5)->nullable();
-            $table->unsignedBigInteger('poblacion_id');
-            $table->foreign('poblacion_id')->references('id')->on('poblaciones');
-            $table->unsignedBigInteger('provincia_id');
-            $table->foreign('provincia_id')->references('id')->on('provincias');
+            $table->string('poblacion',5);
+            $table->string('provincia',2);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('telefono',15);
             $table->timestamps();
         });
     }

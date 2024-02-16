@@ -122,8 +122,8 @@ public function index(Request $request)
         $validator = Validator::make($request->all(), [
             'calle' => 'required|string',
             'numero' => 'required|string',
-            'poblacion_id' => 'required|exists:poblaciones,id',
-            'provincia_id' => 'required|exists:provincias,id',
+            'poblacion' => 'required',
+            'provincia' => 'required',
             'user_id' => 'required|exists:users,id',
         ]);
 

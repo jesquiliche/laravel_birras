@@ -17,9 +17,10 @@ class Direccion extends Model
         'escalera',
         'piso',
         'puerta',
-        'poblacion_id',
-        'provincia_id',
+        'poblacion',
+        'provincia',
         'user_id',
+        'telefono'
     ];
 
     public function poblacion()
