@@ -34,10 +34,16 @@ class PoblacionController extends Controller
      * )
      */
 
-    public function index(Request $request)
-    {
-        $provincia = $request->input('provincia', ''); // Valor predeterminado es una cadena vacía
-
-        return Poblacion::where('provincia_cod', $provincia)->orderBy('nombre')->get();
-    }
+     public function index(Request $request)
+     {
+         $provincia = $request->input('provincia'); // Valor predeterminado es null si no se proporciona
+     
+         $query = Poblacion::orderBy('nombre');
+     
+         if ($provincia !== null) {
+             $query->where('provincia_cod', $provincia);
+         }
+     
+         return $query->get();
+     }
 }
