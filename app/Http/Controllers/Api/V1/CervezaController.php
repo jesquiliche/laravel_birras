@@ -175,7 +175,10 @@ class CervezaController extends Controller
 
         // Construye una consulta utilizando el Query Builder de Laravel
         $query = DB::table('cervezas as cer')
-            ->select('cer.id', 'cer.nombre', 'cer.pais_id','cer.descripcion', 'cer.novedad', 'cer.oferta', 'cer.precio', 'cer.foto', 'cer.marca', 'col.nombre as color', 'g.nombre as graduacion', 't.nombre as tipo', 'p.nombre as pais')
+            ->select('cer.id', 'cer.nombre', 'cer.pais_id',
+            'cer.descripcion', 'cer.novedad', 'cer.oferta', 'cer.precio',
+            'cer.foto', 'cer.marca', 'col.nombre as color'.'cer.stock', 
+            'g.nombre as graduacion', 't.nombre as tipo', 'p.nombre as pais')
             ->join('colores as col', 'cer.color_id', '=', 'col.id')
             ->join('graduaciones as g', 'cer.graduacion_id', '=', 'g.id')
             ->join('tipos as t', 'cer.tipo_id', '=', 't.id')
