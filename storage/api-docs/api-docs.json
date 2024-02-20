@@ -2370,6 +2370,61 @@
                 }
             }
         },
+        "/api/v1/provincias/{codigo}": {
+            "get": {
+                "tags": [
+                    "Provincias"
+                ],
+                "summary": "Obtener una provincia por su código",
+                "description": "Recupera una provincia de la base de datos por su código y la devuelve como una respuesta JSON.",
+                "operationId": "getProvinciaByCodigo",
+                "parameters": [
+                    {
+                        "name": "codigo",
+                        "in": "path",
+                        "description": "Código de la provincia (varchar de longitud 5)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 5
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Provincia encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Provincia A"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Provincia no encontrada"
+                    }
+                }
+            }
+        },
         "/api/v1/consultaCervezasPorPais": {
             "get": {
                 "tags": [
