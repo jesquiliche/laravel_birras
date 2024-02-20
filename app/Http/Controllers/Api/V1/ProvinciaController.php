@@ -48,5 +48,10 @@ class ProvinciaController extends Controller
         return Provincia::orderBy('nombre')->get();
     }
 
+    public function show(string $codigo)
+    {
+        // Recupera todas las provincias desde la base de datos y las devuelve como una respuesta JSON ordenadas por nombre
+        return Provincia::where('codigo','=',$codigo)->get();
+    }
     
 }
