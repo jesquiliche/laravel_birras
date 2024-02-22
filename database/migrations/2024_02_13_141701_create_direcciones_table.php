@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre',100);
+            $table->string('apellidos',150);
             $table->string('calle',150);
             $table->string('numero',5);
             $table->string('escalera',5)->nullable();

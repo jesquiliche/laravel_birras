@@ -14,6 +14,8 @@ use App\Models\Tipo;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
+//@OA\Server(url="https://laravelbirras-production.up.railway.app/")
+
 /**
  * @OA\Info(
  *     title="Cervezas de Importación e-commerce",
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Storage;
  *     description="Descripcion"
  * )
  *
- * @OA\Server(url="https://laravelbirras-production.up.railway.app/")
+ * @OA\Server(url="http://localhost:8000")
  *
  * @OA\Schema(
  *     schema="Cerveza",

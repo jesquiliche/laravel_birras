@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://laravelbirras-production.up.railway.app/"
+            "url": "http://localhost:8000"
         }
     ],
     "paths": {
@@ -1265,17 +1265,41 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "maxLength": 100
+                                    },
+                                    "apellidos": {
+                                        "type": "string",
+                                        "maxLength": 150
+                                    },
                                     "calle": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "maxLength": 150
                                     },
                                     "numero": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "maxLength": 5
                                     },
-                                    "poblacion_id": {
-                                        "type": "integer"
+                                    "poblacion": {
+                                        "type": "string",
+                                        "maxLength": 5
                                     },
-                                    "provincia_id": {
-                                        "type": "integer"
+                                    "piso": {
+                                        "type": "string",
+                                        "maxLength": 20
+                                    },
+                                    "puerta": {
+                                        "type": "string",
+                                        "maxLength": 5
+                                    },
+                                    "provincia": {
+                                        "type": "string",
+                                        "maxLength": 2
+                                    },
+                                    "telefono": {
+                                        "type": "string",
+                                        "maxLength": 15
                                     },
                                     "user_id": {
                                         "type": "integer"
@@ -1302,17 +1326,32 @@
                                                 "id": {
                                                     "type": "integer"
                                                 },
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "apellidos": {
+                                                    "type": "string"
+                                                },
                                                 "calle": {
                                                     "type": "string"
                                                 },
                                                 "numero": {
                                                     "type": "string"
                                                 },
-                                                "poblacion_id": {
-                                                    "type": "integer"
+                                                "poblacion": {
+                                                    "type": "string"
                                                 },
-                                                "provincia_id": {
-                                                    "type": "integer"
+                                                "piso": {
+                                                    "type": "string"
+                                                },
+                                                "puerta": {
+                                                    "type": "string"
+                                                },
+                                                "provincia": {
+                                                    "type": "string"
+                                                },
+                                                "telefono": {
+                                                    "type": "string"
                                                 },
                                                 "user_id": {
                                                     "type": "integer"
@@ -2317,7 +2356,97 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Devuelve todas las poblaciones ordenadas por nombre o filtradas por provincia si se proporciona."
+                        "description": "Devuelve todas las poblaciones ordenadas por nombre o filtradas por provincia si se proporciona.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "nombre": {
+                                                "type": "string",
+                                                "example": "Poblacion A"
+                                            },
+                                            "codigo": {
+                                                "type": "string",
+                                                "example": "ABCDE"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/poblaciones/{codigo}": {
+            "get": {
+                "tags": [
+                    "Poblaciones"
+                ],
+                "summary": "Obtener una población por su código",
+                "description": "Recupera una población de la base de datos por su código y la devuelve como una respuesta JSON.",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "codigo",
+                        "in": "path",
+                        "description": "Código de la población.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Población encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Poblacion A"
+                                        },
+                                        "codigo": {
+                                            "type": "string",
+                                            "example": "ABCDE"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Población no encontrada"
                     }
                 }
             }
