@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class DireccionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only(['store', 'destroy', 'update', 'patch']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -79,6 +84,7 @@ class DireccionController extends Controller
      *      tags={"Direcciones"},
      *      summary="Crear una nueva dirección",
      *      description="Crea una nueva dirección utilizando los datos proporcionados en la solicitud y la devuelve como una respuesta JSON",
+     *      security={{"bearerAuth": {}}},    
      *      @OA\RequestBody(
      *          required=true,
      *          description="Datos de la nueva dirección",
@@ -165,18 +171,18 @@ class DireccionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $user_id
      * @return \Illuminate\Http\Response
      * 
      * @OA\Get(
-     *      path="/api/v1/direcciones/{id}",
+     *      path="/api/v1/direcciones/{user_id}",
      *      operationId="getDireccionById",
      *      tags={"Direcciones"},
      *      summary="Obtener una dirección por ID",
-     *      description="Recupera una dirección específica por su ID y la devuelve como una respuesta JSON",
+     *      description="Recupera una dirección específica por el id del usuario y la devuelve como una respuesta JSON",
      *      @OA\Parameter(
      *          name="id",
-     *          description="ID de la dirección a obtener",
+     *          description="ID del usuario  de la dirección a obtener",
      *          required=true,
      *          in="path",
      *          @OA\Schema(type="integer"),
@@ -187,6 +193,8 @@ class DireccionController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="direccion", type="object",
      *                  @OA\Property(property="id", type="integer"),
+     *                  @OA\Property(property="nombre", type="string"),
+     *                  @OA\Property(property="apellidos", type="string"),
      *                  @OA\Property(property="calle", type="string"),
      *                  @OA\Property(property="numero", type="string"),
      *                  @OA\Property(property="poblacion_id", type="integer"),
@@ -206,17 +214,19 @@ class DireccionController extends Controller
      *      ),
      * )
      */
-    public function show($id)
+    public function show(string $user_id)
     {
-        $direccion = Direccion::find($id);
-
+        // Buscar la dirección por user_id
+        $direccion = Direccion::where('user_id', $user_id)->first();
+    
+        // Verificar si se encontró la dirección
         if (!$direccion) {
             return response()->json(['message' => 'Dirección no encontrada'], 404);
         }
-
-        return response()->json(['direccion' => $direccion]);
+    
+        // Retornar la dirección encontrada
+        return response()->json($direccion);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -228,10 +238,11 @@ class DireccionController extends Controller
      *      operationId="deleteDireccion",
      *      tags={"Direcciones"},
      *      summary="Eliminar una dirección existente",
-     *      description="Elimina una dirección existente por su ID y devuelve una respuesta JSON",
+     *      description="Elimina una dirección existente por su ID del usuario y devuelve una respuesta JSON",
+     *      security={{"bearerAuth": {}}},     
      *      @OA\Parameter(
-     *          name="id",
-     *          description="ID de la dirección a eliminar",
+     *          name="user_id",
+     *          description="ID del usuario de la dirección a eliminar",
      *          required=true,
      *          in="path",
      *          @OA\Schema(type="integer"),
@@ -252,9 +263,22 @@ class DireccionController extends Controller
      *      ),
      * )
      */
-    public function destroy(Direccion $direccion)
+    public function destroy(string $user_id)
     {
-        $direccion->delete();
-        return response()->json(['message' => 'Dirección eliminada con éxito'], 204);
+        // Buscar la dirección por user_id
+        $direccion = Direccion::where('user_id', $user_id)->first();
+    
+        // Verificar si se encontró la dirección
+        if ($direccion) {
+            // Eliminar la dirección
+            $direccion->delete();
+            
+            // Retornar una respuesta JSON indicando que la dirección ha sido eliminada con éxito
+            return response()->json(['message' => 'Dirección eliminada con éxito'], 204);
+        } else {
+            // Retornar una respuesta JSON indicando que no se encontró la dirección
+            return response()->json(['message' => 'Dirección no encontrada'], 404);
+        }
     }
+
 }

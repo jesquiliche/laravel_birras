@@ -1392,22 +1392,27 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
-        "/api/v1/direcciones/{id}": {
+        "/api/v1/direcciones/{user_id}": {
             "get": {
                 "tags": [
                     "Direcciones"
                 ],
                 "summary": "Obtener una dirección por ID",
-                "description": "Recupera una dirección específica por su ID y la devuelve como una respuesta JSON",
+                "description": "Recupera una dirección específica por el id del usuario y la devuelve como una respuesta JSON",
                 "operationId": "getDireccionById",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID de la dirección a obtener",
+                        "description": "ID del usuario  de la dirección a obtener",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1426,6 +1431,12 @@
                                                 "id": {
                                                     "type": "integer"
                                                 },
+                                                "nombre": {
+                                                    "type": "string"
+                                                },
+                                                "apellidos": {
+                                                    "type": "string"
+                                                },
                                                 "calle": {
                                                     "type": "string"
                                                 },
@@ -1475,150 +1486,21 @@
                         }
                     }
                 }
-            },
-            "put": {
-                "tags": [
-                    "Direcciones"
-                ],
-                "summary": "Actualizar una dirección existente",
-                "description": "Actualiza una dirección existente utilizando los datos proporcionados en la solicitud y la devuelve como una respuesta JSON",
-                "operationId": "updateDireccion",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID de la dirección a actualizar",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "description": "Datos actualizados de la dirección",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "calle": {
-                                        "type": "string"
-                                    },
-                                    "numero": {
-                                        "type": "string"
-                                    },
-                                    "poblacion_id": {
-                                        "type": "integer"
-                                    },
-                                    "provincia_id": {
-                                        "type": "integer"
-                                    },
-                                    "user_id": {
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Dirección actualizada con éxito",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Dirección actualizada con éxito"
-                                        },
-                                        "direccion": {
-                                            "properties": {
-                                                "id": {
-                                                    "type": "integer"
-                                                },
-                                                "calle": {
-                                                    "type": "string"
-                                                },
-                                                "numero": {
-                                                    "type": "string"
-                                                },
-                                                "poblacion_id": {
-                                                    "type": "integer"
-                                                },
-                                                "provincia_id": {
-                                                    "type": "integer"
-                                                },
-                                                "user_id": {
-                                                    "type": "integer"
-                                                },
-                                                "created_at": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updated_at": {
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Error de validación",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Los datos proporcionados no son válidos"
-                                        },
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Dirección no encontrada",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Dirección no encontrada"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
+            }
+        },
+        "/api/v1/direcciones/{id}": {
             "delete": {
                 "tags": [
                     "Direcciones"
                 ],
                 "summary": "Eliminar una dirección existente",
-                "description": "Elimina una dirección existente por su ID y devuelve una respuesta JSON",
+                "description": "Elimina una dirección existente por su ID del usuario y devuelve una respuesta JSON",
                 "operationId": "deleteDireccion",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "user_id",
                         "in": "path",
-                        "description": "ID de la dirección a eliminar",
+                        "description": "ID del usuario de la dirección a eliminar",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1658,7 +1540,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/v1/graduaciones": {

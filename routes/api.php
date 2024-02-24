@@ -45,6 +45,5 @@ Route::delete('v1/cervezas/{id}',[CervezaController::class,'destroy']);
 
 // Rutas del recurso de direcciones
 Route::apiResource('v1/direcciones', DireccionController::class);
-
 Route::apiResource('v1/provincias', ProvinciaController::class);
 Route::apiResource('v1/poblaciones', PoblacionController::class);
