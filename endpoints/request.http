@@ -1,13 +1,41 @@
 @accessToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbGFyYXZlbGJpcnJhcy1wcm9kdWN0aW9uLnVwLnJhaWx3YXkuYXBwL2FwaS9sb2dpbiIsImlhdCI6MTcwNTA2Nzg2MiwiZXhwIjoxNzA1MDcxNDYyLCJuYmYiOjE3MDUwNjc4NjIsImp0aSI6ImdiT2hHRWFmT2s3SGRKVjUiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.5jXqTf8lp0PEkz46Px-gaQ5aZpOCnEi8hr1e4w3UupE
 
 #### Registrarse
-POST  http://127.0.0.1:8000/api/register
+POST  http://127.0.0.1:8000/api/v1/ordenes
 Content-Type: application/json
 
 {
-    "name":"Jesus",
-    "email":"jesquiliche@hotmail.com",
-    "password":"1234678"
+    "address": {
+        "id": 6,
+        "nombre": "Jesús",
+        "apellidos": "Quintana Esquiliche",
+        "calle": "C/ América",
+        "numero": "34",
+        "escalera": null,
+        "piso": "1",
+        "puerta": "4",
+        "poblacion": "08007",
+        "provincia": "08",
+        "user_id": 1,
+        "telefono": "632816055",
+        "created_at": "2024-02-24T17:52:29.000000Z",
+        "updated_at": "2024-02-24T17:52:29.000000Z",
+        "miCheckbox": "valor1"
+    },
+    "articulos": [
+        {
+            "id": 15,
+            "cantidad": 2000
+        },
+        {
+            "id": 23,
+            "cantidad": 4
+        },
+        {
+            "id": 19,
+            "cantidad": 1
+        }
+    ]
 }
 
 #### Login

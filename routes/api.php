@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\V1\SystemController; // Importar el controlador de 
 use App\Http\Controllers\Api\V1\PoblacionController;
 use App\Http\Controllers\Api\V1\ProvinciaController;
 use App\Http\Controllers\Api\V1\DireccionController;
-
+use App\Http\Controllers\OrdenController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -47,3 +47,5 @@ Route::delete('v1/cervezas/{id}',[CervezaController::class,'destroy']);
 Route::apiResource('v1/direcciones', DireccionController::class);
 Route::apiResource('v1/provincias', ProvinciaController::class);
 Route::apiResource('v1/poblaciones', PoblacionController::class);
+
+Route::apiResource('v1/ordenes', OrdenController::class);
