@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://laravelbirras-production.up.railway.app/"
+            "url": "http://localhost:8000/"
         }
     ],
     "paths": {
@@ -3412,6 +3412,137 @@
                                                 }
                                             },
                                             "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/ordenes": {
+            "post": {
+                "tags": [
+                    "Ordenes"
+                ],
+                "summary": "Crear una nueva orden",
+                "operationId": "b85a568082fc48d5857e97163eb0ff8c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "address",
+                                    "articulos"
+                                ],
+                                "properties": {
+                                    "address": {
+                                        "description": "Datos de dirección",
+                                        "properties": {
+                                            "nombre": {
+                                                "type": "string",
+                                                "example": "Jesús"
+                                            },
+                                            "apellidos": {
+                                                "type": "string",
+                                                "example": "Quintana Esquiliche"
+                                            },
+                                            "calle": {
+                                                "type": "string",
+                                                "example": "C/ América"
+                                            },
+                                            "numero": {
+                                                "type": "string",
+                                                "example": "34"
+                                            },
+                                            "escalera": {
+                                                "type": "string",
+                                                "example": null
+                                            },
+                                            "piso": {
+                                                "type": "string",
+                                                "example": "1"
+                                            },
+                                            "puerta": {
+                                                "type": "string",
+                                                "example": "4"
+                                            },
+                                            "poblacion": {
+                                                "type": "string",
+                                                "example": "08007"
+                                            },
+                                            "provincia": {
+                                                "type": "string",
+                                                "example": "08"
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": "1"
+                                            },
+                                            "telefono": {
+                                                "type": "string",
+                                                "example": "632816055"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "articulos": {
+                                        "description": "Lista de artículos",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": "15"
+                                                },
+                                                "cantidad": {
+                                                    "type": "integer",
+                                                    "example": "10"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Orden creada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Orden creada exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error al procesar la orden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error al procesar la orden: mensaje de error"
                                         }
                                     },
                                     "type": "object"
