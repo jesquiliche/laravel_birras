@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\V1\SystemController; // Importar el controlador de 
 use App\Http\Controllers\Api\V1\PoblacionController;
 use App\Http\Controllers\Api\V1\ProvinciaController;
 use App\Http\Controllers\Api\V1\DireccionController;
-use App\Http\Controllers\OrdenController;
+use App\Http\Controllers\Api\V1\OrdenController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');

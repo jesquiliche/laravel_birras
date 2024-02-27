@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Models\OrdenDireccion;
+use App\Http\Controllers\Controller;
+use App\Models\Detalle;
 use Illuminate\Http\Request;
 
-class OrdenDireccionController extends Controller
+class DetalleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class OrdenDireccionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OrdenDireccion $ordenDireccion)
+    public function show(Detalle $detalle)
     {
         //
     }
@@ -42,7 +43,7 @@ class OrdenDireccionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OrdenDireccion $ordenDireccion)
+    public function edit(Detalle $detalle)
     {
         //
     }
@@ -50,7 +51,7 @@ class OrdenDireccionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OrdenDireccion $ordenDireccion)
+    public function update(Request $request, Detalle $detalle)
     {
         //
     }
@@ -58,7 +59,7 @@ class OrdenDireccionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OrdenDireccion $ordenDireccion)
+    public function destroy(Detalle $detalle)
     {
         //
     }
