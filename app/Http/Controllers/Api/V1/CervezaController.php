@@ -61,104 +61,8 @@ class CervezaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    /**
-     * @OA\Get(
-     *      path="/api/v1/cervezas",
-     *      operationId="getCervezasList",
-     *      tags={"Cervezas"},
-     *      summary="Obtener la lista de cervezas",
-     *      description="Devuelve la lista de cervezas",
-     *      @OA\Parameter(
-     *          name="per_page",
-     *          description="Number of items per page",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="integer")
-     *      ),
-     *      @OA\Parameter(
-     *          name="page",
-     *          description="Page number",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="integer")
-     *      ),
-     *      @OA\Parameter(
-     *          name="color_id",
-     *          description="Filter by color ID",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="integer")
-     *      ),
-     *      @OA\Parameter(
-     *          name="pais_id",
-     *          description="Filter by pais ID",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="integer")
-     *      ),
-     *        @OA\Parameter(
-     *          name="graduacion_id",
-     *          description="Filter graduacion ID",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="integer")
-     *      ),
-     *      @OA\Parameter(
-     *          name="tipo_id",
-     *          description="Filter by tipo ID",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="integer")
-     *      ),
-     *      @OA\Parameter(
-     *          name="novedad",
-     *          description="Filter by novedad",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="boolean")
-     *      ),
-     *      @OA\Parameter(
-     *          name="oferta",
-     *          description="Filter by oferta",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="boolean")
-     *      ),
-     *      @OA\Parameter(
-     *          name="marca",
-     *          description="Filter by marca",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="string")
-     *      ),
-     *      @OA\Parameter(
-     *          name="precio_desde",
-     *          description="Filter by minimum price",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="numeric")
-     *      ),
-     *      @OA\Parameter(
-     *          name="precio_hasta",
-     *          description="Filter by maximum price",
-     *          required=false,
-     *          in="query",
-     *          @OA\Schema(type="numeric")
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *          @OA\JsonContent(
-     *              type="array",
-     *              @OA\Items(ref="#/components/schemas/Cerveza")
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=400,
-     *          description="Bad request"
-     *      )
-     * )
-     */
+    
+
     public function index(Request $request)
     {
         // Recopila parámetros de consulta desde la solicitud
@@ -177,10 +81,21 @@ class CervezaController extends Controller
 
         // Construye una consulta utilizando el Query Builder de Laravel
         $query = DB::table('cervezas as cer')
-            ->select('cer.id', 'cer.nombre', 'cer.pais_id',
-            'cer.descripcion', 'cer.novedad', 'cer.oferta', 'cer.precio',
-            'cer.foto', 'cer.marca', 'col.nombre as color'.'cer.stock', 
-            'g.nombre as graduacion', 't.nombre as tipo', 'p.nombre as pais')
+            ->select(
+                'cer.id',
+                'cer.nombre',
+                'cer.pais_id',
+                'cer.descripcion',
+                'cer.novedad',
+                'cer.oferta',
+                'cer.precio',
+                'cer.foto',
+                'cer.marca',
+                'col.nombre as color' . 'cer.stock',
+                'g.nombre as graduacion',
+                't.nombre as tipo',
+                'p.nombre as pais'
+            )
             ->join('colores as col', 'cer.color_id', '=', 'col.id')
             ->join('graduaciones as g', 'cer.graduacion_id', '=', 'g.id')
             ->join('tipos as t', 'cer.tipo_id', '=', 't.id')
@@ -193,7 +108,7 @@ class CervezaController extends Controller
         }
 
         if ($paisId) {
-            $query->where('cer.pais_id','=', intval($paisId));
+            $query->where('cer.pais_id', '=', intval($paisId));
         }
 
         if ($graduacionId) {
@@ -697,10 +612,10 @@ class CervezaController extends Controller
             $cerveza->precio = $request->json('precio', $cerveza->precio);
             $cerveza->marca = $request->json('marca', $cerveza->marca);
             $cerveza->formato = $request->json('formato', $cerveza->formato);
-            $cerveza->unidades=$request->json('unidades', $cerveza->unidades);
-            $cerveza->stock=$request->json('stock', $cerveza->stock);
+            $cerveza->unidades = $request->json('unidades', $cerveza->unidades);
+            $cerveza->stock = $request->json('stock', $cerveza->stock);
 
-          
+
             // Guarda la cerveza
             $cerveza->save();
 
@@ -714,7 +629,7 @@ class CervezaController extends Controller
         } catch (Exception $e) {
             // Revertir la transacción en caso de fallo
             DB::rollback();
-            
+
             // Devuelve una respuesta de error
             return response()->json('Error al procesar la solicitud', 500);
         }

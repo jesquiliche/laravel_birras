@@ -172,13 +172,52 @@ class OrdenController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
+ /**
+     * @OA\Get(
+     *      path="/api/v1/ordenes/{id}",
+     *      operationId="showOrden",
+     *      tags={"Ordenes"},
+     *      summary="Mostrar una Ordem específico",
+     *      description="Muestra una orden específico identificado por su ID en una respuesta JSON.",
+     *      @OA\Parameter(
+     *          name="id",
+     *          required=true,
+     *          in="path",
+     *          description="ID del país a mostrar",
+     *          @OA\Schema(type="string")
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="País encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="País", type="object", ref="#/components/schemas/Pais"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="País no encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="País no encontrado"),
+     *          ),
+     *      ),
+     * )
      */
-    public function show(Orden $orden)
+    
+
+    public function show(string $id)
     {
-        //
+        $orden = Orden::find($id);
+        $detalle = Detalle::where('orden_id', $id)->get();
+        $direccion = OrdenDireccion::where('orden_id', $id)->first();
+
+        return response()->json([
+            'orden' => $orden,
+            'detalle' => $detalle,
+            'direccion' => $direccion,
+        ]);
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
