@@ -46,6 +46,87 @@
                         "schema": {
                             "type": "number"
                         }
+                    },
+                    {
+                        "name": "pais_id",
+                        "in": "query",
+                        "description": "ID del país de origen de la cerveza",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "tipo_id",
+                        "in": "query",
+                        "description": "ID del tipo de cerveza",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "graduacion_id",
+                        "in": "query",
+                        "description": "ID de la graduación alcohólica de la cerveza",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "novedad",
+                        "in": "query",
+                        "description": "Indicador de novedad de la cerveza (true/false)",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "oferta",
+                        "in": "query",
+                        "description": "Indicador de oferta de la cerveza (true/false)",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "marca",
+                        "in": "query",
+                        "description": "Nombre de la marca de la cerveza (búsqueda insensible a mayúsculas/minúsculas)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "query",
+                        "description": "Nombre de la cerveza (búsqueda insensible a mayúsculas/minúsculas)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "precio_desde",
+                        "in": "query",
+                        "description": "Precio mínimo de la cerveza",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "precio_hasta",
+                        "in": "query",
+                        "description": "Precio máximo de la cerveza",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
                     }
                 ],
                 "responses": {
@@ -55,7 +136,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "provincias": {
+                                        "cervezas": {
                                             "type": "array",
                                             "items": {
                                                 "properties": {
@@ -65,7 +146,55 @@
                                                     },
                                                     "nombre": {
                                                         "type": "string",
-                                                        "example": "Provincia A"
+                                                        "example": "Cerveza A"
+                                                    },
+                                                    "pais_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "descripcion": {
+                                                        "type": "string",
+                                                        "example": "Descripción de la cerveza"
+                                                    },
+                                                    "novedad": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "oferta": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "precio": {
+                                                        "type": "number",
+                                                        "example": 5.99
+                                                    },
+                                                    "foto": {
+                                                        "type": "string",
+                                                        "example": "url_de_la_imagen"
+                                                    },
+                                                    "marca": {
+                                                        "type": "string",
+                                                        "example": "Marca de la cerveza"
+                                                    },
+                                                    "color": {
+                                                        "type": "string",
+                                                        "example": "Color de la cerveza"
+                                                    },
+                                                    "stock": {
+                                                        "type": "integer",
+                                                        "example": 100
+                                                    },
+                                                    "graduacion": {
+                                                        "type": "string",
+                                                        "example": "Alta"
+                                                    },
+                                                    "tipo": {
+                                                        "type": "string",
+                                                        "example": "Tipo de cerveza"
+                                                    },
+                                                    "pais": {
+                                                        "type": "string",
+                                                        "example": "País de origen"
                                                     },
                                                     "created_at": {
                                                         "type": "string",

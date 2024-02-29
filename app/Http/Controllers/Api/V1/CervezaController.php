@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Storage;
 /**
  * @OA\Info(
  *     title="Cervezas de Importación e-commerce",
- *     version="1.0",
+ *     version="2.0",
  *     description="Descripcion"
  * )
  *
- * @OA\Server(url="http://localhost:8000/")
+ * @OA\Server(url="https://laravelbirras-production.up.railway.app/")
  *
  * @OA\Schema(
  *     schema="Cerveza",
@@ -63,49 +63,125 @@ class CervezaController extends Controller
      */
 
     /**
-     * @OA\Get(
-     *      path="/api/v1/cervezas",
-     *      operationId="getCervezas",
-     *      tags={"Cervezas"},
-     *      summary="Obtener todas las cervezas",
-     *      description="Recupera todas las cervezas de la base de datos y las devuelve como una respuesta JSON ordenadas por nombre.",
-     *      @OA\Parameter(
-     *      name="per_page",
-     *      in="query",
-     *      description="Número de registros por página",
-     *      required=false,
-     *      @OA\Schema(type="number")
-     *     ),
-     *     @OA\Parameter(
-     *     name="page",
-     *     in="query",
-     *     description="Número de página",
-     *     required=false,
-     *     @OA\Schema(type="number")
-     *    ),
-     *     @OA\Parameter(
-     *      name="color_id",
-     *     in="query",
-     *     description="ID del color de la cerveza",
-     *     required=false,
-     *     @OA\Schema(type="number")
-     *     ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Lista de cervezas ordenadas por nombre",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="provincias", type="array",
-     *                  @OA\Items(
-     *                      @OA\Property(property="id", type="integer", example=1),
-     *                      @OA\Property(property="nombre", type="string", example="Provincia A"),
-     *                      @OA\Property(property="created_at", type="string", format="date-time"),
-     *                      @OA\Property(property="updated_at", type="string", format="date-time"),
-     *                  ),
-     *              ),
-     *          ),
-     *      ),
-     * )
-     */
+ * @OA\Get(
+ *      path="/api/v1/cervezas",
+ *      operationId="getCervezas",
+ *      tags={"Cervezas"},
+ *      summary="Obtener todas las cervezas",
+ *      description="Recupera todas las cervezas de la base de datos y las devuelve como una respuesta JSON ordenadas por nombre.",
+ *      @OA\Parameter(
+ *         name="per_page",
+ *         in="query",
+ *         description="Número de registros por página",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *     @OA\Parameter(
+ *         name="page",
+ *         in="query",
+ *         description="Número de página",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *     @OA\Parameter(
+ *         name="color_id",
+ *         in="query",
+ *         description="ID del color de la cerveza",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *     @OA\Parameter(
+ *         name="pais_id",
+ *         in="query",
+ *         description="ID del país de origen de la cerveza",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *     @OA\Parameter(
+ *         name="tipo_id",
+ *         in="query",
+ *         description="ID del tipo de cerveza",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *     @OA\Parameter(
+ *         name="graduacion_id",
+ *         in="query",
+ *         description="ID de la graduación alcohólica de la cerveza",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *     @OA\Parameter(
+ *         name="novedad",
+ *         in="query",
+ *         description="Indicador de novedad de la cerveza (true/false)",
+ *         required=false,
+ *         @OA\Schema(type="boolean")
+ *     ),
+ *     @OA\Parameter(
+ *         name="oferta",
+ *         in="query",
+ *         description="Indicador de oferta de la cerveza (true/false)",
+ *         required=false,
+ *         @OA\Schema(type="boolean")
+ *     ),
+ *     @OA\Parameter(
+ *         name="marca",
+ *         in="query",
+ *         description="Nombre de la marca de la cerveza (búsqueda insensible a mayúsculas/minúsculas)",
+ *         required=false,
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Parameter(
+ *         name="nombre",
+ *         in="query",
+ *         description="Nombre de la cerveza (búsqueda insensible a mayúsculas/minúsculas)",
+ *         required=false,
+ *         @OA\Schema(type="string")
+ *     ),
+ *     @OA\Parameter(
+ *         name="precio_desde",
+ *         in="query",
+ *         description="Precio mínimo de la cerveza",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *     @OA\Parameter(
+ *         name="precio_hasta",
+ *         in="query",
+ *         description="Precio máximo de la cerveza",
+ *         required=false,
+ *         @OA\Schema(type="number")
+ *     ),
+ *      @OA\Response(
+ *          response=200,
+ *          description="Lista de cervezas ordenadas por nombre",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="cervezas", type="array",
+ *                  @OA\Items(
+ *                      @OA\Property(property="id", type="integer", example=1),
+ *                      @OA\Property(property="nombre", type="string", example="Cerveza A"),
+ *                      @OA\Property(property="pais_id", type="integer", example=1),
+ *                      @OA\Property(property="descripcion", type="string", example="Descripción de la cerveza"),
+ *                      @OA\Property(property="novedad", type="boolean", example=true),
+ *                      @OA\Property(property="oferta", type="boolean", example=false),
+ *                      @OA\Property(property="precio", type="number", example=5.99),
+ *                      @OA\Property(property="foto", type="string", example="url_de_la_imagen"),
+ *                      @OA\Property(property="marca", type="string", example="Marca de la cerveza"),
+ *                      @OA\Property(property="color", type="string", example="Color de la cerveza"),
+ *                      @OA\Property(property="stock", type="integer", example=100),
+ *                      @OA\Property(property="graduacion", type="string", example="Alta"),
+ *                      @OA\Property(property="tipo", type="string", example="Tipo de cerveza"),
+ *                      @OA\Property(property="pais", type="string", example="País de origen"),
+ *                      @OA\Property(property="created_at", type="string", format="date-time"),
+ *                      @OA\Property(property="updated_at", type="string", format="date-time"),
+ *                  ),
+ *              ),
+ *          ),
+ *      ),
+ * )
+ */
+
 
 
     public function index(Request $request)
