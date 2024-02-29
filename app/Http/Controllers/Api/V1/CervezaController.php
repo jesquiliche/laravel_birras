@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Storage;
  *     description="Descripcion"
  * )
  *
- * @OA\Server(url="https://laravelbirras-production.up.railway.app/")
+ * @OA\Server(url="http://localhost:8000/")
  *
  * @OA\Schema(
  *     schema="Cerveza",
@@ -61,7 +61,52 @@ class CervezaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+
+    /**
+     * @OA\Get(
+     *      path="/api/v1/cervezas",
+     *      operationId="getCervezas",
+     *      tags={"Cervezas"},
+     *      summary="Obtener todas las cervezas",
+     *      description="Recupera todas las cervezas de la base de datos y las devuelve como una respuesta JSON ordenadas por nombre.",
+     *      @OA\Parameter(
+     *      name="per_page",
+     *      in="query",
+     *      description="Número de registros por página",
+     *      required=false,
+     *      @OA\Schema(type="number")
+     *     ),
+     *     @OA\Parameter(
+     *     name="page",
+     *     in="query",
+     *     description="Número de página",
+     *     required=false,
+     *     @OA\Schema(type="number")
+     *    ),
+     *     @OA\Parameter(
+     *      name="color_id",
+     *     in="query",
+     *     description="ID del color de la cerveza",
+     *     required=false,
+     *     @OA\Schema(type="number")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Lista de cervezas ordenadas por nombre",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="provincias", type="array",
+     *                  @OA\Items(
+     *                      @OA\Property(property="id", type="integer", example=1),
+     *                      @OA\Property(property="nombre", type="string", example="Provincia A"),
+     *                      @OA\Property(property="created_at", type="string", format="date-time"),
+     *                      @OA\Property(property="updated_at", type="string", format="date-time"),
+     *                  ),
+     *              ),
+     *          ),
+     *      ),
+     * )
+     */
+
 
     public function index(Request $request)
     {
