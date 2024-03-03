@@ -20,94 +20,8 @@ use Illuminate\Support\Facades\Validator;
 
 /**
  * @OA\Tag(
- *     name="Authentication",
+ *     name="Auth",
  *     description="Endpoints related to user authentication"
- * )
- */
-
-/**
- * @OA\Post(
- *      path="/api/login",
- *      operationId="login",
- *      tags={"Authentication"},
- *      summary="Login an existing user",
- *      description="Logs in an existing user and returns an authorization token",
- *      @OA\RequestBody(
- *          required=true,
- *          @OA\MediaType(
- *              mediaType="application/json",
- *              @OA\Schema(
- *                  @OA\Property(property="email", type="string", example="user@example.com"),
- *                  @OA\Property(property="password", type="string", example="password"),
- *              )
- *          )
- *      ),
- *      @OA\Response(
- *          response=200,
- *          description="Successful login",
- *          @OA\JsonContent(
- *              @OA\Property(property="user", type="object"),
- *              @OA\Property(property="authorization", type="object",
- *                  @OA\Property(property="token", type="string"),
- *                  @OA\Property(property="type", type="string", example="bearer"),
- *              ),
- *          )
- *      ),
- *      @OA\Response(
- *          response=401,
- *          description="Unauthorized",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string"),
- *          )
- *      ),
- *      @OA\Response(
- *          response=422,
- *          description="Validation error",
- *          @OA\JsonContent(
- *              @OA\Property(property="errors", type="object"),
- *          )
- *      ),
- * )
- */
-
-/**
- * @OA\Post(
- *      path="/api/register",
- *      operationId="register",
- *      tags={"Authentication"},
- *      summary="Register a new user",
- *      description="Registers a new user and returns an authorization token",
- *      @OA\RequestBody(
- *          required=true,
- *          @OA\MediaType(
- *              mediaType="application/json",
- *              @OA\Schema(
- *                  @OA\Property(property="name", type="string", example="John Doe"),
- *                  @OA\Property(property="email", type="string", example="newuser@example.com"),
- *                  @OA\Property(property="password", type="string", example="newpassword"),
- *              )
- *          )
- *      ),
- *      @OA\Response(
- *          response=200,
- *          description="Successful registration",
- *          @OA\JsonContent(
- *              @OA\Property(property="status", type="string"),
- *              @OA\Property(property="message", type="string"),
- *              @OA\Property(property="user", type="object"),
- *              @OA\Property(property="authorization", type="object",
- *                  @OA\Property(property="token", type="string"),
- *                  @OA\Property(property="type", type="string", example="bearer"),
- *              ),
- *          )
- *      ),
- *      @OA\Response(
- *          response=422,
- *          description="Validation error",
- *          @OA\JsonContent(
- *              @OA\Property(property="errors", type="object"),
- *          )
- *      ),
  * )
  */
 
@@ -120,49 +34,49 @@ class AuthController extends Controller
     }
 
     /**
- * @OA\Post(
- *      path="/api/login",
- *      operationId="login",
- *      tags={"Authentication"},
- *      summary="Login an existing user",
- *      description="Logs in an existing user and returns an authorization token",
- *      @OA\RequestBody(
- *          required=true,
- *          @OA\MediaType(
- *              mediaType="application/json",
- *              @OA\Schema(
- *                  @OA\Property(property="email", type="string", example="user@example.com"),
- *                  @OA\Property(property="password", type="string", example="password"),
- *              )
- *          )
- *      ),
- *      @OA\Response(
- *          response=200,
- *          description="Successful login",
- *          @OA\JsonContent(
- *              @OA\Property(property="user", type="object"),
- *              @OA\Property(property="authorization", type="object",
- *                  @OA\Property(property="token", type="string"),
- *                  @OA\Property(property="type", type="string", example="bearer"),
- *              ),
- *          )
- *      ),
- *      @OA\Response(
- *          response=401,
- *          description="Unauthorized",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string"),
- *          )
- *      ),
- *      @OA\Response(
- *          response=422,
- *          description="Validation error",
- *          @OA\JsonContent(
- *              @OA\Property(property="errors", type="object"),
- *          )
- *      ),
- * )
- */
+     * @OA\Post(
+     *      path="/api/login",
+     *      operationId="login",
+     *      tags={"Auth"},
+     *      summary="Login an existing user",
+     *      description="Logs in an existing user and returns an authorization token",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  @OA\Property(property="email", type="string", example="admin@test.com"),
+     *                  @OA\Property(property="password", type="string", example="admin_password"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful login",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="user", type="object"),
+     *              @OA\Property(property="authorization", type="object",
+     *                  @OA\Property(property="token", type="string"),
+     *                  @OA\Property(property="type", type="string", example="bearer"),
+     *              ),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string"),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="errors", type="object"),
+     *          )
+     *      ),
+     * )
+     */
 
 
     public function login(Request $request)
@@ -187,7 +101,7 @@ class AuthController extends Controller
 
         $user = Auth::user();
         return response()->json([
-            'user'=>$user,
+            'user' => $user,
             'authorization' => [
                 'token' => $token,
                 'type' => 'bearer',
@@ -195,7 +109,46 @@ class AuthController extends Controller
         ]);
     }
 
-   
+    /**
+     * @OA\Post(
+     *      path="/api/register",
+     *      operationId="register",
+     *      tags={"Auth"},
+     *      summary="Register a new user",
+     *      description="Registers a new user and returns an authorization token",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  @OA\Property(property="name", type="string", example="John Doe"),
+     *                  @OA\Property(property="email", type="string", example="john@example.com"),
+     *                  @OA\Property(property="password", type="string", example="password"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful registration",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="status", type="string"),
+     *              @OA\Property(property="message", type="string"),
+     *              @OA\Property(property="user", type="object"),
+     *              @OA\Property(property="authorization", type="object",
+     *                  @OA\Property(property="token", type="string"),
+     *                  @OA\Property(property="type", type="string", example="bearer"),
+     *              ),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="errors", type="object"),
+     *          )
+     *      ),
+     * )
+     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -226,24 +179,24 @@ class AuthController extends Controller
         ]);
     }
 
-    
-/**
- * @OA\Post(
- *      path="/api/logout",
- *      operationId="logout",
- *      tags={"Authentication"},
- *      summary="Logout the authenticated user",
- *      description="Logs out the authenticated user",
- *      security={{"bearerAuth": {}}},
- *      @OA\Response(
- *          response=200,
- *          description="Successfully logged out",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string"),
- *          )
- *      ),
- * )
- */
+
+    /**
+     * @OA\Post(
+     *      path="/api/logout",
+     *      operationId="logout",
+     *      tags={"Auth"},
+     *      summary="Logout the authenticated user",
+     *      description="Logs out the authenticated user",
+     *      security={{"bearerAuth": {}}},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successfully logged out",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string"),
+     *          )
+     *      ),
+     * )
+     */
 
     public function logout()
     {
@@ -257,7 +210,7 @@ class AuthController extends Controller
      * @OA\Post(
      *      path="/api/refresh",
      *      operationId="refresh",
-     *      tags={"Authentication"},
+     *      tags={"Auth"},
      *      summary="Refresh the authentication token",
      *      description="Refreshes the authentication token for the authenticated user",
      *      security={{"bearerAuth": {}}},
