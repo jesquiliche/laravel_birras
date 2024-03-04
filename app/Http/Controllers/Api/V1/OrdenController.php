@@ -113,6 +113,7 @@ class OrdenController extends Controller
             $subtotal = 0;
             $total = 0;
             $iva = 0;
+            $cantidad_articulos=0;
 
             foreach ($articulos as $articulo) {
                 // Acceder al id y cantidad del artículo
@@ -124,11 +125,11 @@ class OrdenController extends Controller
 
                 // Calcular el total acumulando el precio de cada artículo
                 $total += $cantidad * $cerveza->precio;
+                $cantidad_articulos+=$cantidad;
             }
 
             // Calcular el subtotal y el IVA
             $total = round($total, 2);
-            $subtotal = round($total / 1.21, 2);
             $iva = round($total - $subtotal, 2);
 
             // Crear una nueva instancia de Orden y establecer los valores
@@ -137,6 +138,7 @@ class OrdenController extends Controller
             $orden->subtotal = $subtotal;
             $orden->iva = $iva;
             $orden->total = $total;
+            $orden->articulos=$cantidad_articulos;
 
             // Guardar la orden en la base de datos
             $orden->save();
