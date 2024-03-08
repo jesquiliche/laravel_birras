@@ -10,6 +10,7 @@ use App\Models\OrdenDireccion;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class OrdenController extends Controller
 {
@@ -113,7 +114,7 @@ class OrdenController extends Controller
             $subtotal = 0;
             $total = 0;
             $iva = 0;
-            $cantidad_articulos=0;
+            $cantidad_articulos = 0;
 
             foreach ($articulos as $articulo) {
                 // Acceder al id y cantidad del artículo
@@ -125,10 +126,11 @@ class OrdenController extends Controller
 
                 // Calcular el total acumulando el precio de cada artículo
                 $total += $cantidad * $cerveza->precio;
-                $cantidad_articulos+=$cantidad;
+                $cantidad_articulos += $cantidad;
             }
 
             // Calcular el subtotal y el IVA
+            $subtotal = round(($total / 1.21), 2);
             $total = round($total, 2);
             $iva = round($total - $subtotal, 2);
 
@@ -138,7 +140,7 @@ class OrdenController extends Controller
             $orden->subtotal = $subtotal;
             $orden->iva = $iva;
             $orden->total = $total;
-            $orden->articulos=$cantidad_articulos;
+            $orden->articulos = $cantidad_articulos;
 
             // Guardar la orden en la base de datos
             $orden->save();
@@ -185,6 +187,72 @@ class OrdenController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/v1/pagarorden/{id}",
+     *     summary="Marcar una orden como pagada",
+     *     tags={"Ordenes"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID de la orden a pagar",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"transactionId"},
+     *             @OA\Property(property="transactionId", type="string", description="ID de transacción del pago")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="La orden ha sido marcada como pagada",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Orden pagada correctamente")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Orden no encontrada",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Orden no encontrada")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Error de validación",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Los datos proporcionados son inválidos")
+     *         )
+     *     )
+     * )
+     */
+    public function pagarOrden(string $id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'transactionId' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Los datos proporcionados son inválidos'], 422);
+        }
+
+        $orden = Orden::find($id);
+
+        if (!$orden) {
+            return response()->json(['error' => 'Orden no encontrada'], 404);
+        }
+
+        $orden->transactionId = $request->input('transactionId');
+        $orden->pagado = 'S';
+        $orden->save();
+
+        return response()->json(['message' => 'Orden pagada correctamente'], 200);
+    }
 
     /**
      * @OA\Get(
@@ -224,15 +292,15 @@ class OrdenController extends Controller
         $detalle = Detalle::join('cervezas', 'detalles.cerveza_id', '=', 'cervezas.id')
             ->select(
                 'detalles.*',
-                'cervezas.nombre AS nombre_cerveza',
+                'cervezas.nombre',
                 'cervezas.foto as foto'
             )->where('detalles.orden_id', $id)
             ->get();
-            $direccion = OrdenDireccion::join('poblaciones as p', 'orden_direcciones.poblacion', '=', 'p.codigo')
+        $direccion = OrdenDireccion::join('poblaciones as p', 'orden_direcciones.poblacion', '=', 'p.codigo')
             ->join('provincias as pr', 'orden_direcciones.provincia', '=', 'pr.codigo')
             ->select('orden_direcciones.*', 'p.nombre as poblacion_nombre', 'pr.nombre as provincia_nombre')
             ->where('orden_id', $id)->first();
-            
+
         return response()->json([
             'orden' => $orden,
             'detalle' => $detalle,

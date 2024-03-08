@@ -49,3 +49,4 @@ Route::apiResource('v1/provincias', ProvinciaController::class);
 Route::apiResource('v1/poblaciones', PoblacionController::class);
 
 Route::apiResource('v1/ordenes', OrdenController::class);
+Route::post('v1/pagarorden/{id}',[OrdenController::class,'pagarOrden']);

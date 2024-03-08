@@ -20,6 +20,7 @@ return new class extends Migration
             $table->float('iva',8,2)->default(0);
             $table->string('pagado',1)->default('N');
             $table->string('entregado',1)->default('N');
+            $table->string('transactionId')->default(' ');
             $table->integer('articulos')->default(0);
             $table->timestamps();
         });
