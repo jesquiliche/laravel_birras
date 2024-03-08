@@ -19,13 +19,20 @@ class OrdenController extends Controller
     {
         $this->middleware('auth:api')->only(['store', 'destroy', 'update']);
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    
+    public function index(Request $request)
     {
-        //
+        $user_id = $request->input('user_id');
+
+        if ($user_id) {
+            $ordenes = Orden::where('user_id', $user_id)->get();
+        } else {
+            $ordenes = Orden::all();
+        }
+
+        return $ordenes;
     }
+
 
     /**
      * Show the form for creating a new resource.
