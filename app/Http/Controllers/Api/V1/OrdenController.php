@@ -19,19 +19,19 @@ class OrdenController extends Controller
     {
         $this->middleware('auth:api')->only(['store', 'destroy', 'update']);
     }
-    
+
     public function index(Request $request)
-    {
-        $user_id = $request->input('user_id');
+{
+    $user_id = $request->input('user_id');
 
-        if ($user_id) {
-            $ordenes = Orden::where('user_id', $user_id)->get();
-        } else {
-            $ordenes = Orden::all();
-        }
-
-        return $ordenes;
+    if ($user_id) {
+        $ordenes = Orden::where('user_id', $user_id)->orderBy('id', 'DESC')->get();
+    } else {
+        $ordenes = Orden::orderBy('id', 'DESC')->get();
     }
+
+    return $ordenes;
+}
 
 
     /**

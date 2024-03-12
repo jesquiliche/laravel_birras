@@ -9,7 +9,7 @@ class Orden extends Model
 {
     use HasFactory;
     protected $table='ordenes';
-    protected $fillable=['total','subtotal',
+    protected $fillable=['id','total','subtotal',
     'iva','pagado','entregado','user_id','transactionId'];
    
 }
