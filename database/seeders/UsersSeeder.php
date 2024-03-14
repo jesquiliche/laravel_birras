@@ -15,7 +15,9 @@ class UsersSeeder extends Seeder
         User::create([
             'name' => 'admin',
             'email' => 'admin@test.com',
-            'password' => bcrypt('admin_password') // Puedes establecer una contraseña predeterminada
+            'password' => bcrypt('admin_password'), // Puedes establecer una contraseña predeterminada
+            'role'=>'admin'
+        
         ]);
         
         $faker = Faker::create();
