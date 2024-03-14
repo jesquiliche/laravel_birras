@@ -52,21 +52,101 @@ class SystemController extends Controller
         return response()->json($resultados);
     }
 
+
     /**
+     * @OA\Get(
+     *      path="/api/v1/ventaCervezasPorArticulo",
+     *      operationId="ventaCervezasPorArticulo",
+     *      tags={"System"},
+     *      summary="Consulta las ventas de cervezas por artículo",
+     *      description="Devuelve la cantidad de cervezas vendidas y el importe total agrupado por artículo",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Operación exitosa",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(
+     *                  @OA\Property(property="cantidad", type="integer"),
+     *                  @OA\Property(property="importe", type="number"),
+     *                  @OA\Property(property="stock", type="integer"),
+     *                  @OA\Property(property="nombre", type="string"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Error interno del servidor",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
+    public function ventaCervezasPorArticulo()
+    {
+        $resultados = DB::select("
+    SELECT sum(cantidad) as cantidad,
+    sum(d.precio*cantidad) importe ,
+    stock,nombre 
+    FROM detalles d inner join cervezas c 
+    on cerveza_id=c.id group by cerveza_id order by cantidad desc");
+        return response()->json($resultados);
+    }
+
+
+   /**
  * @OA\Get(
- *      path="/api/v1/stockPorPais",
- *      operationId="stockPorPais",
+ *      path="/api/v1/cervezasMasVendidas",
+ *      operationId="cervezasMasVendidas",
  *      tags={"System"},
- *      summary="Consulta el stock de cervezas por país",
- *      description="Devuelve el stock total de cervezas agrupado por país",
+ *      summary="Obtiene las cervezas más vendidas",
+ *      description="Realiza una consulta para obtener las cervezas más vendidas, calculando la cantidad total vendida para cada cerveza y devolviendo los resultados ordenados por la cantidad vendida de manera descendente.",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Operación exitosa",
+ *          @OA\JsonContent(
+ *              type="array",
+ *              @OA\Items(ref="#/components/schemas/Cerveza")
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=500,
+ *          description="Error interno del servidor",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="message", type="string")
+ *          )
+ *      )
+ * )
+ */
+public function cervezasMasVendidas()
+{
+    $resultados = DB::select("
+        SELECT c.*, sum(cantidad) as cantidad
+        FROM detalles d 
+        INNER JOIN cervezas c ON cerveza_id = c.id 
+        GROUP BY cerveza_id 
+        ORDER BY cantidad DESC LIMIT 12
+    ");
+
+    return response()->json($resultados);
+}
+
+   /**
+ * @OA\Get(
+ *      path="/api/v1/ventaCervezasPorPais",
+ *      operationId="ventaCervezasPorPais",
+ *      tags={"System"},
+ *      summary="Consulta las ventas de cervezas por país",
+ *      description="Devuelve la cantidad de cervezas vendidas y el importe total agrupado por país",
  *      @OA\Response(
  *          response=200,
  *          description="Operación exitosa",
  *          @OA\JsonContent(
  *              type="array",
  *              @OA\Items(
- *                  @OA\Property(property="value", type="integer"),
- *                  @OA\Property(property="name", type="string"),
+ *                  @OA\Property(property="cantidad", type="integer"),
+ *                  @OA\Property(property="importe", type="number"),
+ *                  @OA\Property(property="nombre", type="string"),
  *              )
  *          )
  *      ),
@@ -79,10 +159,50 @@ class SystemController extends Controller
  *      ),
  * )
  */
-public function stockPorPais()
+public function ventaCervezasPorPais()
 {
-    try {
-        $resultados = DB::select("
+    $resultados = DB::select("
+        SELECT SUM(cantidad) AS cantidad, SUM(d.precio * cantidad) AS importe, p.nombre
+        FROM detalles d 
+        INNER JOIN cervezas c ON cerveza_id = c.id 
+        INNER JOIN paises p ON c.pais_id = p.id
+        GROUP BY c.pais_id
+        ORDER BY cantidad DESC
+    ");
+    return response()->json($resultados);
+}
+
+    /**
+     * @OA\Get(
+     *      path="/api/v1/stockPorPais",
+     *      operationId="stockPorPais",
+     *      tags={"System"},
+     *      summary="Consulta el stock de cervezas por país",
+     *      description="Devuelve el stock total de cervezas agrupado por país",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Operación exitosa",
+     *          @OA\JsonContent(
+     *              type="array",
+     *              @OA\Items(
+     *                  @OA\Property(property="value", type="integer"),
+     *                  @OA\Property(property="name", type="string"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Error interno del servidor",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     * )
+     */
+    public function stockPorPais()
+    {
+        try {
+            $resultados = DB::select("
         SELECT CAST(SUM(stock) AS SIGNED) as value, p.nombre as name
         FROM cervezas as cer 
         INNER JOIN paises as p ON cer.pais_id=p.id
@@ -90,14 +210,14 @@ public function stockPorPais()
         ORDER BY value DESC
         ");
 
-        return response()->json($resultados);
-    } catch (\Exception $e) {
-        return response()->json(['message' => $e->getMessage()], 500);
+            return response()->json($resultados);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
-}
 
 
-        
+
 
 
     /**
@@ -296,23 +416,23 @@ public function stockPorPais()
      *      ),
      * )
      */
-     public function consultaTablas()
+    public function consultaTablas()
     {
         $databaseName = env('DB_DATABASE');
-    
+
         $resultados = DB::select("
             SELECT table_name, table_rows
             FROM information_schema.tables
            WHERE table_schema = '{$databaseName}'
               AND table_type = 'BASE TABLE'; -- Solo tablas, no vistas ni tablas de sistema
         ");
-    
+
         return response()->json($resultados);
     }
 
-    
-    
-        /**
+
+
+    /**
      * @OA\Get(
      *      path="/api/v1/consultaTablas2",
      *      operationId="consultaTablas2",
@@ -354,6 +474,5 @@ public function stockPorPais()
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
-    }      
-    
+    }
 };

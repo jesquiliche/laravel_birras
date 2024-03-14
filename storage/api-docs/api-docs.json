@@ -2856,6 +2856,151 @@
                 }
             }
         },
+        "/api/v1/ventaCervezasPorArticulo": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta las ventas de cervezas por artículo",
+                "description": "Devuelve la cantidad de cervezas vendidas y el importe total agrupado por artículo",
+                "operationId": "ventaCervezasPorArticulo",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "cantidad": {
+                                                "type": "integer"
+                                            },
+                                            "importe": {
+                                                "type": "number"
+                                            },
+                                            "stock": {
+                                                "type": "integer"
+                                            },
+                                            "nombre": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cervezasMasVendidas": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Obtiene las cervezas más vendidas",
+                "description": "Realiza una consulta para obtener las cervezas más vendidas, calculando la cantidad total vendida para cada cerveza y devolviendo los resultados ordenados por la cantidad vendida de manera descendente.",
+                "operationId": "cervezasMasVendidas",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Cerveza"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/ventaCervezasPorPais": {
+            "get": {
+                "tags": [
+                    "System"
+                ],
+                "summary": "Consulta las ventas de cervezas por país",
+                "description": "Devuelve la cantidad de cervezas vendidas y el importe total agrupado por país",
+                "operationId": "ventaCervezasPorPais",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "cantidad": {
+                                                "type": "integer"
+                                            },
+                                            "importe": {
+                                                "type": "number"
+                                            },
+                                            "nombre": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/stockPorPais": {
             "get": {
                 "tags": [

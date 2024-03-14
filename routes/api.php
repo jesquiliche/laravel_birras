@@ -38,6 +38,10 @@ Route::get('v1/stockPorPais',[SystemController::class,'stockPorPais']);
 Route::get('v1/consultaTablas',[SystemController::class,'consultaTablas']);
 Route::get('v1/consultaTablas2',[SystemController::class,'consultaTablas2']);
 Route::get('v1/consultaBD',[SystemController::class,'consultaBD']);
+Route::get('v1/ventaCervezasPorArticulo',[SystemController::class,'ventaCervezasPorArticulo']);
+Route::get('v1/ventaCervezasPorPais',[SystemController::class,'ventaCervezasPorPais']);
+Route::get('v1/cervezasMasVendidas',[SystemController::class,'cervezasMasVendidas']);
+
 Route::put('v1/cervezas/{id}',[CervezaController::class,'update']);
 Route::patch('v1/cervezas/{id}',[CervezaController::class,'patch']);
 Route::post('v1/cervezas',[CervezaController::class,'store']);
@@ -50,3 +54,5 @@ Route::apiResource('v1/poblaciones', PoblacionController::class);
 
 Route::apiResource('v1/ordenes', OrdenController::class);
 Route::post('v1/pagarorden/{id}',[OrdenController::class,'pagarOrden']);
+
+
