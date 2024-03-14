@@ -93,28 +93,35 @@ class SystemController extends Controller
         return response()->json($resultados);
     }
 
-
-
 /**
  * @OA\Get(
- *     path="/api/v1/cervezasMasVendidas",
- *     summary="Obtener las cervezas más vendidas",
- *     description="Obtiene las cervezas más vendidas en función de la cantidad total vendida de cada una.",
- *     tags={"System"},
- *     @OA\Response(
- *         response=200,
- *         description="Operación exitosa. Devuelve un JSON con las cervezas más vendidas.",
- *         @OA\JsonContent(
- *             type="array",
- *             @OA\Items(ref="#/components/schemas/Cerveza")
- *         )
- *     ),
- *     @OA\Response(
- *         response=500,
- *         description="Error interno del servidor."
- *     )
+ *      path="/api/v1/cervezasMasVendidas",
+ *      operationId="cervezasMasVendidas",
+ *      tags={"System"},
+ *      summary="Consulta las ventas de cervezas por país",
+ *      description="Devuelve la cantidad de cervezas vendidas y el importe total agrupado por país",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Operación exitosa",
+ *          @OA\JsonContent(
+ *              type="array",
+ *              @OA\Items(
+ *                  @OA\Property(property="cantidad", type="integer"),
+ *                  @OA\Property(property="importe", type="number"),
+ *                  @OA\Property(property="nombre", type="string"),
+ *              )
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=500,
+ *          description="Error interno del servidor",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="message", type="string")
+ *          )
+ *      ),
  * )
  */
+
 public function cervezasMasVendidas()
 {
     $resultados = DB::select("

@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000/"
+            "url": "https://laravelbirras-production.up.railway.app/"
         }
     ],
     "paths": {
@@ -2915,25 +2915,48 @@
                 "tags": [
                     "System"
                 ],
-                "summary": "Obtener las cervezas más vendidas",
-                "description": "Obtiene las cervezas más vendidas en función de la cantidad total vendida de cada una.",
-                "operationId": "6c5aed3bd80145cdb4bee67a63e0aee9",
+                "summary": "Consulta las ventas de cervezas por país",
+                "description": "Devuelve la cantidad de cervezas vendidas y el importe total agrupado por país",
+                "operationId": "cervezasMasVendidas",
                 "responses": {
                     "200": {
-                        "description": "Operación exitosa. Devuelve un JSON con las cervezas más vendidas.",
+                        "description": "Operación exitosa",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Cerveza"
+                                        "properties": {
+                                            "cantidad": {
+                                                "type": "integer"
+                                            },
+                                            "importe": {
+                                                "type": "number"
+                                            },
+                                            "nombre": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
                                     }
                                 }
                             }
                         }
                     },
                     "500": {
-                        "description": "Error interno del servidor."
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
