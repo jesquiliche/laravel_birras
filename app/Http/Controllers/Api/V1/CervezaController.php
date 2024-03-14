@@ -21,8 +21,10 @@ use Illuminate\Support\Facades\Storage;
  *     title="Cervezas de Importación e-commerce",
  *     version="2.0",
  *     description="Descripcion"
+ * )
+ * 
  * @OA\Server(url="https://laravelbirras-production.up.railway.app/")
- *
+ * 
  * @OA\Schema(
  *     schema="Cerveza",
  *     @OA\Property(property="id", type="integer"),

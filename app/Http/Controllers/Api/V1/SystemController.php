@@ -94,28 +94,25 @@ class SystemController extends Controller
     }
 
 
-   /**
+
+/**
  * @OA\Get(
- *      path="/api/v1/cervezasMasVendidas",
- *      operationId="cervezasMasVendidas",
- *      tags={"System"},
- *      summary="Obtiene las cervezas más vendidas",
- *      description="Realiza una consulta para obtener las cervezas más vendidas, calculando la cantidad total vendida para cada cerveza y devolviendo los resultados ordenados por la cantidad vendida de manera descendente.",
- *      @OA\Response(
- *          response=200,
- *          description="Operación exitosa",
- *          @OA\JsonContent(
- *              type="array",
- *              @OA\Items(ref="#/components/schemas/Cerveza")
- *          )
- *      ),
- *      @OA\Response(
- *          response=500,
- *          description="Error interno del servidor",
- *          @OA\JsonContent(
- *              @OA\Property(property="message", type="string")
- *          )
- *      )
+ *     path="/api/v1/cervezasMasVendidas",
+ *     summary="Obtener las cervezas más vendidas",
+ *     description="Obtiene las cervezas más vendidas en función de la cantidad total vendida de cada una.",
+ *     tags={"System"},
+ *     @OA\Response(
+ *         response=200,
+ *         description="Operación exitosa. Devuelve un JSON con las cervezas más vendidas.",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/Cerveza")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=500,
+ *         description="Error interno del servidor."
+ *     )
  * )
  */
 public function cervezasMasVendidas()
@@ -131,7 +128,7 @@ public function cervezasMasVendidas()
     return response()->json($resultados);
 }
 
-   /**
+/**
  * @OA\Get(
  *      path="/api/v1/ventaCervezasPorPais",
  *      operationId="ventaCervezasPorPais",

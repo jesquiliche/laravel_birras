@@ -2915,12 +2915,12 @@
                 "tags": [
                     "System"
                 ],
-                "summary": "Obtiene las cervezas más vendidas",
-                "description": "Realiza una consulta para obtener las cervezas más vendidas, calculando la cantidad total vendida para cada cerveza y devolviendo los resultados ordenados por la cantidad vendida de manera descendente.",
-                "operationId": "cervezasMasVendidas",
+                "summary": "Obtener las cervezas más vendidas",
+                "description": "Obtiene las cervezas más vendidas en función de la cantidad total vendida de cada una.",
+                "operationId": "6c5aed3bd80145cdb4bee67a63e0aee9",
                 "responses": {
                     "200": {
-                        "description": "Operación exitosa",
+                        "description": "Operación exitosa. Devuelve un JSON con las cervezas más vendidas.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2933,19 +2933,7 @@
                         }
                     },
                     "500": {
-                        "description": "Error interno del servidor",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Error interno del servidor."
                     }
                 }
             }
