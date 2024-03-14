@@ -105,11 +105,69 @@ class SystemController extends Controller
  *          description="Operación exitosa",
  *          @OA\JsonContent(
  *              type="array",
- *              @OA\Items(
- *                  @OA\Property(property="cantidad", type="integer"),
- *                  @OA\Property(property="importe", type="number"),
- *                  @OA\Property(property="nombre", type="string"),
- *              )
+ *              @OA\Items(ref="#/components/schemas/Cerveza"),
+ *              example={
+ *                  {
+ *                      "id": 3,
+ *                      "nombre": "AECHT SCHLENKERLA RAUCHBIER - MÄRZEN",
+ *                      "descripcion": "Rauchbier.",
+ *                      "color_id": 8,
+ *                      "graduacion_id": 1,
+ *                      "tipo_id": 7,
+ *                      "pais_id": 2,
+ *                      "formato": "Lata",
+ *                      "unidades": 1,
+ *                      "stock": 96,
+ *                      "created_at": "2024-03-14 21:16:42",
+ *                      "updated_at": "2024-03-14 21:20:12",
+ *                      "novedad": 0,
+ *                      "oferta": 0,
+ *                      "precio": "3.40",
+ *                      "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697339509/aecht_schlenkerla_rauchbier_maerzen_889700fd43.png",
+ *                      "marca": "MÄRZEN",
+ *                      "cantidad": "4"
+ *                  },
+ *                  {
+ *                      "id": 2,
+ *                      "nombre": "MEINE HOPFENWEISSE / SCHNEIDER-BROOKLYNER (TAP 5)",
+ *                      "descripcion": "Color dorado oscuro y brumoso con la cabeza espumosa. El aroma es el trigo, el banano, los cítricos y la resina, ofrecen un sabor semi dulce.",
+ *                      "color_id": 8,
+ *                      "graduacion_id": 1,
+ *                      "tipo_id": 7,
+ *                      "pais_id": 2,
+ *                      "formato": "Lata",
+ *                      "unidades": 1,
+ *                      "stock": 99,
+ *                      "created_at": "2024-03-14 21:16:42",
+ *                      "updated_at": "2024-03-14 21:20:12",
+ *                      "novedad": 0,
+ *                      "oferta": 0,
+ *                      "precio": "3.25",
+ *                      "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697338549/cerveza_artesana_lagerbier_hell_1c5414e43a.jpg",
+ *                      "marca": "SCHNEIDER",
+ *                      "cantidad": "1"
+ *                  },
+ *                  {
+ *                      "id": 1,
+ *                      "nombre": "LAGERBIER HELL",
+ *                      "descripcion": "Una cerveza particularmente suave, espumosa, largamente almacenada, refrescante y fácilmente digerible. Única en su sabor.",
+ *                      "color_id": 8,
+ *                      "graduacion_id": 1,
+ *                      "tipo_id": 7,
+ *                      "pais_id": 2,
+ *                      "formato": "Lata",
+ *                      "unidades": 1,
+ *                      "stock": 99,
+ *                      "created_at": "2024-03-14 21:16:42",
+ *                      "updated_at": "2024-03-14 21:20:12",
+ *                      "novedad": 0,
+ *                      "oferta": 0,
+ *                      "precio": "3.35",
+ *                      "foto": "https://res.cloudinary.com/dkrew530b/image/upload/v1697338549/cerveza_artesana_lagerbier_hell_1c5414e43a.jpg",
+ *                      "marca": "Helles",
+ *                      "cantidad": "1"
+ *                  }
+ *              }
  *          )
  *      ),
  *      @OA\Response(
@@ -121,6 +179,7 @@ class SystemController extends Controller
  *      ),
  * )
  */
+
 
 public function cervezasMasVendidas()
 {
